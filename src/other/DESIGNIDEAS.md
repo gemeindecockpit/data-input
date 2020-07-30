@@ -16,3 +16,5 @@
     * datatype: integer, text
     
 * language: multi-language support?
+
+* class for JSON-Object that returns the object as a Proxy for the Backend
