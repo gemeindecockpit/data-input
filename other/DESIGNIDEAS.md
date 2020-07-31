@@ -6,6 +6,7 @@
     
 * datafields as a list, scrollable
     * difficult if there are many fields
+    * user can decide how many fields are shown
     
  * generic component to show data for the review tab
  
