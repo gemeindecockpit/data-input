@@ -5,7 +5,16 @@ import RecordViewer from "./RecordViewer";
 
 const record = {
     name: "Record one",
-    value: 2
+    value: 2,
+    firstName: "James",
+    lastName: "Bond",
+    age: 15,
+    "version": "0.1.0",
+    "private": true,
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
 }
 
 export default function App() {

@@ -3,6 +3,9 @@ import {Table, TableHead, TableRow, TableCell, TableContainer} from '@material-u
 
 class RecordViewer extends Component {
 
+    /**
+     * Default table header.
+     */
     tableHead = (<TableHead>
         <TableRow>
             <TableCell><b>Property</b></TableCell>
@@ -10,6 +13,12 @@ class RecordViewer extends Component {
         </TableRow>
     </TableHead>);
 
+    /**
+     * Returns a table row containing the passed k/v pair.
+     * @param key
+     * @param value
+     * @returns {JSX.Element}
+     */
     createRow(key, value) {
 
         return (
@@ -21,6 +30,10 @@ class RecordViewer extends Component {
 
     }
 
+    /**
+     * Extracts each record from the passed record to a table row.
+     * @returns {JSX.Element[]}
+     */
     extractRecord() {
 
         return (
@@ -29,6 +42,10 @@ class RecordViewer extends Component {
 
     }
 
+    /**
+     * Returns a table with key and values out of the record.
+     * @returns {JSX.Element}
+     */
     render() {
         return (
             <TableContainer>
