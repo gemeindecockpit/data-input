@@ -1,10 +1,18 @@
 import React from 'react';
-import Icon from '@material-ui/core';
-import logo from './logo.svg';
+import Header from "./Header"
+import OrganisationViewer from "./OrganisationViewer";
 
-function App() {
-  return ( <h1>test</h1>
-  );
+export default function App() {
+    let printID = (dataFromChild)=>{
+        console.log("Print from App" +dataFromChild)
+    };
+
+    return (
+        <div>
+            <Header/>
+            <OrganisationViewer printId={printID}/>
+        </div>
+
+    );
 }
 
-export default App;
