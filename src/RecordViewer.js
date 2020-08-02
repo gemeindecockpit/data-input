@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, TableHead, TableRow, TableCell, TableContainer} from '@material-ui/core'
+import {Table, TableHead, TableRow, TableCell, TableContainer, TablePagination} from '@material-ui/core'
 
 class RecordViewer extends Component {
 
@@ -42,6 +42,14 @@ class RecordViewer extends Component {
 
     }
 
+    realPage = 1
+
+    onChangePage = (ev, newPage) => {
+        console.log(this.realPage)
+        this.realPage = newPage
+        this.render();
+    }
+
     /**
      * Returns a table with key and values out of the record.
      * @returns {JSX.Element}
@@ -53,6 +61,16 @@ class RecordViewer extends Component {
                     { this.tableHead }
                     { this.extractRecord() }
                 </Table>
+                <TablePagination
+                    rowsPerPageOptions={[2]}
+                    component="div"
+                    count={11}
+                    rowsPerPage={2}
+                    page={this.realPage}
+                    onChangePage={this.onChangePage}
+                    onChangeRowsPerPage={null}
+
+                />
             </TableContainer>
         );
     }
