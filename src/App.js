@@ -3,14 +3,14 @@ import Header from "./Header"
 import OrganisationViewer from "./OrganisationViewer";
 
 export default function App() {
-    let printID = (dataFromChild)=>{
-        console.log("Print from App" +dataFromChild)
+    let loadOrganisation = (organisationID) => {
+        console.log("Print from App.js " + organisationID)
     };
 
     return (
         <div>
             <Header/>
-            <OrganisationViewer printId={printID}/>
+            <OrganisationViewer chosenOrganisation={loadOrganisation}/>
         </div>
 
     );

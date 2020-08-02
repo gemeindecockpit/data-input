@@ -1,16 +1,17 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
 
-const temporaryJson = [{'name':'Krankenhaus', 'id':123}, {'name': 'Feuerwehr', 'id':124}]
+const temporaryJson = [{'name': 'Krankenhaus', 'id': 123}, {'name': 'Feuerwehr', 'id': 124}]
 
 export default class OrganisationViewer extends React.Component {
- printID =(value)=>{
-     this.props.printId(value)
-     console.log('print from Viewer' + value)
- }
+    chooseOrganisation = (orgID) => {
+        this.props.chosenOrganisation(orgID)
+        console.log('print from Viewer' + orgID)
+    }
+
     render() {
         return (
-            <OrganisationList printID= {this.printID} data={ temporaryJson } />
+            <OrganisationList chosenOrganisation={this.chooseOrganisation} data={temporaryJson}/>
         )
     }
 }
