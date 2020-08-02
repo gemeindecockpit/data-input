@@ -48,22 +48,26 @@ export default function ProxyJSON() {
                     {
                         "name": "Atemschutzgeräte",
                         "id": "11",
-                        "value-format": "1231"
+                        "value-format": "num",
+                        "value": "1231"
                     },
                     {
                         "name": "Einsatzkräfte (krank)",
                         "id": "12",
-                        "value-format": "51"
+                        "value-format": "num",
+                        "value": "51"
                     },
                     {
                         "name": "Maschinist- und Fahrer (krank)",
                         "id": "13",
-                        "value-format": "5"
+                        "value-format": "num",
+                        "value": "5"
                     },
                     {
                         "name": "Fahrzeuge einsatzbereit",
                         "id": "14",
-                        "value-format": "123"
+                        "value-format": "num",
+                        "value": "123"
                     }
                 ]
             },
@@ -74,22 +78,26 @@ export default function ProxyJSON() {
                     {
                         "name": "Ärzte (krank)",
                         "id": "21",
-                        "value-format": "131"
+                        "value-format": "num",
+                        "value": "131"
                     },
                     {
                         "name": "Pflegekräfte (krank)",
                         "id": "22",
-                        "value-format": "24"
+                        "value-format": "num",
+                        "value": "24"
                     },
                     {
                         "name": "Beatmungsgeräte",
                         "id": "23",
-                        "value-format": "1535"
+                        "value-format": "num",
+                        "value": "1535"
                     },
                     {
                         "name": "Betten",
                         "id": "24",
-                        "value-format": "646"
+                        "value-format": "num",
+                        "value": "646"
                     }
                 ]
             },
@@ -100,22 +108,26 @@ export default function ProxyJSON() {
                     {
                         "name": "Teams (verfügbar)",
                         "id": "31",
-                        "value-format": "39"
+                        "value-format": "num",
+                        "value": "39"
                     },
                     {
                         "name": "Wasserqualität",
                         "id": "32",
-                        "value-format": "gut"
+                        "value-format": "string",
+                        "value": "gut"
                     },
                     {
                         "name": "Verfügbarkeit Trinkwasser",
                         "id": "33",
-                        "value-format": "404120"
+                        "value-format": "num",
+                        "value": "404120"
                     },
                     {
                         "name": "Abdeckung Versorgungsgebiet",
                         "id": "34",
-                        "value-format": "97%"
+                        "value-format": "perc",
+                        "value": "97%"
                     }
                 ]
             },
@@ -126,22 +138,26 @@ export default function ProxyJSON() {
                     {
                         "name": "MA Bürgerbüro (krank)",
                         "id": "41",
-                        "value-format": "12"
+                        "value-format": "num",
+                        "value": "12"
                     },
                     {
                         "name": "MA Jugendamt (krank)",
                         "id": "42",
-                        "value-format": "45"
+                        "value-format": "num",
+                        "value": "45"
                     },
                     {
                         "name": "MA Ordnungsamt (krank)",
                         "id": "43",
-                        "value-format": "124"
+                        "value-format": "num",
+                        "value": "124"
                     },
                     {
                         "name": "MA gesamt (krank)",
                         "id": "44",
-                        "value-format": "1123"
+                        "value-format": "num",
+                        "value": "1123"
                     }
                 ]
             },
@@ -152,12 +168,14 @@ export default function ProxyJSON() {
                     {
                         "name": "Einsatzkräft (krank)",
                         "id": "51",
-                        "value-format": "11"
+                        "value-format": "num",
+                        "value": "11"
                     },
                     {
                         "name": "Einsatzfahrzeuge (verfügbar)",
                         "id": "52",
-                        "value-format": "20"
+                        "value-format": "num",
+                        "value": "20"
                     }
                 ]
             },
@@ -168,17 +186,20 @@ export default function ProxyJSON() {
                     {
                         "name": "Pfleger (krank)",
                         "id": "61",
-                        "value-format": "19"
+                        "value-format": "num",
+                        "value": "19"
                     },
                     {
                         "name": "Auslastung",
                         "id": "62",
-                        "value-format": "290"
+                        "value-format": "num",
+                        "value": "290"
                     },
                     {
                         "name": "Lieferanten (verfügbar)",
                         "id": "63",
-                        "value-format": "25"
+                        "value-format": "num",
+                        "value": "25"
                     }
                 ]
             },
@@ -189,22 +210,26 @@ export default function ProxyJSON() {
                     {
                         "name": "Kindergärtner (krank)",
                         "id": "71",
-                        "value-format": "4"
+                        "value-format": "num",
+                        "value": "4"
                     },
                     {
                         "name": "Kinder (krank)",
                         "id": "72",
-                        "value-format": "25"
+                        "value-format": "num",
+                        "value": "25"
                     },
                     {
                         "name": "Verpflegung",
                         "id": "73",
-                        "value-format": "gut"
+                        "value-format": "String",
+                        "value": "gut"
                     },
                     {
                         "name": "Anwesenheit",
                         "id": "74",
-                        "value-format": "70%"
+                        "value-format": "perc",
+                        "value": "70%"
                     }
                 ]
             },
@@ -215,17 +240,20 @@ export default function ProxyJSON() {
                     {
                         "name": "Lehrer (krank)",
                         "id": "81",
-                        "value-format": "4"
+                        "value-format": "num",
+                        "value": "4"
                     },
                     {
                         "name": "Schüler (krank)",
                         "id": "82",
-                        "value-format": "25"
+                        "value-format": "num",
+                        "value": "25"
                     },
                     {
                         "name": "Anwesenheit",
                         "id": "84",
-                        "value-format": "70%"
+                        "value-format": "perc",
+                        "value": "70%"
                     }
                 ]
             }
