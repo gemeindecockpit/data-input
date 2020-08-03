@@ -16,12 +16,11 @@ export default class OrganisationList extends React.Component {
     }
 
     render() {
-        console.log(this.props.data)
-        let list = this.props.data.map(rec => this.newListItem(rec))
+        console.log(this.props.data);
+        let list = this.props.data.map(rec => this.newListItem(rec));
         return (< div>
             {list}
-        </div>)
-
+        </div>);
 
     }
 

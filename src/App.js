@@ -4,7 +4,9 @@ import Header from "./Header"
 import OrganisationViewer from "./OrganisationViewer";
 import Icon from '@material-ui/core';
 import ContentRouter from './ContentRouter';
+import ProxyJSON from "./ProxyJSON";
 
+let temporaryJSON = ProxyJSON()
 export default function App() {
     let loadOrganisation = (organisationID) => {
         console.log("Print from App.js " + organisationID)
@@ -14,7 +16,7 @@ export default function App() {
         <div>
             <Header/>
             <ContentRouter />
-            <OrganisationViewer chosenOrganisation={loadOrganisation}/>
+            <OrganisationViewer chosenOrganisation={loadOrganisation} organisations={temporaryJSON.organisations}/>
         </div>
 
     );
