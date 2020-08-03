@@ -74,6 +74,7 @@ export default function DenseAppBar() {
                         </MenuItem>
                     </Menu>
                 </Toolbar>
+                <Toolbar>Test</Toolbar>
             </AppBar>
         </div>
     );
