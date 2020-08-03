@@ -3,6 +3,7 @@ import Icon from '@material-ui/core';
 import logo from './logo.svg';
 import Datepicker from './Datepicker/Datepicker'
 import ContentRouter from './ContentRouter';
+import Header from './Header/Header'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div>
+      <Header></Header>
       <ContentRouter />
       <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
     </div>
