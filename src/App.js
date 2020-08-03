@@ -1,32 +1,20 @@
 import React from 'react';
-import Header from "./Header"
-import OrganisationViewer from "./OrganisationViewer";
-import RecordViewer from "./RecordViewer";
+import Icon from '@material-ui/core';
+import logo from './logo.svg';
+import Datepicker from './Datepicker/Datepicker'
+import ContentRouter from './ContentRouter';
 
-const record = [
-    {
-        id: 1,
-        name: "Hallo",
-        value: "hier"
-    },
-    {
-        id: 2,
-        name: "Wert",
-        value: 22
-    }
-]
+function App() {
 
-export default function App() {
-    let printID = (dataFromChild)=>{
-        console.log("Print from App" +dataFromChild)
-    };
+  function onDateChange(date) {
+    console.log(date);
+  }
 
-    return (
-        <div>
-            <Header/>
-            <RecordViewer recordToShow={record}/>
-        </div>
-
-    );
+  return (
+    <div>
+      <ContentRouter />
+      <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
+    </div>
+  );
 }
 
