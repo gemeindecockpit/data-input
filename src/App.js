@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '@material-ui/core';
 import logo from './logo.svg';
 import Datepicker from './Datepicker/Datepicker'
+import ContentRouter from './ContentRouter';
 
 function App() {
 
@@ -10,7 +11,10 @@ function App() {
   }
 
   return (
-    <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
+    <div>
+      <ContentRouter />
+      <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
+    </div>
   );
 }
 
