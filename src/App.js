@@ -1,7 +1,8 @@
 import React from 'react';
-import Header from "./Header"
-import OrganisationViewer from "./OrganisationViewer";
-import RecordViewer from "./RecordViewer";
+import Icon from '@material-ui/core';
+import Datepicker from './Datepicker/Datepicker'
+import ContentRouter from './ContentRouter';
+import OverviewScreen from "./OverviewScreen";
 
 const record = [
     {
@@ -17,16 +18,16 @@ const record = [
 ]
 
 export default function App() {
-    let printID = (dataFromChild)=>{
-        console.log("Print from App" +dataFromChild)
-    };
 
-    return (
-        <div>
-            <Header/>
-            <RecordViewer recordToShow={record}/>
-        </div>
+  function onDateChange(date) {
+    console.log(date);
+  }
 
-    );
+  return (
+    <div>
+      <ContentRouter />
+      <OverviewScreen />
+    </div>
+  );
 }
 
