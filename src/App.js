@@ -16,20 +16,17 @@ class App extends React.Component {
       chosenDate: new Date()
     }
   }
-  onDateChange(date) {
-    this.setState({chosenDate: date});
+
+  onDateChange = (unixTimestamp) => {
+    this.setState({ chosenDate: new Date(unixTimestamp) })
   }
 
-  loadOrganisation = (organisationID) => {
-        console.log("Print from App.js " + organisationID)
-  };
-
-  render() {return (
+  render() {
+    return (
         <div style={{ backgroundImage: "linear-gradient(145deg, #02B497 0%, #006484 60%)", height: "100vh" }}>
           <Header chosenDate={this.state.chosenDate}></Header>
-          <ContentRouter />
+          <ContentRouter onDateChange={this.onDateChange}/>
         </div>
-
     );
     }
 

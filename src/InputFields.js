@@ -10,7 +10,6 @@ class InputFields extends Component {
             org: getOrganisationById(props.match.params.orgId),
             newKpis: []
         };
-        console.log(props.match.params)
     }
 
     componentDidMount = () => {
@@ -36,7 +35,7 @@ class InputFields extends Component {
             <div>
                 <MuiThemeProvider theme={theme}>
                     {org.kennzahlen.map(kpi => {
-                        return <div key={kpi.id}>
+                        return <div key={kpi.id} className={classes.centeredDiv}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel shrink htmlFor="input-box">
                                     {kpi.name}
@@ -45,13 +44,12 @@ class InputFields extends Component {
                             </FormControl>                    
                         </div>
                     })}
-                    <CustomButton
-                        variant="contained"
-                        color="inherit"
-                        size="large"
-                        onClick={this.onButtonClick}
-                        className={classes.sendButton}
-                    > Absenden </CustomButton>
+                    <div className={classes.centeredDiv}>
+                        <CustomButton variant="contained" color="inherit" size="large" onClick={this.onButtonClick}> 
+                            Absenden 
+                        </CustomButton>
+                    </div>
+                    
                 </MuiThemeProvider>
             </div>
         )
@@ -60,6 +58,10 @@ class InputFields extends Component {
 
 const CustomButton = withStyles((theme) => ({
     root: {
+        width: "100%",
+        marginTop: "40px",
+        marginLeft: "25px",
+        marginRight: "25px",
         border: '1px solid #ced4da',
         borderRadius: 17,
         borderColor: "#FFFFFF",
@@ -122,21 +124,15 @@ const theme = createMuiTheme({
 
 const styles = (theme) => ({
     formControl: {
-        width: "90%",
+        width: "100%",
         marginTop: "20px",
-        marginLeft: "10px",
-        marginRight: "10px"
+        marginLeft: "25px",
+        marginRight: "25px"
     },
-    sendButton: {
-        width: "90%",
-        marginTop: "40px",
-        marginLeft: "10px",
-        marginRight: "10px",
-    },
-    datePicker: {
-        paddingTop: "40px",
-        paddingLeft: "10px",
-        paddingRight: "10px"
+    centeredDiv: {
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center"
     }
 })
 
