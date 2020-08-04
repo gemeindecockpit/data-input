@@ -19,3 +19,4 @@
 * language: multi-language support?
 
 * class for JSON-Object that returns the object as a Proxy for the Backend
+* we should count the interactionsteps with the app dependent on the number of input fields and minimize that number for convenience reasons

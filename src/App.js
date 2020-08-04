@@ -1,33 +1,39 @@
 import React from 'react';
-import Icon from '@material-ui/core';
 import Datepicker from './Datepicker/Datepicker'
 import ContentRouter from './ContentRouter';
-import OverviewScreen from "./OverviewScreen";
+import Header from "./Header/Header"
+import OrganisationViewer from "./OrganisationViewer";
+import Icon from '@material-ui/core';
+import ProxyJSON from "./ProxyJSON";
 
-const record = [
-    {
-        id: 1,
-        name: "Hallo",
-        value: "hier"
-    },
-    {
-        id: 2,
-        name: "Wert",
-        value: 22
+let temporaryJSON = ProxyJSON()
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenDate: new Date()
     }
-]
-
-export default function App() {
-
-  function onDateChange(date) {
-    console.log(date);
+  }
+  onDateChange(date) {
+    this.setState({chosenDate: date});
   }
 
-  return (
-    <div>
-      <ContentRouter />
-      <OverviewScreen />
-    </div>
-  );
-}
+  loadOrganisation = (organisationID) => {
+        console.log("Print from App.js " + organisationID)
+  };
 
+    render() {return (
+        <div>
+          <Header chosenDate={this.state.chosenDate}></Header>
+            <ContentRouter />
+            <Datepicker onChange={this.onDateChange.bind(this)} label="Datum auswählen:"></Datepicker>
+            <OrganisationViewer chosenOrganisation={this.loadOrganisation} organisations={temporaryJSON.organisations}/>
+        </div>
+
+    );
+    }
+
+  
+} export default App;
