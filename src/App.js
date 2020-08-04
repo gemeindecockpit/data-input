@@ -7,23 +7,34 @@ import Icon from '@material-ui/core';
 import ProxyJSON from "./ProxyJSON";
 
 let temporaryJSON = ProxyJSON()
-export default function App() {
 
-  function onDateChange(date) {
-    console.log(date);
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenDate: new Date()
+    }
   }
-    let loadOrganisation = (organisationID) => {
-        console.log("Print from App.js " + organisationID)
-    };
+  onDateChange(date) {
+    this.setState({chosenDate: date});
+  }
 
-    return (
+  loadOrganisation = (organisationID) => {
+        console.log("Print from App.js " + organisationID)
+  };
+
+    render() {return (
         <div>
-            <Header/>
+          <Header chosenDate={this.state.chosenDate}></Header>
             <ContentRouter />
-            
-            <OrganisationViewer chosenOrganisation={loadOrganisation} organisations={temporaryJSON.organisations}/>
+            <Datepicker onChange={this.onDateChange.bind(this)} label="Datum auswählen:"></Datepicker>
+
+            <OrganisationViewer chosenOrganisation={this.loadOrganisation} organisations={temporaryJSON.organisations}/>
         </div>
 
     );
-}
+    }
 
+  
+} export default App;
