@@ -1,19 +1,20 @@
 import React from 'react';
-import Datepicker from './Datepicker/Datepicker'
 import ContentRouter from './ContentRouter';
 import Header from "./Header/Header"
 import OrganisationViewer from "./OrganisationViewer";
+import OverviewScreen from "./OverviewScreen";
 import Icon from '@material-ui/core';
 import { getFullJSON } from "./ProxyJSON";
 
-let temporaryJSON = getFullJSON()
+const temporaryJSON = getFullJSON()
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      chosenDate: new Date()
+        chosenDate: new Date(),
+        currentRecord: null
     }
   }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, TableHead, TableRow, TableCell, TableContainer, TablePagination} from '@material-ui/core'
+import {Table, TableCell, TableContainer, TableRow} from '@material-ui/core'
 
 class RecordViewer extends Component {
 
@@ -37,13 +37,24 @@ class RecordViewer extends Component {
      * @returns {JSX.Element}
      */
     render() {
-        return (
-            <TableContainer>
-                <Table>
-                    { this.extractRecord() }
-                </Table>
-            </TableContainer>
-        );
+
+        if (this.props.recordToShow === null) {
+
+            return (
+                <b>No data</b>
+            );
+
+        } else {
+
+            return (
+                <TableContainer>
+                    <Table>
+                        { this.extractRecord() }
+                    </Table>
+                </TableContainer>
+            );
+
+        }
     }
 }
 

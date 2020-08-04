@@ -23,7 +23,6 @@ export default class OrganisationViewer extends React.Component {
      */
     chooseOrganisation = (orgID) => {
         this.props.history.push("/organisations/" + orgID)
-        console.log('print from Viewer' + orgID);
     }
 
     render() {
