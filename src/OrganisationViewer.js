@@ -11,7 +11,7 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.state={organisations:temporaryJson.organisations};
+        this.state={organisations:this.props.organisations};
     }
 
     /**
@@ -57,7 +57,7 @@ export default class OrganisationViewer extends React.Component {
      */
     chooseOrganisation = (orgID) => {
         this.props.chosenOrganisation(orgID);
-        console.log('print from Viewer' + orgID);
+        // console.log('print from Viewer' + orgID);
     }
 
     render() {
