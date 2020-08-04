@@ -1,19 +1,19 @@
 import React from 'react';
-import Datepicker from './Datepicker/Datepicker'
 import ContentRouter from './ContentRouter';
 import Header from "./Header/Header"
 import OrganisationViewer from "./OrganisationViewer";
-import Icon from '@material-ui/core';
 import ProxyJSON from "./ProxyJSON";
+import OverviewScreen from "./OverviewScreen";
 
-let temporaryJSON = ProxyJSON()
+let temporaryJSON = ProxyJSON();
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      chosenDate: new Date()
+        chosenDate: new Date(),
+        currentRecord: null
     }
   }
   onDateChange(date) {
@@ -21,17 +21,21 @@ class App extends React.Component {
   }
 
   loadOrganisation = (organisationID) => {
-        console.log("Print from App.js " + organisationID)
+    // console.log("Print from App.js " + organisationID)
+    let searchOrganisation = temporaryJSON.organisations.find(rec => rec.id === organisationID);
+    this.setState({
+        chosenDate: this.state.chosenDate,
+        currentRecord: searchOrganisation !== undefined ? searchOrganisation.kennzahlen : null
+    })
   };
 
     render() {return (
         <div>
-          <Header chosenDate={this.state.chosenDate}></Header>
-            <ContentRouter />
-            <Datepicker onChange={this.onDateChange.bind(this)} label="Datum auswählen:"></Datepicker>
-            <OrganisationViewer chosenOrganisation={this.loadOrganisation} organisations={temporaryJSON.organisations}/>
+          <Header chosenDate={this.state.chosenDate} />
+          <ContentRouter />
+          <OrganisationViewer chosenOrganisation={this.loadOrganisation} organisations={temporaryJSON.organisations}/><br />
+          <OverviewScreen recordToShow={ this.state.currentRecord }  onDateChange={ this.onDateChange.bind(this) } /><br />
         </div>
-
     );
     }
 
