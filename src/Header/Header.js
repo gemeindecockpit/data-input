@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
         color: "#006484"
     },
+    toolbar: {
+        color: "#006484",
+        backgroundColor: "#F3F3F3"
+    }
 }));
 
 export default function DenseAppBar() {
@@ -74,7 +78,7 @@ export default function DenseAppBar() {
                         </MenuItem>
                     </Menu>
                 </Toolbar>
-                <Toolbar>Test</Toolbar>
+                <Toolbar className={classes.toolbar}> Test</Toolbar>
             </AppBar>
         </div>
     );
