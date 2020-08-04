@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <Header></Header>
+      <Header chosenDate={new Date()}></Header>
       <ContentRouter />
       <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
     </div>

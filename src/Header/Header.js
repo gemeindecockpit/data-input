@@ -11,6 +11,7 @@ import { isWithinInterval } from 'date-fns';
 import MenuItem from '@material-ui/core/MenuItem';
 import Datepicker from '../Datepicker/Datepicker';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -33,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function DenseAppBar() {
+export default function DenseAppBar(props) {
+
+
+
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -87,7 +91,7 @@ export default function DenseAppBar() {
                 <Typography className={classes.text}>
                         Organisation
                     </Typography>
-                <Datepicker className={classes.dateText} ></Datepicker>
+                    <Typography className={classes.dateText} >{props.chosenDate.toDateString()}</Typography>
                 </Toolbar>
             </AppBar>
         </div>
