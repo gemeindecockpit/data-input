@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
 import { getOrganisationById } from './ProxyJSON'
+import Datepicker from './Datepicker/Datepicker';
 
 class InputFields extends Component {
     constructor(props) {
@@ -28,11 +29,18 @@ class InputFields extends Component {
         console.log(this.state.newKpis)
     }
 
+    onDateChange = (date) => {
+        console.log(date);
+      }
+
     render() {
         const { org } = this.state;
         const classes = this.props.classes
         return (
             <div>
+                <div className={classes.datePicker}>
+                    <Datepicker onChange={this.onDateChange} label="Datum auswählen:"></Datepicker>
+                </div>
                 <MuiThemeProvider theme={theme}>
                     {org.kennzahlen.map(kpi => {
                         return <div key={kpi.id}>
@@ -131,6 +139,11 @@ const styles = (theme) => ({
         marginTop: "40px",
         marginLeft: "10px",
         marginRight: "10px",
+    },
+    datePicker: {
+        paddingTop: "40px",
+        paddingLeft: "10px",
+        paddingRight: "10px"
     }
 })
 
