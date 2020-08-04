@@ -31,34 +31,11 @@ const today = new Date();
 
 class OverviewScreen extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            recordToShow: set1
-        }
-    }
-
-    setRecord = date => {
-
-        console.log(this)
-
-        if (today === date) {
-
-            this.setState({ recordToShow: set1 });
-
-        } else {
-
-            this.setState({ recordToShow: set2 });
-
-        }
-
-    }
-
     render() {
         return (
             <div>
                 <Datepicker onChange={ this.setRecord } label="Datum auswählen:"/>
-                <RecordViewer recordToShow={ this.state.recordToShow }/>
+                <RecordViewer recordToShow={ this.props.recordToShow }/>
             </div>
         );
     }
