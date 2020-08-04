@@ -19,4 +19,5 @@ test:
     script:
         - echo "Testing"
         - ls -a
+        - test -f build/info.txt
 
