@@ -11,7 +11,14 @@ class Datepicker extends React.Component {
 
     constructor(props) {
         super(props);
-        this.now = new Date();
+        this.state = {
+            chosenDate: new Date()
+          };
+    }
+
+    onDateChange(date) {
+        this.setState({chosenDate: date});
+        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + date.getTime())
     }
 
     render() {
@@ -22,9 +29,9 @@ class Datepicker extends React.Component {
                     format="dd.MM.yyyy"
                     id="date-picker-inline"
                     label={this.props.label}
-                    value={this.now}
-                    onChange={this.props.onChange}
-                    maxDate={this.now}
+                    value={this.state.chosenDate}
+                    onChange={this.onDateChange.bind(this)}
+                    maxDate={new Date()}
                 />
 
             </MuiPickersUtilsProvider>

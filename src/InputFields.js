@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
 import { getOrganisationById } from './ProxyJSON'
-import Datepicker from './Datepicker/Datepicker';
 
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
-            org: getOrganisationById(props.match.params.id),
+            org: getOrganisationById(props.match.params.orgId),
             newKpis: []
         };
+        console.log(props.match.params)
     }
 
     componentDidMount = () => {
@@ -29,18 +29,11 @@ class InputFields extends Component {
         console.log(this.state.newKpis)
     }
 
-    onDateChange = (date) => {
-        console.log(date);
-      }
-
     render() {
         const { org } = this.state;
         const classes = this.props.classes
         return (
             <div>
-                <div className={classes.datePicker}>
-                    <Datepicker onChange={this.onDateChange} label="Datum auswählen:"></Datepicker>
-                </div>
                 <MuiThemeProvider theme={theme}>
                     {org.kennzahlen.map(kpi => {
                         return <div key={kpi.id}>
@@ -69,8 +62,8 @@ const CustomButton = withStyles((theme) => ({
     root: {
         border: '1px solid #ced4da',
         borderRadius: 17,
-        borderColor: "white",
-        color: "white",
+        borderColor: "#FFFFFF",
+        color: "#FFFFFF",
         backgroundColor: "#FFFFFF80",
         '&:hover': {
             borderColor: theme.palette.getContrastText("#00546F"),
