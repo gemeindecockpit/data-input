@@ -1,8 +1,5 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
-import ProxyJSON from "./ProxyJSON";
-
-let temporaryJson = ProxyJSON();
 
 export default class OrganisationViewer extends React.Component {
     /**
