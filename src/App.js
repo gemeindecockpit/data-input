@@ -1,10 +1,23 @@
 import React from 'react';
 import Icon from '@material-ui/core';
-import logo from './logo.svg';
 import Datepicker from './Datepicker/Datepicker'
 import ContentRouter from './ContentRouter';
+import OverviewScreen from "./OverviewScreen";
 
-function App() {
+const record = [
+    {
+        id: 1,
+        name: "Hallo",
+        value: "hier"
+    },
+    {
+        id: 2,
+        name: "Wert",
+        value: 22
+    }
+]
+
+export default function App() {
 
   function onDateChange(date) {
     console.log(date);
@@ -13,7 +26,7 @@ function App() {
   return (
     <div>
       <ContentRouter />
-      <Datepicker onChange={onDateChange} label="Datum auswählen:"></Datepicker>
+      <OverviewScreen />
     </div>
   );
 }
