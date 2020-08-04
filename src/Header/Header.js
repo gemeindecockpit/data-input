@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import gclogo from '../gc.png'
 import { isWithinInterval } from 'date-fns';
 import MenuItem from '@material-ui/core/MenuItem';
+import Datepicker from '../Datepicker/Datepicker';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,11 +21,15 @@ const useStyles = makeStyles((theme) => ({
       },
     menuButton: {
         marginLeft: 'auto',
-        color: "#006484"
-    },
-    toolbar: {
         color: "#006484",
-        backgroundColor: "#F3F3F3"
+    },
+    secondToolbar: {
+        backgroundColor: "#F3F3F3",
+    },
+    dateText: {
+        font: "Roboto",
+        color: "#006484",
+        marginLeft: 'auto',
     }
 }));
 
@@ -78,7 +83,12 @@ export default function DenseAppBar() {
                         </MenuItem>
                     </Menu>
                 </Toolbar>
-                <Toolbar className={classes.toolbar}> Test</Toolbar>
+                <Toolbar className={classes.secondToolbar}>
+                <Typography className={classes.text}>
+                        Organisation
+                    </Typography>
+                <Datepicker className={classes.dateText} ></Datepicker>
+                </Toolbar>
             </AppBar>
         </div>
     );
