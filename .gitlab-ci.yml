@@ -1,0 +1,23 @@
+stages:
+    - build
+    - test
+    - deploy
+    
+build:
+    stage: build
+    tags:
+        - build
+        
+    script:
+        - echo "Building"
+        - mkdir build
+        - npm install
+        - touch build/info.txt
+        
+test:
+    stage: test
+    script:
+        - echo "Testing"
+        - ls -a
+        - test -f build/info.txt
+
