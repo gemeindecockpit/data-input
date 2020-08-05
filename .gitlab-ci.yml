@@ -3,6 +3,11 @@ stages:
     - test
     - deploy
     
+
+before_script:
+    - npm install
+
+
 build:
     stage: build
     tags:
@@ -11,7 +16,6 @@ build:
     script:
         - echo "Building"
         - mkdir build
-        - npm install
         - touch build/info.txt
         
 test:
@@ -19,5 +23,4 @@ test:
     script:
         - echo "Testing"
         - ls -a
-        - npm install
         - npm test
