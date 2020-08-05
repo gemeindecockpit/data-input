@@ -7,3 +7,8 @@ import { is } from 'date-fns/locale';
 test('Is App react?', () => {
   isElement(<App/>)
 });
+
+it('renders without crashing', () => {
+  constdiv = document.createElement('div');
+  ReactDOM.render(<App/>, div)
+})
