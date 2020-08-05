@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import gclogo from '../gc.png'
+import { getOrganisationById } from "../ProxyJSON";
 import { isWithinInterval } from 'date-fns';
 import MenuItem from '@material-ui/core/MenuItem';
 import Datepicker from '../Datepicker/Datepicker';
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseAppBar(props) {
 
-
+    var organisation = getOrganisationById(props.chooseOrganisation);
 
     const classes = useStyles();
 
@@ -89,7 +90,7 @@ export default function DenseAppBar(props) {
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
                 <Typography className={classes.text}>
-                        Organisation
+                    {organisation.name}
                     </Typography>
                     <Typography className={classes.dateText} >{props.chosenDate.toDateString()}</Typography>
                 </Toolbar>

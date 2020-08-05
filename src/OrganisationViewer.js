@@ -18,11 +18,13 @@ export default class OrganisationViewer extends React.Component {
     }
 
     /**
-     * callback method to hand the information of the chosen organisation as its ID to the parent classe
+     * callback method to hand the information of the chosen organisation as its ID to the parent class
      * @param orgID
      */
-    chooseOrganisation = (orgID) => {
-        this.props.history.push("/organisations/" + orgID)
+    chooseOrganisation = (orgId) => {
+        console.log(this.props)
+        this.props.chooseOrganisation(orgId);
+        this.props.history.push("/organisations/" + orgId)
     }
 
     render() {

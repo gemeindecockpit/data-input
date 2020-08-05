@@ -21,7 +21,6 @@ export default class OrganisationList extends React.Component {
         return (< div>
             {list}
         </div>);
-
     }
 
 }

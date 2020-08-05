@@ -11,6 +11,11 @@ export class ContentRouter extends Component {
         this.props.onDateChange(unixTimestamp)
     }
 
+    chooseOrganisation = (orgId) => {
+        console.log(this.props.chooseOrganisation)
+        this.props.chooseOrganisation(orgId)
+    }
+
     render() {
         return (
             <Router>
@@ -18,7 +23,7 @@ export class ContentRouter extends Component {
                     <Route path="/login" component={UserLogin} />                    
                     <Route path="/organisations/:orgId/:date" component={InputFields} />
                     <Route path="/organisations/:orgId" component={(props) => <Datepicker {...props} onDateChange={this.onDateChange}/>} />
-                    <Route path="/organisations" component={OrganisationViewer} />
+                    <Route path="/organisations" component={(props) => <OrganisationViewer {...props} chooseOrganisation={this.chooseOrganisation}/>} />
                     <Route path="/" component={OrganisationViewer} />
                 </Switch>
             </Router>
