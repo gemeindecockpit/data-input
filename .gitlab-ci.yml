@@ -19,4 +19,5 @@ test:
     script:
         - echo "Testing"
         - ls -a
+        - npm install
         - npm test
