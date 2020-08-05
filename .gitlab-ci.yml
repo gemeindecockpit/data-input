@@ -12,6 +12,7 @@ build:
         - echo "Building"
         - mkdir build
         - npm install
+        - npm start
         - touch build/info.txt
         
 test:
@@ -19,5 +20,4 @@ test:
     script:
         - echo "Testing"
         - ls -a
-        - test -f build/info.txt
-
+        - npm test
