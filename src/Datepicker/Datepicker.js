@@ -18,23 +18,26 @@ class Datepicker extends React.Component {
 
     onDateChange(date) {
         this.setState({chosenDate: date});
-        this.props.onChange(date);
+        this.props.onDateChange(date.getTime());
+        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + date.getTime())
     }
 
     render() {
         return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                    variant="inline"
-                    format="dd.MM.yyyy"
-                    id="date-picker-inline"
-                    label={this.props.label}
-                    value={this.state.chosenDate}
-                    onChange={this.onDateChange.bind(this)}
-                    maxDate={new Date()}
-                />
-
-            </MuiPickersUtilsProvider>
+            <div style={{height: "60vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        variant="inline"
+                        format="dd.MM.yyyy"
+                        id="date-picker-inline"
+                        label={this.props.label}
+                        value={this.state.chosenDate}
+                        onChange={this.onDateChange.bind(this)}
+                        maxDate={new Date()}
+                    />
+                </MuiPickersUtilsProvider>
+            </div>
+            
         )
     }
 }
