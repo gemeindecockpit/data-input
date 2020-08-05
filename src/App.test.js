@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom'
 
 import App from './App';
 
-import { render } from '@testing-library/react';
 import {isElement} from 'react-dom/test-utils'
-import { is } from 'date-fns/locale';
 
 test('Is App react?', () => {
   isElement(<App/>)
