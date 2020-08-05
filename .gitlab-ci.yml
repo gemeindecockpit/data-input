@@ -12,7 +12,6 @@ build:
         - echo "Building"
         - mkdir build
         - npm install
-        - npm start
         - touch build/info.txt
         
 test:
