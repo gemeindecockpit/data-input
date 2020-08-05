@@ -9,7 +9,7 @@ MuSCoW
 * As a User I want to choose a previous date for which I see the corresponding data. (Mu)
 * As a User I want to choose a previous date (timestamp) for which I want to enter data. (Mu)
 * As a User I want to enter data into the correspondingly labeled text fields. (Mu)
-* As a User I want to be able to get 'further information' for any data field. (C) 
+* As a User I want to be able to get 'further information' for any data field to make my entries accurately. (C) 
 * As a User I want to see the values I entered in a review screen. (Mu)
 * As a User I want to submit data, using a button. (Mu)
 * As a User I want to get feedback, that the data was successfully transfered. (S)
