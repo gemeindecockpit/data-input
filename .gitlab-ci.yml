@@ -15,8 +15,7 @@ build:
         
     script:
         - echo "Building"
-        - mkdir build
-        - touch build/info.txt
+        - npm run build
         
 test:
     stage: test
@@ -24,3 +23,9 @@ test:
         - echo "Testing"
         - ls -a
         - npm test
+
+deploy:
+    stage: deploy
+    script: 
+        - npm install -g serve
+        - serve -s build
