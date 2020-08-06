@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
+import { IconButton, InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
 import { getOrganisationById } from './ProxyJSON'
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 class InputFields extends Component {
     constructor(props) {
@@ -28,6 +29,9 @@ class InputFields extends Component {
         console.log(this.state.newKpis)
     }
 
+    onIconClick = (event) => {
+    }
+
     render() {
         const { org } = this.state;
         const classes = this.props.classes
@@ -40,6 +44,11 @@ class InputFields extends Component {
                                 <InputLabel shrink htmlFor="input-box">
                                     {kpi.name}
                                 </InputLabel>
+                                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <IconButton onClick={this.onIconClick} aria-label="info" style={{align: "right", alignItems: "right"}} >
+                                        <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"} style={{color: "#ffffff"}} />
+                                    </IconButton>
+                                </div>
                                 <CustomInputBase defaultValue={kpi.value} onChange={event => this.handleChange(event, kpi.name)} id="input-box"/>
                             </FormControl>                    
                         </div>
@@ -76,7 +85,7 @@ const CustomButton = withStyles((theme) => ({
 
 const CustomInputBase = withStyles((theme) => ({
     input: {
-        marginTop: theme.spacing(3),
+        marginTop: '2px',
         borderRadius: 10,
         position: 'relative',
         backgroundColor: "transperant",
@@ -100,6 +109,7 @@ const theme = createMuiTheme({
             root: {
                 color: "white",
                 fontSize: 20,
+                width: '132%',
                 "&$focused": {
                     color: "#000000",
                 }
@@ -133,6 +143,10 @@ const styles = (theme) => ({
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center"
+    },
+    infoIcon: {
+        position: 'absolute',
+        align: 'right'
     }
 })
 
