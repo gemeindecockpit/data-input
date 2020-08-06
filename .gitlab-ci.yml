@@ -30,4 +30,5 @@ deploy:
     stage: deploy
     script: 
         - npm install -g serve
+        - ifconfig -a
         - serve -s build
