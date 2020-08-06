@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -7,9 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import gclogo from '../gc.png'
-import { isWithinInterval } from 'date-fns';
 import MenuItem from '@material-ui/core/MenuItem';
-import Datepicker from '../Datepicker/Datepicker';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +53,7 @@ export default function DenseAppBar(props) {
         <div className={classes.root}>
             <AppBar position="static" color="#FFFFFF">
                 <Toolbar variant="dense">
-                    <img src={gclogo} />
+                    <img src={gclogo} alt='' />
                     <Typography className={classes.text} variant="h4">
                         Gemeinde Cockpit
                     </Typography>
