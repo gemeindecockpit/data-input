@@ -53,6 +53,7 @@ export default function DenseAppBar(props) {
 
     return (
         <div className={classes.root}>
+            {console.log(true)}
             <AppBar position="static" color="#FFFFFF">
                 <Toolbar variant="dense">
                     <img src={gclogo} />
