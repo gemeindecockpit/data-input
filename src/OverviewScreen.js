@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Datepicker from "./Datepicker/Datepicker";
 import RecordViewer from "./RecordViewer";
-import { getOrganisationById } from './ProxyJSON'
+import { getValuesByOrgIdAndDate } from './ProxyJSON'
 import Header from "./Header/Header";
 import { Paper, withStyles, Button, Typography } from '@material-ui/core';
 
@@ -14,7 +14,7 @@ class OverviewScreen extends Component {
     constructor(props) {
         super(props);
         this.state={
-            org: getOrganisationById(props.match.params.orgId),
+            org: getValuesByOrgIdAndDate(props.match.params.orgId, new Date()),
             date: new Date()
         };
     }
@@ -43,7 +43,7 @@ class OverviewScreen extends Component {
                 </div>
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
-                        <RecordViewer recordToShow={ getOrganisationById(this.props.match.params.orgId).kennzahlen }/>
+                        <RecordViewer recordToShow={ getValuesByOrgIdAndDate(this.props.match.params.orgId, date) }/>
                     </Paper>
                 </div>
                 <div className={classes.centeredDiv}>
