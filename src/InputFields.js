@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
-import { getOrganisationById } from './ProxyJSON'
+import { getOrganisationById, getValuesByOrgIdAndDate } from './ProxyJSON'
 
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
             org: getOrganisationById(props.match.params.orgId),
+            preKpis: getValuesByOrgIdAndDate(props.match.params.orgId, new Date(Number(this.props.match.params.date))),
             newKpis: []
         };
     }
 
     componentDidMount = () => {
         var kpis = []
-        this.state.org.kennzahlen.forEach(kpi => { kpis[kpi.name]= kpi.value })
+        this.state.preKpis.forEach(kpi => { kpis[kpi.name]= kpi.value })
         this.setState({ newKpis: kpis })
     }
 
@@ -29,27 +30,27 @@ class InputFields extends Component {
     }
 
     render() {
-        const { org } = this.state;
+        const { preKpis } = this.state;
         const classes = this.props.classes
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    {org.kennzahlen.map(kpi => {
-                        return <div key={kpi.id} className={classes.centeredDiv}>
+                    {preKpis.map(v => {
+                        return <div key={v.id} className={classes.centeredDiv}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel shrink htmlFor="input-box">
-                                    {kpi.name}
+                                    {v.name}
                                 </InputLabel>
-                                <CustomInputBase defaultValue={kpi.value} onChange={event => this.handleChange(event, kpi.name)} id="input-box"/>
-                            </FormControl>                    
+                                <CustomInputBase defaultValue={v.value} onChange={event => this.handleChange(event, v.name)} id="input-box"/>
+                            </FormControl>
                         </div>
                     })}
                     <div className={classes.centeredDiv}>
-                        <CustomButton variant="contained" color="inherit" size="large" onClick={this.onButtonClick}> 
-                            Absenden 
+                        <CustomButton variant="contained" color="inherit" size="large" onClick={this.onButtonClick}>
+                            Absenden
                         </CustomButton>
                     </div>
-                    
+
                 </MuiThemeProvider>
             </div>
         )
