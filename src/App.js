@@ -13,20 +13,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        chosenDate: new Date(),
-        currentRecord: null
+        
     }
-  }
-
-  onDateChange = (unixTimestamp) => {
-    this.setState({ chosenDate: new Date(unixTimestamp) })
   }
 
   render() {
     return (
-        <div style={{ backgroundImage: "linear-gradient(145deg, #02B497 0%, #006484 60%)", height: "100vh" }}>
-          <Header chosenDate={this.state.chosenDate}></Header>
-          <ContentRouter onDateChange={this.onDateChange}/>
+        <div style={{ backgroundImage: "linear-gradient(145deg, #02B497 0%, #006484 60%)", minHeight: "100vh" }}>
+          <ContentRouter />
         </div>
     );
     }

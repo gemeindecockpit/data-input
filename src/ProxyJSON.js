@@ -638,7 +638,7 @@ function getValuesByOrgIdAndDate(id, date){
     var valueList = [];
     var organisation = getOrganisationById(id);
     organisation.kennzahlen.forEach(kpi => {
-        var element = {"name": "", "value": ""};
+        var element = {"name": kpi.name, "value": ""};
         kpi.values.forEach(v => {
             if(new Date(v.date).getFullYear() === date.getFullYear()
                 && new Date(v.date).getMonth() === date.getMonth()

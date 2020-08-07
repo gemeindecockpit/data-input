@@ -1,5 +1,6 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
+import Header from "./Header/Header";
 import { getFullJSON } from "./ProxyJSON";
 
 const temporaryJson = getFullJSON();
@@ -27,7 +28,11 @@ export default class OrganisationViewer extends React.Component {
 
     render() {
         return (
-            <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
+            <div>
+                <Header chosenDate={new Date()}></Header>
+                <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
+            </div>
+            
         );
     }
 }

@@ -13,8 +13,8 @@ class RecordViewer extends Component {
 
         return (
             <TableRow>
-                <TableCell>{ key }</TableCell>
-                <TableCell>{ value }</TableCell>
+                <TableCell style={{ fontSize:"12px" }}>{ key }</TableCell>
+                <TableCell style={{ fontSize:"12px" }}>{ value }</TableCell>
             </TableRow>
         );
 
@@ -48,7 +48,7 @@ class RecordViewer extends Component {
 
             return (
                 <TableContainer>
-                    <Table>
+                    <Table size="small">
                         { this.extractRecord() }
                     </Table>
                 </TableContainer>
