@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
 import { getOrganisationById } from './ProxyJSON'
+import Header from './Header/Header'
 
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
             org: getOrganisationById(props.match.params.orgId),
+            date: new Date(props.match.params.date * 1000),
             newKpis: []
         };
     }
@@ -29,10 +31,11 @@ class InputFields extends Component {
     }
 
     render() {
-        const { org } = this.state;
+        const { org, date } = this.state;
         const classes = this.props.classes
         return (
             <div>
+                <Header chosenDate={date}></Header>
                 <MuiThemeProvider theme={theme}>
                     {org.kennzahlen.map(kpi => {
                         return <div key={kpi.id} className={classes.centeredDiv}>
@@ -62,6 +65,8 @@ const CustomButton = withStyles((theme) => ({
         marginTop: "40px",
         marginLeft: "25px",
         marginRight: "25px",
+        fontWeight: "bold",
+        textTransform: "none",
         border: '1px solid #ced4da',
         borderRadius: 17,
         borderColor: "#FFFFFF",

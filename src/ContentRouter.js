@@ -4,6 +4,7 @@ import UserLogin from './UserLogin';
 import Datepicker from './Datepicker/Datepicker';
 import OrganisationViewer from './OrganisationViewer';
 import InputFields from './InputFields';
+import OverviewScreen from './OverviewScreen';
 
 export class ContentRouter extends Component {
 
@@ -17,7 +18,7 @@ export class ContentRouter extends Component {
                 <Switch>
                     <Route path="/login" component={UserLogin} />                    
                     <Route path="/organisations/:orgId/:date" component={InputFields} />
-                    <Route path="/organisations/:orgId" component={(props) => <Datepicker {...props} onDateChange={this.onDateChange}/>} />
+                    <Route path="/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/organisations" component={OrganisationViewer} />
                     <Route path="/" component={OrganisationViewer} />
                 </Switch>

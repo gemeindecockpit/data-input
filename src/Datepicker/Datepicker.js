@@ -19,15 +19,13 @@ class Datepicker extends React.Component {
     }
 
     onDateChange(date) {
-        this.setState({ chosenDate: date });
-        this.props.onDateChange(date.getTime());
-        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + date.getTime())
+        this.setState({chosenDate: date});
+        this.props.onDateChange(date.getTime() / 1000);
     }
 
     render() {
-        const { classes } = this.props;
         return (
-            <div style={{ height: "60vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div>
                 <ThemeProvider theme={muiTheme}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker
@@ -51,10 +49,29 @@ class Datepicker extends React.Component {
 }
 const muiTheme = createMuiTheme({
     overrides: {
+        MuiInput: {
+            root: {
+                color: "white",
+            },
+            underline: {
+                "&:before": {
+                    borderBottom: "1px solid white"
+                }
+            }
+        },
+        MuiFormLabel: {
+            root: {
+                color: "white"
+            }
+        },
+        MuiIconButton: {
+            root: {
+                color: "white",
+            }
+        },
         MuiPickersToolbar: {
             toolbar: {
-                color: "#81CBBF",
-                backgroundColor: "#81CBBF",
+                backgroundImage: "linear-gradient(145deg, #02B497 0%, #006484 60%)"
             },
         },
         MuiPickersCalendarHeader: {
@@ -62,13 +79,16 @@ const muiTheme = createMuiTheme({
                 backgroundColor: "#F3F3F3",
                 color: "#006484",
             },
+            iconButton: {
+                color: "#006484",
+                backgroundColor: "transparent"
+            }
         },
         MuiPickersDay: {
             day: {
                 color: "#006484",
             },
             daySelected: {
-                color: "#006484",
                 backgroundColor: "#81CBBF",
             },
             dayDisabled: {
