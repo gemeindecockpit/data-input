@@ -79,6 +79,12 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.text} key="Datenhistorie" onClick={handleClose}>
                             Datenhistorie
                         </MenuItem>
+                        <MenuItem className={classes.text} key="Organisation wechseln" onClick={handleClose}>
+                            Organisation wechseln
+                        </MenuItem>
+                        <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleClose}>
+                            Workflow wechseln
+                        </MenuItem>
                         <MenuItem className={classes.text} key="Profil pflegen" onClick={handleClose}>
                             Profil pflegen
                         </MenuItem>
