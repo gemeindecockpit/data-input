@@ -55,13 +55,19 @@ const muiTheme = createMuiTheme({
             },
             underline: {
                 "&:before": {
-                    borderBottom: "1px solid white"
+                    borderBottom: "1px solid white",
+                },
+                "&:after": {
+                    borderBottom: "1px solid black"
                 }
             }
         },
         MuiFormLabel: {
             root: {
-                color: "white"
+                color: "white",
+                "&$focused": {
+                    color: "white"
+                }
             }
         },
         MuiIconButton: {

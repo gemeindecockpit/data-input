@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         font: "Roboto",
         color: "#006484",
         marginLeft: 'auto',
+    },
+    appBar: {
+        backgroundColor:"#FFFFFF"
     }
 }));
 
@@ -53,7 +56,7 @@ export default function DenseAppBar(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="#FFFFFF">
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar variant="dense">
                     <img src={gclogo} />
                     <Typography className={classes.text} variant="h4">
@@ -95,7 +98,7 @@ export default function DenseAppBar(props) {
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
                 <Typography className={classes.text}>
-                        Organisation
+                        {props.title ? props.title : ""}
                     </Typography>
                     <Typography className={classes.dateText} >{props.chosenDate.toDateString()}</Typography>
                 </Toolbar>

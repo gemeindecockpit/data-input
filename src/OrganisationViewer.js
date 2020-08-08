@@ -15,7 +15,6 @@ export default class OrganisationViewer extends React.Component {
         this.state={
             organisations: temporaryJson.organisations
         };
-        console.log(temporaryJson.organisations)
     }
 
     /**
@@ -29,7 +28,7 @@ export default class OrganisationViewer extends React.Component {
     render() {
         return (
             <div>
-                <Header chosenDate={new Date()}></Header>
+                <Header chosenDate={new Date()} title="Organisationsauswahl"></Header>
                 <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
             </div>
             

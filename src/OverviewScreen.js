@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Datepicker from "./Datepicker/Datepicker";
 import RecordViewer from "./RecordViewer";
-import { getValuesByOrgIdAndDate } from './ProxyJSON'
+import { getValuesByOrgIdAndDate, getOrganisationById } from './ProxyJSON'
 import Header from "./Header/Header";
 import { Paper, withStyles, Button, Typography } from '@material-ui/core';
 
@@ -37,7 +37,7 @@ class OverviewScreen extends Component {
         const { date } = this.state
         return (
             <div>
-                <Header chosenDate={date}></Header>
+                <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name}></Header>
                 <div className={classes.centeredDiv}>
                     <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:"/>
                 </div>

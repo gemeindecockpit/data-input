@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, TableCell, TableContainer, TableRow} from '@material-ui/core'
+import {Table, TableCell, TableContainer, TableRow, TableBody} from '@material-ui/core'
 
 class RecordViewer extends Component {
 
@@ -12,7 +12,7 @@ class RecordViewer extends Component {
     createRow(key, value) {
 
         return (
-            <TableRow>
+            <TableRow key={key}>
                 <TableCell style={{ fontSize:"12px" }}>{ key }</TableCell>
                 <TableCell style={{ fontSize:"12px" }}>{ value }</TableCell>
             </TableRow>
@@ -49,7 +49,9 @@ class RecordViewer extends Component {
             return (
                 <TableContainer>
                     <Table size="small">
-                        { this.extractRecord() }
+                        <TableBody>
+                            { this.extractRecord() }
+                        </TableBody>
                     </Table>
                 </TableContainer>
             );
