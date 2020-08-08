@@ -1,6 +1,6 @@
 stages:
-    - build
     - test
+    - build
     - deploy
     
 cache:
@@ -30,5 +30,9 @@ test:
 deploy:
     stage: deploy
     script: 
-        - npm install -g serve
-        - serve -s build
+        - echo "Deploy to staging."
+       # - npm install -g serve
+       # - serve -s build
+    environment:
+        name: staging
+        url: https://gc.data-input.com
