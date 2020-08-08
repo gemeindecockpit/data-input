@@ -18,7 +18,7 @@ install_depencies:
         - build
     script:
         - echo "Building"
-        - npm install
+        - npm run build
         
 test:
     stage: test
