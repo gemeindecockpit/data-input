@@ -35,10 +35,10 @@ class InputFields extends Component {
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)}></Header>
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name}></Header>
                 <MuiThemeProvider theme={theme}>
                     {preKpis.map(v => {
-                        return <div key={v.id} className={classes.centeredDiv}>
+                        return <div key={v.name} className={classes.centeredDiv}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel shrink htmlFor="input-box">
                                     {v.name}
