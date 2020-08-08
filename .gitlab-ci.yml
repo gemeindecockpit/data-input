@@ -6,6 +6,7 @@ stages:
 cache:
     paths:
         - node_modules/
+        - build
 
 before_script:
     - npm install 
@@ -30,5 +31,4 @@ deploy:
     stage: deploy
     script: 
         - npm install -g serve
-        - hostname -l
         - serve -s build
