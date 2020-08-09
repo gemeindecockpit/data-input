@@ -1,5 +1,9 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
+import Header from "./Header/Header";
+import { getFullJSON } from "./ProxyJSON";
+
+const temporaryJson = getFullJSON();
 
 export default class OrganisationViewer extends React.Component {
     /**
@@ -8,44 +12,9 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.state={organisations:this.props.organisations};
-    }
-
-    /**
-     * should later trigger the APICall, if not done before.
-     * Later this method is not needed for APICalls as the UserAuthentication will return the Data needed to show all
-     * relevant organisations
-     */
-    componentDidMount() {
-        /* RemoteApiCall*/
-    }
-
-    /**
-     * New lifecycle method replacing the old componentWillReceiveProps.
-     * checks whether the new props are different from the previous state and returns the arguments with which
-     * to update the stat.
-     * @param nextProps
-     * @param prevState
-     * @returns {null|{organisations: {name: string, kennzahlen: [{name: string, "value-format": string, id: string, value: string}, {name: string, "value-format": string, id: string, value: string}, {name: string, "value-format": string, id: string, value: string}, {name: string, "value-format": string, id: string, value: string}], id: string}}}
-     */
-    static getDerivedStateFromProps(nextProps, prevState){
-
-         if(nextProps.organisations!==prevState.organisations){
-             return {organisations : nextProps.organisations};
-         }
-         else return null;
-    }
-
-    /**
-     * sets the state of the component according to the return of getDerivedStateFromProps method
-     * @param prevProps
-     * @param prevState
-     * @param snapshot
-     */
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevState.organisations!==this.state.organisations){
-            this.setState({organisations:prevState.organisations})
-        }
+        this.state={
+            organisations: temporaryJson.organisations
+        };
     }
 
     /**
@@ -53,13 +22,16 @@ export default class OrganisationViewer extends React.Component {
      * @param orgID
      */
     chooseOrganisation = (orgID) => {
-        this.props.chosenOrganisation(orgID);
-        // console.log('print from Viewer' + orgID);
+        this.props.history.push("/organisations/" + orgID)
     }
 
     render() {
         return (
-            <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
+            <div>
+                <Header chosenDate={new Date()} title="Organisationsauswahl"></Header>
+                <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
+            </div>
+            
         );
     }
 }
