@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Datepicker from "./Datepicker/Datepicker";
 import RecordViewer from "./RecordViewer";
-import { getValuesByOrgIdAndDate, getOrganisationById } from './ProxyJSON'
+import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
 import Header from "./Header/Header";
-import { Paper, withStyles, Button, Typography } from '@material-ui/core';
+import {Button, Paper, withStyles} from '@material-ui/core';
+import ActionButtons from "./ActionButton/ActionButtons";
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record
@@ -13,14 +14,14 @@ class OverviewScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             org: getValuesByOrgIdAndDate(props.match.params.orgId, new Date()),
             date: new Date()
         };
     }
 
     onDateChange = (unixTimestamp) => {
-        this.setState({ date:  new Date(unixTimestamp * 1000)})
+        this.setState({date: new Date(unixTimestamp * 1000)})
         //this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
     }
 
@@ -34,27 +35,29 @@ class OverviewScreen extends Component {
 
     render() {
         const classes = this.props.classes
-        const { date } = this.state
+        const {date} = this.state
         return (
             <div>
-                <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name}></Header>
+                <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name}/>
                 <div className={classes.centeredDiv}>
                     <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:"/>
                 </div>
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
-                        <RecordViewer recordToShow={ getValuesByOrgIdAndDate(this.props.match.params.orgId, date) }/>
+                        <RecordViewer recordToDisplay={getValuesByOrgIdAndDate(this.props.match.params.orgId, date)}/>
                     </Paper>
                 </div>
                 <div className={classes.centeredDiv}>
-                    <CustomButton variant="contained" color="inherit" size="large" onClick={this.onContinueClick}> 
-                        Weiter
-                    </CustomButton>
-                </div>
-                <div className={classes.centeredDiv} style={{ marginTop: "-10px", paddingBottom: "40px" }}>
-                    <CancelButton variant="contained" color="inherit" size="large" onClick={this.onCancelClick}> 
-                        Abbrechen 
-                    </CancelButton>
+                    <ActionButtons
+                        btn_left={ {
+                            text: "Zurück",
+                            onClick: this.onCancelClick
+                        } }
+                        btn_right={ {
+                            text: "Weiter",
+                            onClick: this.onContinueClick
+                        } }
+                    />
                 </div>
             </div>
         );
