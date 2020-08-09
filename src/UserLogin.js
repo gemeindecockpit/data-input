@@ -4,7 +4,7 @@ export class UserLogin extends Component {
     render() {
         return (
             <div>
-                <h1>login</h1>
+                login
             </div>
         )
     }
