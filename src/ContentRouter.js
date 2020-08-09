@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import UserLogin from './UserLogin';
-import Datepicker from './Datepicker/Datepicker';
 import OrganisationViewer from './OrganisationViewer';
 import InputFields from './InputFields';
 import OverviewScreen from './OverviewScreen';
+import ReviewScreen from "./ReviewScreen/ReviewScreen";
 
 export class ContentRouter extends Component {
 
@@ -16,7 +16,8 @@ export class ContentRouter extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/login" component={UserLogin} />                    
+                    <Route path="/login" component={UserLogin} />
+                    <Route path="/organisations/:orgId/:date/confirmation" component={ReviewScreen} />
                     <Route path="/organisations/:orgId/:date" component={InputFields} />
                     <Route path="/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/organisations" component={OrganisationViewer} />

@@ -1,8 +1,18 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import { InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
+import React, {Component} from 'react'
+import {
+    Button,
+    createMuiTheme,
+    fade,
+    FormControl,
+    InputBase,
+    InputLabel,
+    MuiThemeProvider,
+    withStyles
+} from '@material-ui/core'
 import Header from './Header/Header'
-import { getOrganisationById, getValuesByOrgIdAndDate } from './ProxyJSON'
+import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
+
+let newKpis = [] // TODO
 
 class InputFields extends Component {
     constructor(props) {
@@ -22,12 +32,16 @@ class InputFields extends Component {
 
     handleChange = (event, kpi) => {
         var kpis = this.state.newKpis;
-        kpis[kpi] = event.target.value;
+        kpis.push({ // structure should OBVIOUSLY be the same
+            name: kpi,
+            value: event.target.value
+        });
         this.setState({ newKpis: kpis })
     }
 
     onButtonClick = (event) => {
-        console.log(this.state.newKpis)
+        newKpis = this.state.newKpis // TODO
+        this.props.history.push(this.props.history.location.pathname + "/confirmation")
     }
 
     render() {
@@ -35,7 +49,7 @@ class InputFields extends Component {
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name}></Header>
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name} />
                 <MuiThemeProvider theme={theme}>
                     {preKpis.map(v => {
                         return <div key={v.name} className={classes.centeredDiv}>
@@ -141,4 +155,9 @@ const styles = (theme) => ({
     }
 })
 
+function getCurrentKpis() { // TODO
+    return newKpis;
+}
+
+export { getCurrentKpis } // TODO
 export default withStyles(styles)(InputFields)
