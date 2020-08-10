@@ -34,11 +34,11 @@ class ReviewScreen extends Component {
                 </div>
                 <div>
                     <ActionButton
-                        btn_left={ {
+                        btn_cancel={ {
                             text: "Zurück",
                             onClick: this.onAbort
                         } }
-                        btn_right={ {
+                        btn_submit={ {
                             text: "Abschicken",
                             onClick: this.onSubmit
                         } }

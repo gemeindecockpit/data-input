@@ -17,8 +17,6 @@ class ActionButtons extends Component {
                         { this.props.btn_cancel.text }
                     </CancelButton>
                 </div>
-                
-               
             </div>
         );
     }
