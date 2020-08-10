@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { IconButton, InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button } from '@material-ui/core'
+import { Typography, IconButton, InputLabel, InputBase, fade, withStyles, FormControl, MuiThemeProvider, createMuiTheme, Button, Box, Popover } from '@material-ui/core'
 import { getOrganisationById } from './ProxyJSON'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+
 
 class InputFields extends Component {
     constructor(props) {
@@ -45,9 +47,32 @@ class InputFields extends Component {
                                     {kpi.name}
                                 </InputLabel>
                                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                                    <IconButton onClick={this.onIconClick} aria-label="info" style={{align: "right", alignItems: "right"}} >
-                                        <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"} style={{color: "#ffffff"}} />
-                                    </IconButton>
+                                        <PopupState variant="popover" popupId="demo-popup-popover">
+                                            {(popupState) => (
+                                                <div>
+                                                    <IconButton onClick={this.onIconClick} aria-label="info" style={{align: "right", alignItems: "right"}} {...bindTrigger(popupState)}>
+                                                        <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"} style={{color: "#ffffff"}} />
+                                                    </IconButton>
+                                                    <Popover
+                                                        {...bindPopover(popupState)}
+                                                        anchorOrigin={{
+                                                            vertical: 'bottom',
+                                                            horizontal: 'center',
+                                                        }}
+                                                        transformOrigin={{
+                                                            vertical: 'top',
+                                                            horizontal: 'center',
+                                                        }}
+                                                    >
+                                                        <Box p={2}>
+                                                            <Typography>
+                                                                {kpi.name}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Popover>
+                                                </div>
+                                            )}
+                                        </PopupState>
                                 </div>
                                 <CustomInputBase defaultValue={kpi.value} onChange={event => this.handleChange(event, kpi.name)} id="input-box"/>
                             </FormControl>                    
