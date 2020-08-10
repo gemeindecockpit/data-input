@@ -29,7 +29,7 @@ class InputFields extends Component {
         this.state.preKpis.forEach(kpi => { kpis.push({ // structure should OBVIOUSLY be the same
             name: kpi.name,
             value: kpi.value
-        }); })
+        }); })        
         this.setState({ newKpis: kpis })
     }
 
@@ -45,9 +45,9 @@ class InputFields extends Component {
     onButtonClick = (event) => {
         newKpis = this.state.newKpis // TODO
         console.log(newKpis)
-        //this.props.history.push(this.props.history.location.pathname + "/confirmation")
+        //this.props.history.push(this.props.history.location.pathname + "/confirmation")    
     }
-
+    
     render() {
         const { preKpis } = this.state;
         const classes = this.props.classes
