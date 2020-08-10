@@ -1,16 +1,23 @@
 import React, {Component} from 'react'
 import {
+    Box,
     Button,
     createMuiTheme,
     fade,
     FormControl,
+    IconButton,
     InputBase,
     InputLabel,
     MuiThemeProvider,
+    Popover,
+    Typography,
     withStyles
 } from '@material-ui/core'
 import Header from './Header/Header'
 import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+
 
 let newKpis = [] // TODO
 
@@ -26,10 +33,7 @@ class InputFields extends Component {
 
     componentDidMount = () => {
         var kpis = []
-        this.state.preKpis.forEach(kpi => { kpis.push({ // structure should OBVIOUSLY be the same
-            name: kpi.name,
-            value: kpi.value
-        }); })        
+        this.state.org.kennzahlen.forEach(kpi => { kpis[kpi.name]= kpi.value })
         this.setState({ newKpis: kpis })
     }
 
@@ -47,7 +51,10 @@ class InputFields extends Component {
         console.log(newKpis)
         //this.props.history.push(this.props.history.location.pathname + "/confirmation")    
     }
-    
+
+    onIconClick = (event) => {
+    }
+
     render() {
         const { preKpis } = this.state;
         const classes = this.props.classes
@@ -61,6 +68,34 @@ class InputFields extends Component {
                                 <InputLabel shrink htmlFor="input-box">
                                     {v.name}
                                 </InputLabel>
+                                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <PopupState variant="popover" popupId="demo-popup-popover">
+                                        {(popupState) => (
+                                            <div>
+                                                <IconButton onClick={this.onIconClick} aria-label="info" style={{align: "right", alignItems: "right"}} {...bindTrigger(popupState)}>
+                                                    <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"} style={{color: "#ffffff"}} />
+                                                </IconButton>
+                                                <Popover
+                                                    {...bindPopover(popupState)}
+                                                    anchorOrigin={{
+                                                        vertical: 'bottom',
+                                                        horizontal: 'center',
+                                                    }}
+                                                    transformOrigin={{
+                                                        vertical: 'top',
+                                                        horizontal: 'center',
+                                                    }}
+                                                >
+                                                    <Box p={2}>
+                                                        <Typography>
+                                                            {v.name}
+                                                        </Typography>
+                                                    </Box>
+                                                </Popover>
+                                            </div>
+                                        )}
+                                    </PopupState>
+                                </div>
                                 <CustomInputBase defaultValue={v.value} onChange={event => this.handleChange(event, v.name)} id="input-box"/>
                             </FormControl>
                         </div>
@@ -99,7 +134,7 @@ const CustomButton = withStyles((theme) => ({
 
 const CustomInputBase = withStyles((theme) => ({
     input: {
-        marginTop: theme.spacing(3),
+        marginTop: '2px',
         borderRadius: 10,
         position: 'relative',
         backgroundColor: "transperant",
@@ -123,6 +158,7 @@ const theme = createMuiTheme({
             root: {
                 color: "white",
                 fontSize: 20,
+                width: '132%',
                 "&$focused": {
                     color: "#000000",
                 }
@@ -156,6 +192,10 @@ const styles = (theme) => ({
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center"
+    },
+    infoIcon: {
+        position: 'absolute',
+        align: 'right'
     }
 })
 
