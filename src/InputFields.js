@@ -48,7 +48,8 @@ class InputFields extends Component {
 
     onButtonClick = (event) => {
         newKpis = this.state.newKpis // TODO
-        this.props.history.push(this.props.history.location.pathname + "/confirmation")
+        console.log(newKpis)
+        //this.props.history.push(this.props.history.location.pathname + "/confirmation")    
     }
 
     onIconClick = (event) => {
