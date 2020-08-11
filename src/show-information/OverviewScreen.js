@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Datepicker from "../input-data/Datepicker/Datepicker";
-import RecordViewer from "../user-magement/RecordViewer";
+import RecordViewer from "./RecordViewer";
 import {getOrganisationById, getValuesByOrgIdAndDate} from '../communication/ProxyJSON'
 import Header from "../common/Header/Header";
 import {Paper, withStyles} from '@material-ui/core';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RecordViewer from "../../user-magement/RecordViewer";
+import RecordViewer from "../RecordViewer";
 import ActionButton from "../../input-data/ActionButton/ActionButtons";
 import {Paper} from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
