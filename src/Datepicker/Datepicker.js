@@ -36,6 +36,7 @@ class Datepicker extends React.Component {
                             value={this.state.chosenDate}
                             onChange={this.onDateChange.bind(this)}
                             maxDate={new Date()}
+                            autoOk={true}
                         //InputProps={{ className: classes.input }}
                         />
                     </MuiPickersUtilsProvider>
