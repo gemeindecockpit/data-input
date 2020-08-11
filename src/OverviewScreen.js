@@ -3,7 +3,7 @@ import Datepicker from "./Datepicker/Datepicker";
 import RecordViewer from "./RecordViewer";
 import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
 import Header from "./Header/Header";
-import {Button, Paper, withStyles} from '@material-ui/core';
+import {Paper, withStyles} from '@material-ui/core';
 import ActionButtons from "./ActionButton/ActionButtons";
 
 /**
@@ -22,22 +22,22 @@ class OverviewScreen extends Component {
 
     onDateChange = (unixTimestamp) => {
         this.setState({date: new Date(unixTimestamp * 1000)})
-        //this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
     }
+
 
     isValidDate(date) {
         return date instanceof Date && !isNaN(date);
     }
 
-    onContinueClick = () => {
+    onSubmit = () => {
         if (this.isValidDate(this.state.date)) {
-            this.props.history.push(
-                "/organisations/" + this.props.match.params.orgId + "/" + (this.state.date.getTime() / 1000)
-            )
+            var unixTimestamp = (this.state.date.getTime() / 1000).toString().split('.')[0];  //to remove useless digits after comma
+            this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
+            
         }
     }
 
-    onCancelClick = () => {
+    onAbort = () => {
         this.props.history.push("/organisations")
     }
 
@@ -55,63 +55,21 @@ class OverviewScreen extends Component {
                         <RecordViewer recordToDisplay={getValuesByOrgIdAndDate(this.props.match.params.orgId, date)}/>
                     </Paper>
                 </div>
-                <div className={classes.centeredDiv}>
-                    <ActionButtons
-                        btn_left={ {
-                            text: "Zurück",
-                            onClick: this.onCancelClick
-                        } }
-                        btn_right={ {
-                            text: "Weiter",
-                            onClick: this.onContinueClick
-                        } }
-                    />
-                </div>
+                <ActionButtons
+                    btn_submit={ {
+                        text: "Weiter",
+                        onClick: this.onSubmit
+                    } }
+                    btn_abort={ {
+                        text: "Zurück",
+                        onClick: this.onAbort
+                    } }
+                />
             </div>
         );
     }
 
 }
-
-const CustomButton = withStyles((theme) => ({
-    root: {
-        width: "100%",
-        marginTop: "10px",
-        marginLeft: "25px",
-        marginRight: "25px",
-        fontWeight: "bold",
-        textTransform: "none",
-        border: '1px solid #ced4da',
-        borderRadius: 17,
-        borderColor: "#FFFFFF",
-        color: "#FFFFFF",
-        backgroundColor: "#FFFFFF80",
-        '&:hover': {
-            borderColor: theme.palette.getContrastText("#00546F"),
-            backgroundColor: "#00546F",
-        },
-    },
-}))(Button);
-
-const CancelButton = withStyles((theme) => ({
-    root: {
-        width: "100%",
-        marginTop: "20px",
-        marginLeft: "25px",
-        marginRight: "25px",
-        fontWeight: "bold",
-        textTransform: "none",
-        border: '1px solid #ced4da',
-        borderRadius: 17,
-        borderColor: "#FFFFFF",
-        color: "#FFFFFF",
-        backgroundColor: "#FF5B5B",
-        '&:hover': {
-            borderColor: theme.palette.getContrastText("#00546F"),
-            backgroundColor: "#B31515",
-        },
-    },
-}))(Button);
 
 const styles = (theme) => ({
     overviewPaper: {

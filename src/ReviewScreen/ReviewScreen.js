@@ -1,44 +1,55 @@
 import React, {Component} from 'react';
 import RecordViewer from "../RecordViewer";
-import {getCurrentKpis} from '../InputFields'
 import ActionButton from "../ActionButton/ActionButtons";
-import Header from "../Header/Header";
 import {Paper} from "@material-ui/core";
+import { withStyles } from '@material-ui/styles';
+
+const Divider = ( text ) => {
+    return (
+        <div style={{ display: "flex", alignItems: "center", paddingLeft: "30px", paddingRight: "30px", paddingTop: "30px" }}>
+            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
+                <span style={{padding: "0 10px 0 10px", color: "white"}}>
+                    {text}
+                </span>
+            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
+        </div>
+    );
+  };
 
 class ReviewScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            recordToShow: getCurrentKpis()
+            recordToShow: props.kpis
         }
     }
 
     onAbort = (ev) => {
-        this.props.history.push(this.props.history.location.pathname.replace(/\/confirmation/, ""));
+        this.props.onAbort();
     }
 
     onSubmit = (ev) => {
-        alert("GOGOGOOO"); // TODO replace me
+        this.props.onSubmit();
     }
 
     render() {
+        const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={ new Date(this.props.match.params.date * 1000) } title={ "Neue Daten bestätigen" } />
-
-                <div>
-                    <Paper>
+                {Divider(this.props.organisationName)}
+                <div className={classes.centeredDiv}>
+                    <Paper className={classes.overviewPaper}>
                         <RecordViewer recordToDisplay={ this.state.recordToShow }/>
                     </Paper>
                 </div>
                 <div>
                     <ActionButton
-                        btn_left={ {
+                        btn_abort={ {
                             text: "Zurück",
                             onClick: this.onAbort
                         } }
-                        btn_right={ {
+                        btn_submit={ {
                             text: "Abschicken",
                             onClick: this.onSubmit
                         } }
@@ -49,4 +60,26 @@ class ReviewScreen extends Component {
     }
 }
 
-export default ReviewScreen;
+const styles = (theme) => ({
+    overviewPaper: {
+        width: "100%",
+        marginTop: "0px",
+        marginLeft: "25px",
+        marginRight: "25px",
+        maxHeight: "250px",
+        overflow: "auto"
+    },
+    centeredDiv: {
+        marginTop: "30px",
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center"
+    },
+    title: {
+        color: "white",
+        fontSize: "18px",
+        fontWeight: "bold",
+    }
+})
+
+export default withStyles(styles)(ReviewScreen);

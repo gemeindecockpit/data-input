@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {
     Box,
-    Button,
     createMuiTheme,
     fade,
     FormControl,
@@ -13,55 +12,42 @@ import {
     Typography,
     withStyles
 } from '@material-ui/core'
-import Header from './Header/Header'
-import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import ActionButtons from './ActionButton/ActionButtons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-
-
-let newKpis = [] // TODO
 
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
-            org: getOrganisationById(props.match.params.orgId),
-            preKpis: getValuesByOrgIdAndDate(props.match.params.orgId, new Date(this.props.match.params.date * 1000)),
-            newKpis: []
+            kpis: props.kpis
         };
     }
 
-    componentDidMount = () => {
-        var kpis = []
-        this.state.org.kennzahlen.forEach(kpi => { kpis[kpi.name]= kpi.value })
-        this.setState({ newKpis: kpis })
+    handleChange = (event, kpiName) => {
+        var newKpis = this.state.kpis;
+        newKpis[this.state.kpis.findIndex(v => v.name === kpiName)] = {name: kpiName, value: event.target.value}
+        this.setState({ kpis: newKpis })
     }
 
-    handleChange = (event, kpi) => {
-        var kpis = this.state.newKpis;
-        kpis.push({ // structure should OBVIOUSLY be the same
-            name: kpi,
-            value: event.target.value
-        });
-        this.setState({ newKpis: kpis })
+    onSubmit = () => {
+        this.props.onSubmit(this.state.kpis);
     }
 
-    onButtonClick = (event) => {
-        newKpis = this.state.newKpis // TODO
-        this.props.history.push(this.props.history.location.pathname + "/confirmation")
+    onAbort = () => {
+        this.props.onAbort()   
     }
 
     onIconClick = (event) => {
     }
 
     render() {
-        const { preKpis } = this.state;
+        const { kpis } = this.state;
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name} />
                 <MuiThemeProvider theme={theme}>
-                    {preKpis.map(v => {
+                    {kpis.map(v => {
                         return <div key={v.name} className={classes.centeredDiv}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel shrink htmlFor="input-box">
@@ -99,37 +85,21 @@ class InputFields extends Component {
                             </FormControl>
                         </div>
                     })}
-                    <div className={classes.centeredDiv}>
-                        <CustomButton variant="contained" color="inherit" size="large" onClick={this.onButtonClick}>
-                            Absenden
-                        </CustomButton>
-                    </div>
-
+                    <ActionButtons
+                        btn_submit={ {
+                            text: "Weiter",
+                            onClick: this.onSubmit
+                        } }
+                        btn_abort={ {
+                            text: "Zurück",
+                            onClick: this.onAbort
+                        } }
+                    />
                 </MuiThemeProvider>
             </div>
         )
     }
 }
-
-const CustomButton = withStyles((theme) => ({
-    root: {
-        width: "100%",
-        marginTop: "40px",
-        marginLeft: "25px",
-        marginRight: "25px",
-        fontWeight: "bold",
-        textTransform: "none",
-        border: '1px solid #ced4da',
-        borderRadius: 17,
-        borderColor: "#FFFFFF",
-        color: "#FFFFFF",
-        backgroundColor: "#FFFFFF80",
-        '&:hover': {
-            borderColor: theme.palette.getContrastText("#00546F"),
-            backgroundColor: "#00546F",
-        },
-    },
-}))(Button);
 
 const CustomInputBase = withStyles((theme) => ({
     input: {
@@ -198,9 +168,4 @@ const styles = (theme) => ({
     }
 })
 
-function getCurrentKpis() { // TODO
-    return newKpis;
-}
-
-export { getCurrentKpis } // TODO
 export default withStyles(styles)(InputFields)
