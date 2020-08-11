@@ -24,9 +24,17 @@ class OverviewScreen extends Component {
         this.setState({date: new Date(unixTimestamp * 1000)})
     }
 
+
+    isValidDate(date) {
+        return date instanceof Date && !isNaN(date);
+    }
+
     onSubmit = () => {
-        var unixTimestamp = (this.state.date.getTime() / 1000).toString().split('.')[0];  //to remove useless digits after comma
-        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
+        if (this.isValidDate(this.state.date)) {
+            var unixTimestamp = (this.state.date.getTime() / 1000).toString().split('.')[0];  //to remove useless digits after comma
+            this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
+            
+        }
     }
 
     onAbort = () => {

@@ -20,7 +20,7 @@ class Datepicker extends React.Component {
 
     onDateChange(date) {
         this.setState({chosenDate: date});
-        this.props.onDateChange(date.getTime() / 1000);
+        this.props.onDateChange(date !== null ? date.getTime() / 1000 : NaN);
     }
 
     render() {
@@ -36,6 +36,7 @@ class Datepicker extends React.Component {
                             value={this.state.chosenDate}
                             onChange={this.onDateChange.bind(this)}
                             maxDate={new Date()}
+                            autoOk={true}
                         //InputProps={{ className: classes.input }}
                         />
                     </MuiPickersUtilsProvider>
