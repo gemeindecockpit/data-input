@@ -1,21 +1,7 @@
 import React from 'react';
 import ContentRouter from './ContentRouter';
-import Header from "./Header/Header"
-import OrganisationViewer from "./OrganisationViewer";
-import OverviewScreen from "./OverviewScreen";
-import Icon from '@material-ui/core';
-import { getFullJSON } from "./ProxyJSON";
-
-const temporaryJSON = getFullJSON()
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-        
-    }
-  }
 
   render() {
     return (
@@ -23,7 +9,7 @@ class App extends React.Component {
           <ContentRouter />
         </div>
     );
-    }
+  }
 
   
 } export default App;

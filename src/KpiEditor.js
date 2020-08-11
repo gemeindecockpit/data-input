@@ -20,7 +20,6 @@ export class KpiEditor extends Component {
 
     render() {
         const { kpis, showReviewScreen, org } = this.state;
-        const classes = this.props.classes
         return (
             <div>
                 <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} />

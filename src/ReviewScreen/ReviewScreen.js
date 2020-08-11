@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import RecordViewer from "../RecordViewer";
 import ActionButton from "../ActionButton/ActionButtons";
-import {Paper, Typography} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
 
 const Divider = ( text ) => {

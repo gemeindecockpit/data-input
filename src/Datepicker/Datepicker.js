@@ -4,7 +4,7 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from "@material-ui/styles";
 import 'date-fns';
 

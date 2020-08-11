@@ -3,7 +3,7 @@ import Datepicker from "./Datepicker/Datepicker";
 import RecordViewer from "./RecordViewer";
 import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
 import Header from "./Header/Header";
-import {Button, Paper, withStyles} from '@material-ui/core';
+import {Paper, withStyles} from '@material-ui/core';
 import ActionButtons from "./ActionButton/ActionButtons";
 
 /**

@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {
     Box,
-    Button,
     createMuiTheme,
     fade,
     FormControl,
@@ -13,8 +12,6 @@ import {
     Typography,
     withStyles
 } from '@material-ui/core'
-import Header from './Header/Header'
-import {getOrganisationById, getValuesByOrgIdAndDate} from './ProxyJSON'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ActionButtons from './ActionButton/ActionButtons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
