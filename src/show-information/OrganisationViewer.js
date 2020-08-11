@@ -1,7 +1,7 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
-import Header from "./Header/Header";
-import { getFullJSON } from "./ProxyJSON";
+import Header from "../common/Header/Header";
+import { getFullJSON } from "../communication/ProxyJSON";
 
 const temporaryJson = getFullJSON();
 

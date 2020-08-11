@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import UserLogin from './UserLogin';
-import OrganisationViewer from './OrganisationViewer';
-import OverviewScreen from './OverviewScreen';
-import KpiEditor from './KpiEditor';
+import UserLogin from '../communication/UserLogin';
+import OrganisationViewer from '../show-information/OrganisationViewer';
+import OverviewScreen from '../show-information/OverviewScreen';
+import KpiEditor from '../input-data/KpiEditor';
 
 export class ContentRouter extends Component {
 
