@@ -13,12 +13,17 @@ export class KpiEditor extends Component {
         };
     }
 
+    headerTitle = () => {
+        var orgName = getOrganisationById(this.props.match.params.orgId).name
+        return (this.state.showReviewScreen ? "Daten bestätigen: " + orgName : orgName)
+    }
+
     render() {
         const { kpis, showReviewScreen } = this.state;
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name} />
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} />
                 {(!showReviewScreen) ?
                     <InputFields 
                         kpis={kpis} 
