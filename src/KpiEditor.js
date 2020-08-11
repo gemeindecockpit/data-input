@@ -8,18 +8,18 @@ export class KpiEditor extends Component {
     constructor(props) {
         super(props);
         this.state={
+            org: getOrganisationById(props.match.params.orgId),
             kpis: getValuesByOrgIdAndDate(props.match.params.orgId, new Date(this.props.match.params.date * 1000)),
             showReviewScreen: false
         };
     }
 
     headerTitle = () => {
-        var orgName = getOrganisationById(this.props.match.params.orgId).name
-        return (this.state.showReviewScreen ? "Daten bestätigen: " + orgName : orgName)
+        return (this.state.showReviewScreen ? "Daten bestätigen" : this.state.org.name)
     }
 
     render() {
-        const { kpis, showReviewScreen } = this.state;
+        const { kpis, showReviewScreen, org } = this.state;
         const classes = this.props.classes
         return (
             <div>
@@ -33,6 +33,7 @@ export class KpiEditor extends Component {
                     : 
                     <ReviewScreen 
                         kpis={kpis}
+                        organisationName={org.name}
                         onSubmit={() => alert(kpis.map(kpi => { return JSON.stringify(kpi, null, 2) }))}
                         onAbort={() => this.setState({ showReviewScreen: false })}
                     />

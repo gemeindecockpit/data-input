@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import RecordViewer from "../RecordViewer";
-import {getCurrentKpis} from '../InputFields'
 import ActionButton from "../ActionButton/ActionButtons";
-import Header from "../Header/Header";
-import {Paper} from "@material-ui/core";
+import {Paper, Typography} from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
+
+const Divider = ( text ) => {
+    return (
+        <div style={{ display: "flex", alignItems: "center", paddingLeft: "30px", paddingRight: "30px", paddingTop: "30px" }}>
+            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
+                <span style={{padding: "0 10px 0 10px", color: "white"}}>
+                    {text}
+                </span>
+            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
+        </div>
+    );
+  };
 
 class ReviewScreen extends Component {
 
@@ -27,6 +37,7 @@ class ReviewScreen extends Component {
         const classes = this.props.classes
         return (
             <div>
+                {Divider(this.props.organisationName)}
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
                         <RecordViewer recordToDisplay={ this.state.recordToShow }/>
@@ -59,10 +70,15 @@ const styles = (theme) => ({
         overflow: "auto"
     },
     centeredDiv: {
-        marginTop: "40px",
+        marginTop: "30px",
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center"
+    },
+    title: {
+        color: "white",
+        fontSize: "18px",
+        fontWeight: "bold",
     }
 })
 
