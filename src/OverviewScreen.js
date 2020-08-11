@@ -25,8 +25,16 @@ class OverviewScreen extends Component {
         //this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
     }
 
+    isValidDate(date) {
+        return date instanceof Date && !isNaN(date);
+    }
+
     onContinueClick = () => {
-        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + (this.state.date.getTime() / 1000))
+        if (this.isValidDate(this.state.date)) {
+            this.props.history.push(
+                "/organisations/" + this.props.match.params.orgId + "/" + (this.state.date.getTime() / 1000)
+            )
+        }
     }
 
     onCancelClick = () => {
