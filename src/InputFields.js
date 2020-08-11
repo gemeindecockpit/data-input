@@ -19,15 +19,11 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ActionButtons from './ActionButton/ActionButtons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
-
-let newKpis = [] // TODO
-
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
-            org: getOrganisationById(props.match.params.orgId),
-            kpis: getValuesByOrgIdAndDate(props.match.params.orgId, new Date(this.props.match.params.date * 1000)),
+            kpis: props.kpis
         };
     }
 
@@ -37,14 +33,12 @@ class InputFields extends Component {
         this.setState({ kpis: newKpis })
     }
 
-    onContinueClick = () => {
-        console.log(this.state.kpis)
-        console.log(this.state.kpis)
-        this.props.history.push(this.props.history.location.pathname + "/confirmation")    
+    onSubmit = () => {
+        this.props.onSubmit(this.state.kpis);
     }
 
-    onCancelClick = () => {
-        this.props.history.push("/organisations")    
+    onAbort = () => {
+        this.props.onAbort()   
     }
 
     onIconClick = (event) => {
@@ -55,7 +49,6 @@ class InputFields extends Component {
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={getOrganisationById(this.props.match.params.orgId).name} />
                 <MuiThemeProvider theme={theme}>
                     {kpis.map(v => {
                         return <div key={v.name} className={classes.centeredDiv}>
@@ -98,11 +91,11 @@ class InputFields extends Component {
                     <ActionButtons
                         btn_submit={ {
                             text: "Weiter",
-                            onClick: this.onContinueClick
+                            onClick: this.onSubmit
                         } }
-                        btn_cancel={ {
-                            text: "Abbrechen",
-                            onClick: this.onCancelClick
+                        btn_abort={ {
+                            text: "Zurück",
+                            onClick: this.onAbort
                         } }
                     />
                 </MuiThemeProvider>
@@ -178,9 +171,4 @@ const styles = (theme) => ({
     }
 })
 
-function getCurrentKpis() { // TODO
-    return newKpis;
-}
-
-export { getCurrentKpis } // TODO
 export default withStyles(styles)(InputFields)

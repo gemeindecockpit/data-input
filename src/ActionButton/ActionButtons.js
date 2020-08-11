@@ -13,9 +13,9 @@ class ActionButtons extends Component {
                     </CustomButton>
                 </div>
                 <div className={classes.centeredDiv} style={{ marginTop: "-10px", paddingBottom: "40px" }}>
-                    <CancelButton size="large" onClick={ this.props.btn_cancel.onClick }>
-                        { this.props.btn_cancel.text }
-                    </CancelButton>
+                    <AbortButton size="large" onClick={ this.props.btn_abort.onClick }>
+                        { this.props.btn_abort.text }
+                    </AbortButton>
                 </div>
             </div>
         );
@@ -42,7 +42,7 @@ const CustomButton = withStyles((theme) => ({
     },
 }))(Button);
 
-const CancelButton = withStyles((theme) => ({
+const AbortButton = withStyles((theme) => ({
     root: {
         width: "100%",
         marginTop: "20px",
@@ -65,7 +65,7 @@ const CancelButton = withStyles((theme) => ({
 
 const styles = (theme) => ({
     centeredDiv: {
-        marginTop: "40px",
+        marginTop: "30px",
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center"

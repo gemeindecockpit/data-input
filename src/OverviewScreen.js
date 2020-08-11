@@ -22,14 +22,14 @@ class OverviewScreen extends Component {
 
     onDateChange = (unixTimestamp) => {
         this.setState({date: new Date(unixTimestamp * 1000)})
-        //this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
     }
 
-    onContinueClick = () => {
-        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + (this.state.date.getTime() / 1000))
+    onSubmit = () => {
+        var unixTimestamp = (this.state.date.getTime() / 1000).toString().split('.')[0];  //to remove useless digits after comma
+        this.props.history.push("/organisations/" + this.props.match.params.orgId + "/" + unixTimestamp)
     }
 
-    onCancelClick = () => {
+    onAbort = () => {
         this.props.history.push("/organisations")
     }
 
@@ -50,11 +50,11 @@ class OverviewScreen extends Component {
                 <ActionButtons
                     btn_submit={ {
                         text: "Weiter",
-                        onClick: this.onContinueClick
+                        onClick: this.onSubmit
                     } }
-                    btn_cancel={ {
-                        text: "Abbrechen",
-                        onClick: this.onCancelClick
+                    btn_abort={ {
+                        text: "Zurück",
+                        onClick: this.onAbort
                     } }
                 />
             </div>
