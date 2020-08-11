@@ -4,7 +4,7 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from "@material-ui/styles";
 import 'date-fns';
 
@@ -20,7 +20,7 @@ class Datepicker extends React.Component {
 
     onDateChange(date) {
         this.setState({chosenDate: date});
-        this.props.onDateChange(date.getTime() / 1000);
+        this.props.onDateChange(date !== null ? date.getTime() / 1000 : NaN);
     }
 
     render() {
