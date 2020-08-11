@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import InputFields from './InputFields';
-import ReviewScreen from '../show-information/ReviewScreen/ReviewScreen';
-import Header from '../common/Header/Header'
-import {getOrganisationById, getValuesByOrgIdAndDate} from '../communication/ProxyJSON'
+import ReviewScreen from './ReviewScreen';
+import Header from '../../utils/Header'
+import {getOrganisationById, getValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
 
 export class KpiEditor extends Component {
     constructor(props) {

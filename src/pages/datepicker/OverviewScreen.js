@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Datepicker from "../input-data/Datepicker/Datepicker";
+import Datepicker from "./Datepicker";
 import RecordViewer from "./RecordViewer";
-import {getOrganisationById, getValuesByOrgIdAndDate} from '../communication/ProxyJSON'
-import Header from "../common/Header/Header";
+import {getOrganisationById, getValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
+import Header from "../../utils/Header";
 import {Paper, withStyles} from '@material-ui/core';
-import ActionButtons from "../input-data/ActionButton/ActionButtons";
+import ActionButtons from "../../utils/ActionButtons";
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record

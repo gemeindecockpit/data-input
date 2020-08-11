@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentRouter from './common/ContentRouter';
+import ContentRouter from './utils/navigation/ContentRouter';
 
 class App extends React.Component {
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import RecordViewer from "../RecordViewer";
-import ActionButton from "../../input-data/ActionButton/ActionButtons";
+import RecordViewer from "../datepicker/RecordViewer";
+import ActionButton from "../../utils/ActionButtons";
 import {Paper} from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
 

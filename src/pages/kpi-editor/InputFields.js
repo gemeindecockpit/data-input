@@ -13,7 +13,7 @@ import {
     withStyles
 } from '@material-ui/core'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import ActionButtons from './ActionButton/ActionButtons';
+import ActionButtons from '../../utils/ActionButtons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 class InputFields extends Component {
