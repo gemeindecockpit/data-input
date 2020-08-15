@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,11 +46,13 @@ export default function DenseAppBar(props) {
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        console.log(event.currentTarget.attributes.key)
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
+
 
     return (
         <div className={classes.root}>
@@ -80,7 +83,9 @@ export default function DenseAppBar(props) {
                             Datenhistorie
                         </MenuItem>
                         <MenuItem className={classes.text} key="Organisation wechseln" onClick={handleClose}>
+                            <Link to={"/organisations"} className={classes.text} style={{textDecoration: 'none'}}>
                             Organisation wechseln
+                            </Link>
                         </MenuItem>
                         <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleClose}>
                             Workflow wechseln
