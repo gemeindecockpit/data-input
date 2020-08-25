@@ -37,7 +37,12 @@ describe('Testing KpiEditor component', () => {
 
     it('should render', () => {
         act(() => {
-            ReactDOM.render(<KpiEditor />, container)
+            ReactDOM.render(<KpiEditor match={{
+                params: {
+                    orgId: "1",
+                    date: new Date('2020-08-07').toDateString()
+                }
+            }}/>, container)
         })
     });
 
