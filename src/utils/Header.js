@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
+import Workflows from './../enums/Workflows';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,11 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseAppBar(props) {
 
-
-
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES)
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -50,6 +50,21 @@ export default function DenseAppBar(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleWorkflowChange = () => {
+        props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
+        setWorkflow(oppositeWorkflow());
+        setAnchorEl(null);
+    };
+
+    const oppositeWorkflow = () => {
+        if(workflow === Workflows.EDIT_KPI_VALUES) {
+            return Workflows.EDIT_COMPARE_VALUES;
+        }
+        if(workflow === Workflows.EDIT_COMPARE_VALUES) {
+            return Workflows.EDIT_KPI_VALUES;
+        }
+    }
 
     return (
         <div className={classes.root}>
@@ -71,7 +86,7 @@ export default function DenseAppBar(props) {
                         PaperProps={{
                             style: {
                                 maxHeight: 48 * 4.5,
-                                width: '20ch',
+                                maxWidth: '100vw',
                             },
                         }}
                     >
@@ -82,8 +97,8 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.text} key="Organisation wechseln" onClick={handleClose}>
                             Organisation wechseln
                         </MenuItem>
-                        <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleClose}>
-                            Workflow wechseln
+                        <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleWorkflowChange}>
+                            {oppositeWorkflow().DESCRIPTION}
                         </MenuItem>
                         <MenuItem className={classes.text} key="Profil pflegen" onClick={handleClose}>
                             Profil pflegen
@@ -94,8 +109,8 @@ export default function DenseAppBar(props) {
                     </Menu>
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
-                <Typography className={classes.text}>
-                        {props.title ? props.title : ""}
+                    <Typography className={classes.text}>
+                        {(props.title ? props.title : "") + ": " + workflow.DESCRIPTION}
                     </Typography>
                     <Typography className={classes.dateText} >{props.chosenDate.toDateString()}</Typography>
                 </Toolbar>
