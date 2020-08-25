@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {act, isElement} from 'react-dom/test-utils';
 import OverviewScreen from "../pages/datepicker/OverviewScreen";
+import Datepicker from "../pages/datepicker/Datepicker";
+import RecordViewer from "../pages/datepicker/RecordViewer";
 
 let container
 
@@ -15,22 +17,32 @@ afterAll(() => {
     container = null
 });
 
-describe('Testing OverviewScreen component', () => {
+describe('Testing OverviewScreen subcomponents', () => {
 
-    it('Is react element', () => {
-        isElement(<OverviewScreen />)
-    })
+    it('Datepicker should be react element', () => {
+        isElement(<Datepicker />)
+    });
 
-    it('can render and show record', () => {
-        act(() => {
-            ReactDOM.render(<OverviewScreen match={ {
-                params: {
-                    orgId: "1"
-                }
-            } } />, container)
-        })
-    })
+    it('RecordViewer should be react element', () => {
+        isElement(<RecordViewer />)
+    });
 
 });
 
+describe('Testing OverviewScreen component', () => {
 
+    it('should be react element', () => {
+        isElement(<OverviewScreen />)
+    });
+
+    it('can render and show record', () => {
+        act(() => {
+            ReactDOM.render(<OverviewScreen match={{
+                params: {
+                    orgId: "1"
+                }
+            }}/>, container)
+        });
+    });
+
+});
