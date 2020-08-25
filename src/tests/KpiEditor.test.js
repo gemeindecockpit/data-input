@@ -1,20 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {isElement, act} from 'react-dom/test-utils';
+import {
+    isElement,
+    act,
+    renderIntoDocument,
+    findRenderedDOMComponentWithClass,
+    findRenderedDOMComponentWithTag, findRenderedComponentWithType
+} from 'react-dom/test-utils';
+import InputBox from '../pages/kpi-editor/InputBox'
 import InputFields from '../pages/kpi-editor/InputFields';
 import ReviewScreen from '../pages/kpi-editor/ReviewScreen';
 import KpiEditor from '../pages/kpi-editor/KpiEditor';
+import {getValuesByOrgIdAndDate} from '../utils/communication/ProxyJSON';
 
-let container
+let dataFor20200807
 
 beforeAll(() => {
-    container = document.createElement('div')
-    document.body.appendChild(container)
+    dataFor20200807 = getValuesByOrgIdAndDate("1", new Date('2020-08-07'))
+    console.log(dataFor20200807)
 })
 
 afterAll(() => {
-    document.body.removeChild(container)
-    container = null
+
 })
 
 describe('Testing KpiEditor subcomponents', () => {
@@ -35,15 +42,31 @@ describe('Testing KpiEditor component', () => {
         isElement(<KpiEditor />)
     });
 
-    it('should render', () => {
+    it('should render and display data for 2020-08-07', () => {
         act(() => {
-            ReactDOM.render(<KpiEditor match={{
+            renderIntoDocument(<KpiEditor
+                match={ {
+                    params: {
+                        orgId: "1",
+                        date: new Date('2020-08-07').toTimeString()
+                    }
+                } }
+            />)
+        })
+    });
+
+    it('should contain data for 2020-08-07', () => {
+
+        const component = renderIntoDocument(<KpiEditor
+            match={ {
                 params: {
                     orgId: "1",
-                    date: new Date('2020-08-07').toDateString()
+                    date: new Date('2020-08-07').toTimeString()
                 }
-            }}/>, container)
-        })
+            } }
+        />)
+        findRenderedDOMComponentWithTag(component, 'InputFields')
+
     });
 
 })
