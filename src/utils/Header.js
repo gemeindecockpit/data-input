@@ -9,6 +9,8 @@ import Menu from '@material-ui/core/Menu';
 import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
 import Workflows from './../enums/Workflows';
+import { useHistory} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,6 +41,7 @@ export default function DenseAppBar(props) {
 
     const classes = useStyles();
 
+    let history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES)
     const open = Boolean(anchorEl);
@@ -65,6 +68,12 @@ export default function DenseAppBar(props) {
             return Workflows.EDIT_KPI_VALUES;
         }
     }
+
+    const routeToOrganisations = () => {
+        setAnchorEl(null);
+        history.push('/organisations');
+    }
+
 
     return (
         <div className={classes.root}>
@@ -94,7 +103,7 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.text} key="Datenhistorie" onClick={handleClose}>
                             Datenhistorie
                         </MenuItem>
-                        <MenuItem className={classes.text} key="Organisation wechseln" onClick={handleClose}>
+                        <MenuItem className={classes.text} key="Organisation wechseln" onClick={routeToOrganisations}>
                             Organisation wechseln
                         </MenuItem>
                         <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleWorkflowChange}>
