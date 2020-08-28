@@ -41,6 +41,7 @@ export default function DenseAppBar(props) {
 
     const classes = useStyles();
 
+    let history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -52,6 +53,12 @@ export default function DenseAppBar(props) {
         setAnchorEl(null);
         history.push("/")
     };
+
+    const routeToOrganisations = () => {
+        setAnchorEl(null);
+        history.push('/organisations');
+    }
+
 
     return (
         <div className={classes.root}>
@@ -81,7 +88,7 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.text} key="Datenhistorie" onClick={handleClose}>
                             Datenhistorie
                         </MenuItem>
-                        <MenuItem className={classes.text} key="Organisation wechseln" onClick={handleClose}>
+                        <MenuItem className={classes.text} key="Organisation wechseln" onClick={routeToOrganisations}>
                             Organisation wechseln
                         </MenuItem>
                         <MenuItem className={classes.text} key="Workflow wechseln" onClick={handleClose}>
