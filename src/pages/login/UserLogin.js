@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core';
 
 import InputField from '../../utils/input/InputField';
-import ActionButton from '../../utils/control/ActionButton';
+import DoubleActionButton from '../../utils/control/ActionButton';
 import Header from '../../utils/Header';
 
 export class UserLogin extends Component {
