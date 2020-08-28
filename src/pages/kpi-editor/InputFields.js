@@ -45,7 +45,7 @@ class InputFields extends Component {
                             />
                         );
                     })}
-                    <ActionButtons
+                    <DoubleActionButton
                         btn_submit={ {
                             text: "Weiter",
                             onClick: this.onSubmit
