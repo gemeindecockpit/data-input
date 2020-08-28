@@ -1,16 +1,41 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {isElement, act} from 'react-dom/test-utils';
+import OrganisationList from './OrganisationList';
+import OverviewScreen from '../datepicker/OverviewScreen';
 
-import OrganisationViewer from './OrganisationViewer';
+let container
 
-import {isElement} from 'react-dom/test-utils'
-
-test('Is OrganisationViewer react element?', () => {
-  isElement(<OrganisationViewer/>)
+beforeAll(() => {
+    container = document.createElement('div')
+    document.body.appendChild(container)
 });
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<OrganisationViewer/>, div)
-  })
-  
+afterAll(() => {
+    document.body.removeChild(container)
+    container = null
+});
+
+describe('Testing OverviewScreen subcomponents', () => {
+
+    it('OrganisationList should be react component', () => {
+        isElement(<OrganisationList />)
+    });
+
+});
+
+describe('Testing OverviewScreen component', () => {
+
+    it('should render', () => {
+        act(() => {
+            ReactDOM.render(<OverviewScreen
+                match={ {
+                    params: {
+                        orgId: "1"
+                    }
+                } }
+            />, container)
+        })
+    });
+
+});

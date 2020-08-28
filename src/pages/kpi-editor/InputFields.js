@@ -1,20 +1,7 @@
-import React, {Component} from 'react'
-import {
-    Box,
-    createMuiTheme,
-    fade,
-    FormControl,
-    IconButton,
-    InputBase,
-    InputLabel,
-    MuiThemeProvider,
-    Popover,
-    Typography,
-    withStyles
-} from '@material-ui/core'
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import ActionButtons from '../../utils/ActionButtons';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import React, {Component} from 'react';
+import {createMuiTheme, fade, InputBase, MuiThemeProvider, withStyles} from '@material-ui/core';
+import ActionButtons from '../../utils/control/DoubleActionButton';
+import InputField from '../../utils/input/InputField';
 
 class InputFields extends Component {
     constructor(props) {
@@ -47,43 +34,16 @@ class InputFields extends Component {
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    {kpis.map(v => {
-                        return <div key={v.name} className={classes.centeredDiv}>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel shrink htmlFor="input-box">
-                                    {v.name}
-                                </InputLabel>
-                                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                                    <PopupState variant="popover" popupId="demo-popup-popover">
-                                        {(popupState) => (
-                                            <div>
-                                                <IconButton onClick={this.onIconClick} aria-label="info" style={{align: "right", alignItems: "right"}} {...bindTrigger(popupState)}>
-                                                    <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"} style={{color: "#ffffff"}} />
-                                                </IconButton>
-                                                <Popover
-                                                    {...bindPopover(popupState)}
-                                                    anchorOrigin={{
-                                                        vertical: 'bottom',
-                                                        horizontal: 'center',
-                                                    }}
-                                                    transformOrigin={{
-                                                        vertical: 'top',
-                                                        horizontal: 'center',
-                                                    }}
-                                                >
-                                                    <Box p={2}>
-                                                        <Typography>
-                                                            {v.name}
-                                                        </Typography>
-                                                    </Box>
-                                                </Popover>
-                                            </div>
-                                        )}
-                                    </PopupState>
-                                </div>
-                                <CustomInputBase defaultValue={v.value} onChange={event => this.handleChange(event, v.name)} id="input-box"/>
-                            </FormControl>
-                        </div>
+                    {kpis.map(rec => {
+                        return (
+                            <InputField
+                                name={ rec.name }
+                                value={ rec.value }
+                                classes={classes}
+                                onIconClick={ this.onIconClick }
+                                handleChange={ this.handleChange }
+                            />
+                        );
                     })}
                     <ActionButtons
                         btn_submit={ {
@@ -101,7 +61,7 @@ class InputFields extends Component {
     }
 }
 
-const CustomInputBase = withStyles((theme) => ({
+export const CustomInputBase = withStyles((theme) => ({
     input: {
         marginTop: '2px',
         borderRadius: 10,

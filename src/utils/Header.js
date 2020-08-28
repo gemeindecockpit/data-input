@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Workflows from './../enums/Workflows';
 import { useHistory} from 'react-router-dom';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -52,6 +51,7 @@ export default function DenseAppBar(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
+        history.push("/")
     };
 
     const handleWorkflowChange = () => {

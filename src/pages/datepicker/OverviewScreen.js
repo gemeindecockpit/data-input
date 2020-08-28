@@ -6,6 +6,7 @@ import Header from "../../utils/Header";
 import {Paper, withStyles} from '@material-ui/core';
 import ActionButtons from "../../utils/ActionButtons";
 import Workflows from './../../enums/Workflows';
+import DoubleActionButton from '../../utils/control/DoubleActionButton';
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record
@@ -68,7 +69,7 @@ class OverviewScreen extends Component {
                         <RecordViewer recordToDisplay={this.kpis()}/>
                     </Paper>
                 </div>
-                <ActionButtons
+                <DoubleActionButton
                     btn_submit={ {
                         text: "Weiter",
                         onClick: this.onSubmit

@@ -23,6 +23,8 @@ export class ContentRouter extends Component {
                     <Route path="/" >
                         <Redirect to={"/" + Workflows.EDIT_KPI_VALUES.URL_PARAM + "/organisations"}/>
                     </Route>
+                    <Route path="/" component={UserLogin} />
+
                 </Switch>
             </Router>
         )
