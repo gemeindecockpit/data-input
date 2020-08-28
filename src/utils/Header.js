@@ -109,7 +109,7 @@ export default function DenseAppBar(props) {
                     </Menu>
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
-                    <Typography className={classes.text}>
+                    <Typography className={classes.text} style={{color: workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM ? "#00546F" : "#FF5B5B"}}>
                         {(props.title ? props.title : "") + ": " + workflow.DESCRIPTION}
                     </Typography>
                     <Typography className={classes.dateText} >{props.chosenDate.toDateString()}</Typography>
