@@ -4,7 +4,6 @@ import RecordViewer from "./RecordViewer";
 import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
 import Header from "../../utils/Header";
 import {Paper, withStyles} from '@material-ui/core';
-import ActionButtons from "../../utils/ActionButtons";
 import Workflows from './../../enums/Workflows';
 import DoubleActionButton from '../../utils/control/DoubleActionButton';
 
