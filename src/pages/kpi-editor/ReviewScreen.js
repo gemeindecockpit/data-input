@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import RecordViewer from "../datepicker/RecordViewer";
-import ActionButton from "../../utils/ActionButtons";
-import {Paper} from "@material-ui/core";
-import { withStyles } from '@material-ui/styles';
+import RecordViewer from '../datepicker/RecordViewer';
+import DoubleActionButton from '../../utils/control/DoubleActionButton';
+import {Paper} from '@material-ui/core';
+import {withStyles} from '@material-ui/styles';
 
 const Divider = ( text ) => {
     return (
@@ -44,7 +44,7 @@ class ReviewScreen extends Component {
                     </Paper>
                 </div>
                 <div>
-                    <ActionButton
+                    <DoubleActionButton
                         btn_abort={ {
                             text: "Zurück",
                             onClick: this.onAbort
