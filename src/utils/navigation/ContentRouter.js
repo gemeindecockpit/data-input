@@ -19,7 +19,7 @@ export class ContentRouter extends Component {
                     <Route path="/organisations/:orgId/:date" component={KpiEditor} />
                     <Route path="/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/organisations" component={OrganisationViewer} />
-                    <Route path="/" component={OrganisationViewer} />
+                    <Route path="/" component={UserLogin} />
                 </Switch>
             </Router>
         )
