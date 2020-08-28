@@ -1,20 +1,6 @@
 import React, {Component} from 'react';
-import {
-    Box,
-    createMuiTheme,
-    fade,
-    FormControl,
-    IconButton,
-    InputBase,
-    InputLabel,
-    MuiThemeProvider,
-    Popover,
-    Typography,
-    withStyles
-} from '@material-ui/core';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import {createMuiTheme, fade, InputBase, MuiThemeProvider, withStyles} from '@material-ui/core';
 import ActionButtons from '../../utils/control/DoubleActionButton';
-import PopupState, {bindPopover, bindTrigger} from 'material-ui-popup-state';
 import InputField from '../../utils/input/InputField';
 
 class InputFields extends Component {
