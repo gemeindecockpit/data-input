@@ -1,28 +1,34 @@
 import React, {Component} from 'react';
-import Button from "@material-ui/core/Button";
-import { withStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
+import {withStyles} from '@material-ui/styles';
 
-class ActionButtons extends Component {
+let CustomButton
+
+class ActionButton extends Component {
+
+    constructor(props) {
+        super(props);
+        CustomButton = (this.props.hasOwnProperty('theme') && this.props.theme === "red" ?
+            redTheme : defaultTheme);
+    }
+
     render() {
         const classes = this.props.classes
-        return (
-            <div>
-                <div className={classes.centeredDiv}>
-                    <CustomButton size="large" onClick={ this.props.btn_submit.onClick }>
-                        { this.props.btn_submit.text }
-                    </CustomButton>
-                </div>
-                <div className={classes.centeredDiv} style={{ marginTop: "-10px", paddingBottom: "40px" }}>
-                    <AbortButton size="large" onClick={ this.props.btn_abort.onClick }>
-                        { this.props.btn_abort.text }
-                    </AbortButton>
-                </div>
+        return (<div>
+            <div className={classes.centeredDiv}>
+                <CustomButton
+                    size="large"
+                    onClick={ this.props.onClick }
+                    style={ this.props.hasOwnProperty('style') ? this.props.style : ({}) }
+                >
+                    { this.props.text }
+                </CustomButton>
             </div>
-        );
+        </div>);
     }
 }
 
-const CustomButton = withStyles((theme) => ({
+const defaultTheme = withStyles((theme) => ({
     root: {
         width: "100%",
         marginTop: "10px",
@@ -42,7 +48,7 @@ const CustomButton = withStyles((theme) => ({
     },
 }))(Button);
 
-const AbortButton = withStyles((theme) => ({
+const redTheme = withStyles((theme) => ({
     root: {
         width: "100%",
         marginTop: "20px",
@@ -62,14 +68,13 @@ const AbortButton = withStyles((theme) => ({
     },
 }))(Button);
 
-
 const styles = (theme) => ({
     centeredDiv: {
         marginTop: "30px",
-        display: "flex", 
-        justifyContent: "center", 
+        display: "flex",
+        justifyContent: "center",
         alignItems: "center"
     }
-})
+});
 
-export default withStyles(styles)(ActionButtons);
+export default withStyles(styles)(ActionButton);

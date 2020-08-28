@@ -10,7 +10,6 @@ import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
 import { useHistory} from 'react-router-dom';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseAppBar(props) {
 
-
+    let history = useHistory()
 
     const classes = useStyles();
 
@@ -52,6 +51,7 @@ export default function DenseAppBar(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
+        history.push("/")
     };
 
     const routeToOrganisations = () => {
