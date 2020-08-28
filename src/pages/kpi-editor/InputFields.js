@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {createMuiTheme, fade, InputBase, MuiThemeProvider, withStyles} from '@material-ui/core';
-import ActionButtons from '../../utils/control/DoubleActionButton';
+import DoubleActionButton from '../../utils/control/DoubleActionButton';
 import InputField from '../../utils/input/InputField';
 
 class InputFields extends Component {
@@ -45,7 +45,7 @@ class InputFields extends Component {
                             />
                         );
                     })}
-                    <ActionButtons
+                    <DoubleActionButton
                         btn_submit={ {
                             text: "Weiter",
                             onClick: this.onSubmit

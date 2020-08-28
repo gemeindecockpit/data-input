@@ -49,15 +49,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "123"
+                            "value": "123",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "232"
+                            "value": "232",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "323"
+                            "value": "323",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -68,15 +71,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "4"
+                            "value": "4",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "6"
+                            "value": "6",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "8"
+                            "value": "8",
+                            "maxValue": "500"
                         }
                     ]                },
                 {
@@ -86,15 +92,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "23"
+                            "value": "23",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "12"
+                            "value": "12",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "26"
+                            "value": "26",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -105,15 +114,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "2"
+                            "value": "2",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "4"
+                            "value": "4",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "3"
+                            "value": "3",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -130,15 +142,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "13"
+                            "value": "13",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "22"
+                            "value": "22",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "33"
+                            "value": "33",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -149,15 +164,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "3"
+                            "value": "3",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "13"
+                            "value": "13",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "4"
+                            "value": "4",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -168,15 +186,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "23"
+                            "value": "23",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "14"
+                            "value": "14",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "27"
+                            "value": "27",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -187,15 +208,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "22"
+                            "value": "22",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "43"
+                            "value": "43",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "34"
+                            "value": "34",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -212,15 +236,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "123"
+                            "value": "123",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "252"
+                            "value": "252",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "373"
+                            "value": "373",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -231,15 +258,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "gut"
+                            "value": "gut",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "mittel"
+                            "value": "mittel",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "schlecht"
+                            "value": "schlecht",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -250,15 +280,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "234324"
+                            "value": "234324",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "23214"
+                            "value": "23214",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "52526"
+                            "value": "52526",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -269,15 +302,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "97%"
+                            "value": "97%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "69%"
+                            "value": "69%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "78%"
+                            "value": "78%",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -294,15 +330,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "1"
+                            "value": "1",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "2"
+                            "value": "2",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "3"
+                            "value": "3",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -313,15 +352,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "143"
+                            "value": "143",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "282"
+                            "value": "282",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "324"
+                            "value": "324",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -332,15 +374,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "134"
+                            "value": "134",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "222"
+                            "value": "222",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "373"
+                            "value": "373",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -351,15 +396,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "1423"
+                            "value": "1423",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "225"
+                            "value": "225",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "363"
+                            "value": "363",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -376,15 +424,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "23"
+                            "value": "23",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "25"
+                            "value": "25",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "33"
+                            "value": "33",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -395,15 +446,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "123"
+                            "value": "123",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "224"
+                            "value": "224",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "36"
+                            "value": "36",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -420,15 +474,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "23"
+                            "value": "23",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "34"
+                            "value": "34",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "31"
+                            "value": "31",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -439,15 +496,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "14"
+                            "value": "14",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "62"
+                            "value": "62",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "53"
+                            "value": "53",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -458,15 +518,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "42"
+                            "value": "42",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "16"
+                            "value": "16",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "72"
+                            "value": "72",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -483,15 +546,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "1423"
+                            "value": "1423",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "225"
+                            "value": "225",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "363"
+                            "value": "363",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -502,15 +568,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "13"
+                            "value": "13",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "25"
+                            "value": "25",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "33"
+                            "value": "33",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -521,15 +590,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "gut"
+                            "value": "gut",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "schlecht"
+                            "value": "schlecht",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "mittel"
+                            "value": "mittel",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -540,15 +612,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "70%"
+                            "value": "70%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "40%"
+                            "value": "40%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "80%"
+                            "value": "80%",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -565,15 +640,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "24"
+                            "value": "24",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "25"
+                            "value": "25",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "62"
+                            "value": "62",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -584,15 +662,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "14"
+                            "value": "14",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "25"
+                            "value": "25",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "63"
+                            "value": "63",
+                            "maxValue": "500"
                         }
                     ]
                 },
@@ -603,15 +684,18 @@ const proxyJSON = {
                     "values": [
                         {
                             "date": "2020-08-07T18:25:43.511Z",
-                            "value": "80%"
+                            "value": "80%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-06T18:25:43.511Z",
-                            "value": "75%"
+                            "value": "75%",
+                            "maxValue": "500"
                         },
                         {
                             "date": "2020-08-05T18:25:43.511Z",
-                            "value": "70%"
+                            "value": "70%",
+                            "maxValue": "500"
                         }
                     ]
                 }
@@ -649,4 +733,21 @@ function getValuesByOrgIdAndDate(id, date){
     return valueList;
 }
 
-export { getFullJSON, getOrganisationById, getValuesByOrgIdAndDate }
+function getMaxValuesByOrgIdAndDate(id, date){
+    var valueList = [];
+    var organisation = getOrganisationById(id);
+    organisation.kennzahlen.forEach(kpi => {
+        var element = {"name": kpi.name, "value": ""};
+        kpi.values.forEach(v => {
+            if(new Date(v.date).getFullYear() === date.getFullYear()
+                && new Date(v.date).getMonth() === date.getMonth()
+                && new Date(v.date).getDate() === date.getDate()) {
+                    element = ({"name": kpi.name, "value": v.maxValue});
+            }
+        })
+        valueList.push(element);
+    })
+    return valueList;
+}
+
+export { getFullJSON, getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate }

@@ -22,13 +22,17 @@ export default class OrganisationViewer extends React.Component {
      * @param orgID
      */
     chooseOrganisation = (orgID) => {
-        this.props.history.push("/organisations/" + orgID)
+        this.props.history.push(window.location.pathname + "/" + orgID)
+    }
+
+    onWorkflowChange = (workflowUrlParam) => {
+        this.props.history.push("/" + workflowUrlParam + "/organisations")
     }
 
     render() {
         return (
             <div>
-                <Header chosenDate={new Date()} title="Organisationsauswahl"></Header>
+                <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
                 <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
             </div>
             
