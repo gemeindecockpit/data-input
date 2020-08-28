@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Datepicker from "./Datepicker";
-import RecordViewer from "./RecordViewer";
-import {getOrganisationById, getValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
-import Header from "../../utils/Header";
+import Datepicker from './Datepicker';
+import RecordViewer from './RecordViewer';
+import {getOrganisationById, getValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON';
+import Header from '../../utils/Header';
 import {Paper, withStyles} from '@material-ui/core';
-import ActionButtons from "../../utils/ActionButtons";
+import DoubleActionButton from '../../utils/control/DoubleActionButton';
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record
@@ -55,7 +55,7 @@ class OverviewScreen extends Component {
                         <RecordViewer recordToDisplay={getValuesByOrgIdAndDate(this.props.match.params.orgId, date)}/>
                     </Paper>
                 </div>
-                <ActionButtons
+                <DoubleActionButton
                     btn_submit={ {
                         text: "Weiter",
                         onClick: this.onSubmit

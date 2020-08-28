@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {
     Box,
     createMuiTheme,
@@ -11,10 +11,10 @@ import {
     Popover,
     Typography,
     withStyles
-} from '@material-ui/core'
+} from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import ActionButtons from '../../utils/ActionButtons';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import ActionButtons from '../../utils/control/DoubleActionButton';
+import PopupState, {bindPopover, bindTrigger} from 'material-ui-popup-state';
 
 class InputFields extends Component {
     constructor(props) {
