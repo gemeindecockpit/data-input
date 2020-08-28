@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
+import { useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseAppBar(props) {
 
-
+    let history = useHistory()
 
     const classes = useStyles();
 
@@ -49,6 +50,7 @@ export default function DenseAppBar(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
+        history.push("/")
     };
 
     return (
