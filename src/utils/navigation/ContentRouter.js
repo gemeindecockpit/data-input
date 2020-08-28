@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import UserLogin from '../../pages/login/UserLogin';
 import OrganisationViewer from '../../pages/organisations/OrganisationViewer';
 import OverviewScreen from '../../pages/datepicker/OverviewScreen';
@@ -20,11 +20,12 @@ export class ContentRouter extends Component {
                     <Route path="/:workflow/organisations/:orgId/:date" component={KpiEditor} />
                     <Route path="/:workflow/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/:workflow/organisations" component={OrganisationViewer} />
-                    <Route path="/" >
+                    <Route path="/organisations" >
                         <Redirect to={"/" + Workflows.EDIT_KPI_VALUES.URL_PARAM + "/organisations"}/>
                     </Route>
-                    <Route path="/" component={UserLogin} />
-
+                    <Route path="/" >
+                        <Redirect to={"/login"}/>
+                    </Route>
                 </Switch>
             </Router>
         )

@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/core';
 import InputField from '../../utils/input/InputField';
 import ActionButton from '../../utils/control/ActionButton';
 import Header from '../../utils/Header';
+import Workflows from '../../enums/Workflows';
 
 export class UserLogin extends Component {
 
@@ -38,7 +39,7 @@ export class UserLogin extends Component {
         const classes = this.props.classes
         return (
             <div>
-                <Header chosenDate={new Date()} title="Login"> </Header>
+                <Header chosenDate={new Date()} workflow={Workflows.EDIT_KPI_VALUES.URL_PARAM} title="Login"> </Header>
                 <InputField
                     name={"Email"}
                     value={""}
