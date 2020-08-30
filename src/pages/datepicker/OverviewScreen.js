@@ -5,7 +5,8 @@ import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate
 import Header from "../../utils/Header";
 import {Paper, withStyles} from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
-import DoubleActionButton from '../../utils/control/DoubleActionButton';
+import CustomButton from '../../utils/control/CustomButton';
+import ButtonThemes from '../../enums/ButtonThemes';
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record
@@ -39,7 +40,7 @@ class OverviewScreen extends Component {
     }
 
     onAbort = () => {
-        this.props.history.push("/" + this.props.match.params.workflow + "organisations")
+        this.props.history.push("/" + this.props.match.params.workflow + "/organisations")
     }
 
     onWorkflowChange = (workflowUrlParam) => {
@@ -68,16 +69,12 @@ class OverviewScreen extends Component {
                         <RecordViewer recordToDisplay={this.kpis()}/>
                     </Paper>
                 </div>
-                <DoubleActionButton
-                    btn_submit={ {
-                        text: "Weiter",
-                        onClick: this.onSubmit
-                    } }
-                    btn_abort={ {
-                        text: "Zurück",
-                        onClick: this.onAbort
-                    } }
-                />
+                <div className={classes.centeredDiv}>
+                    <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Weiter" onClick={this.onSubmit} />
+                </div>
+                <div className={classes.centeredDiv} style={{marginTop: "10px", paddingBottom: "30px"}}>
+                    <CustomButton color={ButtonThemes.RED.COLOR} colorOnHover={ButtonThemes.RED.COLOR_ON_HOVER} text="Zurück" onClick={this.onAbort} />
+                </div>
             </div>
         );
     }

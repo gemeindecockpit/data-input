@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import {createMuiTheme, fade, InputBase, MuiThemeProvider, withStyles} from '@material-ui/core';
-import DoubleActionButton from '../../utils/control/DoubleActionButton';
+import React, { Component } from 'react';
+import {createMuiTheme, MuiThemeProvider, withStyles} from '@material-ui/core';
 import InputField from '../../utils/input/InputField';
+import CustomButton from '../../utils/control/CustomButton';
+import ButtonThemes from '../../enums/ButtonThemes';
 
 class InputFields extends Component {
     constructor(props) {
@@ -37,49 +38,25 @@ class InputFields extends Component {
                     {kpis.map(rec => {
                         return (
                             <InputField
+                                key={rec.name}
                                 name={ rec.name }
                                 value={ rec.value }
-                                classes={classes}
                                 onIconClick={ this.onIconClick }
                                 handleChange={ this.handleChange }
                             />
                         );
                     })}
-                    <DoubleActionButton
-                        btn_submit={ {
-                            text: "Weiter",
-                            onClick: this.onSubmit
-                        } }
-                        btn_abort={ {
-                            text: "Zurück",
-                            onClick: this.onAbort
-                        } }
-                    />
+                    <div className={classes.centeredDiv}>
+                        <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Weiter" onClick={this.onSubmit} />
+                    </div>
+                    <div className={classes.centeredDiv} style={{marginTop: "10px", paddingBottom: "30px"}}>
+                        <CustomButton color={ButtonThemes.RED.COLOR} colorOnHover={ButtonThemes.RED.COLOR_ON_HOVER} text="Zurück" onClick={this.onAbort} />
+                    </div>
                 </MuiThemeProvider>
             </div>
         )
     }
 }
-
-export const CustomInputBase = withStyles((theme) => ({
-    input: {
-        marginTop: '2px',
-        borderRadius: 10,
-        position: 'relative',
-        backgroundColor: "transperant",
-        border: '1px solid #ced4da',
-        fontSize: 16,
-        color: "white",
-        width: '100%',
-        padding: '10px 12px',
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        '&:focus': {
-            boxShadow: `${fade("#000000", 0.25)} 0 0 0 0.2rem`,
-            borderColor: "#000000",
-            color: "#000000"
-        }, 
-    },
-}))(InputBase);
 
 const theme = createMuiTheme({
     overrides: {
@@ -92,39 +69,16 @@ const theme = createMuiTheme({
                     color: "#000000",
                 }
             }, 
-        },
-        MuiButtonBase: {
-            root: {
-                '&:hover': {
-                    backgroundColor: '#0069d9',
-                    borderColor: '#0062cc',
-                    boxShadow: 'none',
-                  },
-                  '&:active': {
-                    boxShadow: 'none',
-                    backgroundColor: '#0062cc',
-                    borderColor: '#005cbf',
-                  },
-            }
         }
     }
 });
 
 const styles = (theme) => ({
-    formControl: {
-        width: "100%",
-        marginTop: "20px",
-        marginLeft: "25px",
-        marginRight: "25px"
-    },
     centeredDiv: {
         display: "flex", 
         justifyContent: "center", 
-        alignItems: "center"
-    },
-    infoIcon: {
-        position: 'absolute',
-        align: 'right'
+        alignItems: "center",
+        marginTop: "30px"
     }
 })
 
