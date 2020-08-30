@@ -1,15 +1,16 @@
-import {Box, FormControl, IconButton, InputLabel, Popover, Typography} from '@material-ui/core';
+import {Box, FormControl, IconButton, InputLabel, Popover, Typography, InputBase, fade} from '@material-ui/core';
 import PopupState, {bindPopover, bindTrigger} from 'material-ui-popup-state/index';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import React, {Component} from 'react';
-import {CustomInputBase} from '../../pages/kpi-editor/InputFields';
+import { withStyles } from '@material-ui/styles';
 
 class InputField extends Component {
 
     render() {
+        const classes = this.props.classes;
         return (
-            <div key={this.props.name} className={this.props.classes.centeredDiv}>
-                <FormControl className={this.props.classes.formControl}>
+            <div key={this.props.name} className={classes.centeredDiv}>
+                <FormControl className={classes.formControl}>
                     <InputLabel shrink htmlFor="input-box">
                         {this.props.name}
                     </InputLabel>
@@ -19,7 +20,7 @@ class InputField extends Component {
                                 <div>
                                     <IconButton onClick={this.props.handleIconClick} aria-label="info"
                                                 style={{align: "right", alignItems: "right"}} {...bindTrigger(popupState)}>
-                                        <InfoOutlinedIcon className={this.props.classes.infoIcon} fontSize={"small"}
+                                        <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"}
                                                           style={{color: "#ffffff"}}/>
                                     </IconButton>
                                     <Popover
@@ -45,6 +46,7 @@ class InputField extends Component {
                     </div>
                     <CustomInputBase
                         defaultValue={this.props.value}
+                        className={classes.inp}
                         onChange={event => this.props.handleChange(event, this.props.name)}
                         id="input-box"
                     />
@@ -54,6 +56,43 @@ class InputField extends Component {
     }
 }
 
+const CustomInputBase = withStyles((theme) => ({
+    input: {
+        marginTop: '2px',
+        borderRadius: 10,
+        position: 'relative',
+        backgroundColor: "transperant",
+        border: '1px solid #ced4da',
+        fontSize: 16,
+        padding: '0px 12px',
+        color: "white",
+        width: '100%',
+        height: "50px",
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        '&:focus': {
+            boxShadow: `${fade("#000000", 0.25)} 0 0 0 0.2rem`,
+            borderColor: "#000000",
+            color: "#000000"
+        }, 
+    },
+}))(InputBase);
 
+const styles = (theme) => ({
+    formControl: {
+        width: "100%",
+        marginTop: "20px",
+        marginLeft: "25px",
+        marginRight: "25px"
+    },
+    centeredDiv: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    infoIcon: {
+        position: 'absolute',
+        align: 'right'
+    }
+})
 
-export default InputField;
+export default withStyles(styles)(InputField);

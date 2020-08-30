@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import RecordViewer from '../datepicker/RecordViewer';
-import DoubleActionButton from '../../utils/control/DoubleActionButton';
 import {Paper} from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
+import ButtonThemes from '../../enums/ButtonThemes';
+import CustomButton from '../../utils/control/CustomButton';
 
 const Divider = ( text ) => {
     return (
@@ -43,17 +44,11 @@ class ReviewScreen extends Component {
                         <RecordViewer recordToDisplay={ this.state.recordToShow }/>
                     </Paper>
                 </div>
-                <div>
-                    <DoubleActionButton
-                        btn_abort={ {
-                            text: "Zurück",
-                            onClick: this.onAbort
-                        } }
-                        btn_submit={ {
-                            text: "Abschicken",
-                            onClick: this.onSubmit
-                        } }
-                    />
+                <div className={classes.centeredDiv}>
+                    <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Abschicken" onClick={this.onSubmit} />
+                </div>
+                <div className={classes.centeredDiv} style={{marginTop: "10px", paddingBottom: "30px"}}>
+                    <CustomButton color={ButtonThemes.RED.COLOR} colorOnHover={ButtonThemes.RED.COLOR_ON_HOVER} text="Zurück" onClick={this.onAbort} />
                 </div>
             </div>
         );
