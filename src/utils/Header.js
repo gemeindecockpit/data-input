@@ -94,7 +94,7 @@ export default function DenseAppBar(props) {
                         onClose={handleClose}
                         PaperProps={{
                             style: {
-                                maxHeight: 48 * 4.5,
+                                maxHeight: "500px",
                                 maxWidth: '100vw',
                             },
                         }}
