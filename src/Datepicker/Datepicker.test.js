@@ -6,13 +6,6 @@ import { render, fireEvent, screen } from '@testing-library/react';
 
 import {isElement} from 'react-dom/test-utils'
 
-test('Is Datepicker react?', () => {
-    const onDateChange = (date) => {
-
-    }
-  isElement(<Datepicker onDateChange={onDateChange} />)
-});
-
 it('renders without crashing', () => {
   const div = document.createElement('div');
   /*onDateChange = (date) => {
@@ -26,10 +19,4 @@ it('renders without crashing', () => {
   expect(onDateChange).toHaveBeenCalled();
   expect(1).toBe(1);
   //screen.debug();
-})
-
-it('blah', () => {
-    //const container = render(<Datepicker onDateChange={onDateChange} />);
-
-
 })
