@@ -18,7 +18,7 @@ class InputField extends Component {
                         <PopupState variant="popover" popupId="demo-popup-popover">
                             {(popupState) => (
                                 <div>
-                                    <IconButton onClick={this.props.handleIconClick} aria-label="info"
+                                    <IconButton aria-label="info"
                                                 style={{align: "right", alignItems: "right"}} {...bindTrigger(popupState)}>
                                         <InfoOutlinedIcon className={classes.infoIcon} fontSize={"small"}
                                                           style={{color: "#ffffff"}}/>
@@ -44,12 +44,12 @@ class InputField extends Component {
                             )}
                         </PopupState>
                     </div>
-                    <CustomInputBase
-                        defaultValue={this.props.value}
-                        className={classes.inp}
-                        onChange={event => this.props.handleChange(event, this.props.name)}
-                        id="input-box"
-                    />
+                        <CustomInputBase
+                            defaultValue={this.props.value}
+                            className={classes.input}
+                            onChange={event => this.props.handleChange(event, this.props.name)}
+                            id="input-box"
+                        />
                 </FormControl>
             </div>
         );
@@ -58,6 +58,7 @@ class InputField extends Component {
 
 const CustomInputBase = withStyles((theme) => ({
     input: {
+        autocomplete: 'off',
         marginTop: '2px',
         borderRadius: 10,
         position: 'relative',
@@ -77,7 +78,7 @@ const CustomInputBase = withStyles((theme) => ({
     },
 }))(InputBase);
 
-const styles = (theme) => ({
+const styles = () => ({
     formControl: {
         width: "100%",
         marginTop: "20px",

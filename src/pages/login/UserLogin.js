@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
-import {withStyles, TextField, createMuiTheme, ThemeProvider, Typography} from '@material-ui/core';
+import {withStyles, TextField, createMuiTheme, IconButton, InputAdornment, ThemeProvider, Typography, OutlinedInput} from '@material-ui/core';
 import gcLogo from '../../resources/logo_gemeindecockpit_white.svg';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WirVsViursImg from '../../resources/WirVsVirus.png';
-import {login} from '../../utils/communication/ApiCalls.js';
+import ApiCalls from '../../utils/communication/ApiCalls.js';
 
 export class UserLogin extends Component {
 
     constructor(props) {
         super(props);
+
         this.state={
             username: "",
-            password: ""
+            password: "",
+            showPassword: false
         };
     }
 
-    onButtonClick = async (event) => {
-        await login(this.state.username, this.state.password);
+    apiCalls = new ApiCalls("");
+
+    onButtonClick = () => {
+        this.apiCalls.login(this.state.username, this.state.password).then(res => {
+            console.log(res.data)
+        });
         this.props.history.push("/organisations")
     }
 
@@ -28,6 +36,14 @@ export class UserLogin extends Component {
     handlePasswordChange = (event) => {
         this.setState({ password: event.target.value })
     }
+
+    handleClickShowPassword = () => {
+        this.setState({ showPassword: !this.state.showPassword });
+    };
+
+    handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     render() {
         const classes = this.props.classes
@@ -45,12 +61,37 @@ export class UserLogin extends Component {
                             Gemeinde Cockpit
                         </Typography>
                     </div>
-                    <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="benutzer-name" label="Benutzer:innenname" variant="outlined" onChange={this.handleUsernameChange}/>
-                    </div>
-                    <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="passwort" label="Passwort" variant="outlined" onChange={this.handlePasswordChange}/>
-                    </div>
+                    <form autoComplete="off">
+                        <div className={classes.centeredDiv}>
+                            <TextField
+                                className={classes.textField}
+                                id="benutzer-name"
+                                placeholder="BENUTZER:INNENNAME"
+                                variant="outlined"
+                                onChange={this.handleUsernameChange}/>
+                        </div>
+                        <div className={classes.centeredDiv}>
+                            <OutlinedInput
+                                id="outlined-adornment-password"
+                                className={classes.textField}
+                                type={this.state.showPassword ? 'text' : 'password'}
+                                value={this.state.password}
+                                placeholder="PASSWORT"
+                                onChange={this.handlePasswordChange}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={this.handleClickShowPassword}
+                                            onMouseDown={this.handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {this.state.showPassword ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </div>
+                    </form>
                     <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
                         <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Anmelden" onClick={this.onButtonClick} />
                     </div>
@@ -93,7 +134,7 @@ const muiTheme = createMuiTheme({
     }
 })
 
-const styles = (theme) => ({
+const styles = () => ({
     headerDiv: {
         display: "flex",
         justifyContent: "center",
@@ -118,7 +159,7 @@ const styles = (theme) => ({
     textField: {
         width: "100%",
         marginLeft: "25px",
-        marginRight: "25px",
+        marginRight: "25px"
     }
 })
 
