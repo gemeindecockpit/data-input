@@ -4,35 +4,29 @@ import gcLogo from '../../resources/logo_gemeindecockpit_white.svg';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
 import WirVsViursImg from '../../resources/WirVsVirus.png';
+import {login} from '../../utils/communication/ApiCalls.js';
 
 export class UserLogin extends Component {
 
     constructor(props) {
         super(props);
         this.state={
-            email: "",
+            username: "",
             password: ""
         };
     }
 
-    onButtonClick = (event) => {
+    onButtonClick = async (event) => {
+        await login(this.state.username, this.state.password);
         this.props.history.push("/organisations")
     }
 
-    onInfoEmailClick = (event) => {
-
-    }
-
-    onInfoPasswordClick = (event) => {
-
-    }
-
-    handleEmailChange = (event) => {
-
+    handleUsernameChange = (event) => {
+        this.setState({ username: event.target.value })
     }
 
     handlePasswordChange = (event) => {
-
+        this.setState({ password: event.target.value })
     }
 
     render() {
@@ -52,10 +46,10 @@ export class UserLogin extends Component {
                         </Typography>
                     </div>
                     <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="benutzer-name" label="Benutzer:innenname" variant="outlined" />
+                        <TextField className={classes.textField} id="benutzer-name" label="Benutzer:innenname" variant="outlined" onChange={this.handleUsernameChange}/>
                     </div>
                     <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="passwort" label="Passwort" variant="outlined" />
+                        <TextField className={classes.textField} id="passwort" label="Passwort" variant="outlined" onChange={this.handlePasswordChange}/>
                     </div>
                     <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
                         <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Anmelden" onClick={this.onButtonClick} />
@@ -87,10 +81,10 @@ const muiTheme = createMuiTheme({
             },
             root: {
                 "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black"
+                    borderColor: "white"
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black"
+                    borderColor: "white"
                 },
                 borderRadius: 12,
                 height: "55px"
