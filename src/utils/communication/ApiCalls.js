@@ -24,11 +24,23 @@ export default class ApiCalls extends React.Component {
             headers: {
                 'Accept': 'application/json'
             }
+        }).catch(error => {
+            console.log(error);
         });
     }
 
     getConfig = () => {
+        return axios.get(baseUrl + "config", {})
+            .catch(error => {
+                console.log(error);
+        });
+    }
 
+    getData = () => {
+        return axios.get(baseUrl + "data", {})
+            .catch(error => {
+                console.log(error);
+        });
     }
 }
 

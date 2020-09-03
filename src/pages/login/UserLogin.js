@@ -25,7 +25,8 @@ export class UserLogin extends Component {
         this.state = {
             username: "",
             password: "",
-            showPassword: false
+            showPassword: false,
+            borderColor: "white"
         };
     }
 
@@ -33,14 +34,20 @@ export class UserLogin extends Component {
 
     onButtonClick = () => {
         this.apiCalls.login(this.state.username, this.state.password).then(
-            (error) => {
-                console.log(error)
-            },
             (response) => {
-                console.log(response)
+                if(response != null) {
+                    console.log(response.data)
+                    this.props.history.push("/organisations");
+                }else{
+                    console.log("Error: Request failed with status code 500")
+                    this.props.history.push("/login");
+                    this.setState({borderColor: "red"});
+                }
             }
         );
-        this.props.history.push("/organisations");
+        this.apiCalls.getData().then(res => {
+            console.log(res)
+        });
     }
 
     handleUsernameChange = (event) => {
