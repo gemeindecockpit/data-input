@@ -14,8 +14,23 @@ export default class ApiCalls extends React.Component {
             headers: {
                 'Accept': 'application/json'
             }
+        }).catch(error => {
+            console.log(error);
         });
     }
+
+    logout = () => {
+        return axios.post(baseUrl + "logout", {}, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+    }
+
+    getConfig = () => {
+
+    }
 }
+
 
 

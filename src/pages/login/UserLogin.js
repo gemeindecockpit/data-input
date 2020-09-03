@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {withStyles, TextField, createMuiTheme, IconButton, InputAdornment, ThemeProvider, Typography, OutlinedInput} from '@material-ui/core';
+import {
+    withStyles,
+    TextField,
+    createMuiTheme,
+    IconButton,
+    InputAdornment,
+    ThemeProvider,
+    Typography,
+    OutlinedInput
+} from '@material-ui/core';
 import gcLogo from '../../resources/logo_gemeindecockpit_white.svg';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
@@ -13,7 +22,7 @@ export class UserLogin extends Component {
     constructor(props) {
         super(props);
 
-        this.state={
+        this.state = {
             username: "",
             password: "",
             showPassword: false
@@ -23,22 +32,27 @@ export class UserLogin extends Component {
     apiCalls = new ApiCalls("");
 
     onButtonClick = () => {
-        this.apiCalls.login(this.state.username, this.state.password).then(res => {
-            console.log(res.data)
-        });
-        this.props.history.push("/organisations")
+        this.apiCalls.login(this.state.username, this.state.password).then(
+            (error) => {
+                console.log(error)
+            },
+            (response) => {
+                console.log(response)
+            }
+        );
+        this.props.history.push("/organisations");
     }
 
     handleUsernameChange = (event) => {
-        this.setState({ username: event.target.value })
+        this.setState({username: event.target.value})
     }
 
     handlePasswordChange = (event) => {
-        this.setState({ password: event.target.value })
+        this.setState({password: event.target.value})
     }
 
     handleClickShowPassword = () => {
-        this.setState({ showPassword: !this.state.showPassword });
+        this.setState({showPassword: !this.state.showPassword});
     };
 
     handleMouseDownPassword = (event) => {
@@ -51,10 +65,10 @@ export class UserLogin extends Component {
             <div>
                 <ThemeProvider theme={muiTheme}>
                     <div className={classes.headerDiv}>
-                        <img alt="" src={WirVsViursImg} className={classes.headerImg} />
+                        <img alt="" src={WirVsViursImg} className={classes.headerImg}/>
                     </div>
                     <div className={classes.centeredDiv}>
-                        <img alt="" src={gcLogo} className={classes.gcLogo} />
+                        <img alt="" src={gcLogo} className={classes.gcLogo}/>
                     </div>
                     <div className={classes.centeredDiv} style={{marginTop: "10px"}}>
                         <Typography variant="h4">
@@ -93,7 +107,8 @@ export class UserLogin extends Component {
                         </div>
                     </form>
                     <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
-                        <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Anmelden" onClick={this.onButtonClick} />
+                        <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER}
+                                      text="Anmelden" onClick={this.onButtonClick}/>
                     </div>
                 </ThemeProvider>
             </div>
@@ -152,7 +167,7 @@ const styles = () => ({
         alignItems: "center",
         marginTop: "30px"
     },
-    gcLogo: {
+    gcLogo: {
         height: "87px",
         width: "87px"
     },

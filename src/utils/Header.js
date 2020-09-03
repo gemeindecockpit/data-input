@@ -10,6 +10,7 @@ import gclogo from '../resources/gc.png'
 import MenuItem from '@material-ui/core/MenuItem';
 import Workflows from './../enums/Workflows';
 import { useHistory} from 'react-router-dom';
+import ApiCalls from '../utils/communication/ApiCalls.js';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DenseAppBar(props) {
-
     const classes = useStyles();
 
     let history = useHistory();
@@ -48,6 +48,14 @@ export default function DenseAppBar(props) {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleLogOut = () => {
+        (new ApiCalls("")).logout().then(res => {
+            console.log(res.data)
+        });
+        setAnchorEl(null);
+        history.push("/login")
+    }
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -112,7 +120,7 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.text} key="Profil pflegen" onClick={handleClose}>
                             Profil pflegen
                         </MenuItem>
-                        <MenuItem className={classes.text} key="Ausloggen" onClick={handleClose}>
+                        <MenuItem className={classes.text} key="Ausloggen" onClick={handleLogOut}>
                             Ausloggen
                         </MenuItem>
                     </Menu>
