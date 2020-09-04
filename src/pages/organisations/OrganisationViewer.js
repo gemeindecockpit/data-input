@@ -28,7 +28,10 @@ export default class OrganisationViewer extends React.Component {
      * @param orgID
      */
     chooseOrganisation = (orgID) => {
-        this.props.history.push(window.location.pathname + "/" + orgID)
+        if(orgID < 9) {
+            this.props.history.push(window.location.pathname + "/" + orgID)
+        }
+        this.props.history.push(window.location.pathname + "/" + "8")
     }
 
     onWorkflowChange = (workflowUrlParam) => {
