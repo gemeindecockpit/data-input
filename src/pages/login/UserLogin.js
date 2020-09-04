@@ -35,8 +35,8 @@ export class UserLogin extends Component {
     onButtonClick = () => {
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
-                if(response != null) {
-                    console.log(response.data)
+                if(response && response.data === ("HTTP/1.0 200 Login Successfull")) {
+                    console.log(response)
                     this.props.history.push("/organisations");
                 }else{
                     console.log("Error: Request failed with status code 500")
@@ -45,9 +45,6 @@ export class UserLogin extends Component {
                 }
             }
         );
-        this.apiCalls.getData().then(res => {
-            console.log(res)
-        });
     }
 
     handleUsernameChange = (event) => {

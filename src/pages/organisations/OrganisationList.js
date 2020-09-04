@@ -6,8 +6,8 @@ import { Divider, List } from "@material-ui/core";
 export default class OrganisationList extends React.Component {
     newListItem = (rec) => {
         return (
-            <div key={rec.id}>
-                <ListItem button component="a" onClick={(ev) => this.organizationSelected(ev, rec.id)}>
+            <div key={rec.organisation_id}>
+                <ListItem button component="a" onClick={(ev) => this.organizationSelected(ev, rec.organisation_id)}>
                     <ListItemText style={{ color: "white", marginLeft: "10px" }}>{rec.name}</ListItemText>
                 </ListItem>
                 <Divider variant="middle" style={{ backgroundColor: "white" }}/>
@@ -21,7 +21,7 @@ export default class OrganisationList extends React.Component {
     }
 
     render() {
-        let listItems = this.props.data.map(rec => this.newListItem(rec));
+        let listItems = this.props.data.organisation.map(rec => this.newListItem(rec));
         return (
             <div>
                 <List>
