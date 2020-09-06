@@ -58,11 +58,12 @@ class OverviewScreen extends Component {
     render() {
         const classes = this.props.classes
         const {date} = this.state
+        const maxDate = this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM ? new Date() : undefined;
         return (
             <div>
                 <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
                 <div className={classes.centeredDiv}>
-                    <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:"/>
+                    <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:" maxDate={maxDate} />
                 </div>
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>

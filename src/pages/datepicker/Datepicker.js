@@ -14,7 +14,7 @@ class Datepicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosenDate: new Date()
+            chosenDate: new Date(),
         };
     }
 
@@ -24,6 +24,7 @@ class Datepicker extends React.Component {
     }
 
     render() {
+        const { maxDate } = this.props;
         return (
             <div>
                 <ThemeProvider theme={muiTheme}>
@@ -35,7 +36,7 @@ class Datepicker extends React.Component {
                             label={this.props.label}
                             value={this.state.chosenDate}
                             onChange={this.onDateChange.bind(this)}
-                            maxDate={new Date()}
+                            maxDate={maxDate}
                             autoOk={true}
                         //InputProps={{ className: classes.input }}
                         />
