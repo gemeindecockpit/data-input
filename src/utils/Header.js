@@ -10,7 +10,7 @@ import {
     Typography
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import GC_logo from '../resources/gc.png'
+import GC_logo from '../resources/logo_gemeindecockpit.svg'
 import Workflows from './../enums/Workflows';
 import {useHistory} from 'react-router-dom';
 
