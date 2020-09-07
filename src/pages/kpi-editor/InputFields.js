@@ -94,11 +94,12 @@ class InputFields extends Component {
     render() {
         const { kpis, page, inputFieldsLimit } = this.state;
         const classes = this.props.classes
+        
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    <div style={{ height: (inputFieldsLimit*98) + "px" }}>
-                    {   this.showInputFields()}
+                    <div style={{ height: ((inputFieldsLimit>this.props.kpis.length) ? (this.props.kpis.length*98) + "px" : (inputFieldsLimit*98) + "px") }}>
+                        {this.showInputFields()}
                     </div>
                     {kpis.length > 1 ? 
                         <div className={classes.centeredDiv}>
