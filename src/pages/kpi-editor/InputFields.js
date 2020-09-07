@@ -23,10 +23,7 @@ class InputFields extends Component {
         const { kpis } = this.props;
         var newKpis = [];
         
-        var inputFieldsLimit = parseInt(((window.innerHeight-421)/98).toString().split('.')[0]);
-        if(inputFieldsLimit <= 1) {
-            inputFieldsLimit = 1
-        }
+        var inputFieldsLimit = parseInt(((window.innerHeight-421)/98).toString().split('.')[0]) + 1;
 
         if(kpis.length > inputFieldsLimit) {
             var temp = [], counter = 1;
