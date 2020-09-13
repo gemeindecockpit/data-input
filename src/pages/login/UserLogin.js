@@ -33,6 +33,8 @@ export class UserLogin extends Component {
     apiCalls = new ApiCalls("");
 
     onButtonClick = () => {
+        this.props.history.push("/organisations");
+        /*
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
                 if(response && response.data === ("HTTP/1.0 200 Login Successfull")) {
@@ -45,6 +47,7 @@ export class UserLogin extends Component {
                 }
             }
         );
+         */
     }
 
     handleUsernameChange = (event) => {

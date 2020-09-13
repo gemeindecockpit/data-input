@@ -18,7 +18,7 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.apiCalls.getData().then((res) => {
+        this.apiCalls.getConfig().then((res) => {
             (this.setState({organisation: res.data.organisations, loading: false}))
         })
     };
@@ -28,10 +28,7 @@ export default class OrganisationViewer extends React.Component {
      * @param orgID
      */
     chooseOrganisation = (orgID) => {
-        if(orgID < 9) {
-            this.props.history.push(window.location.pathname + "/" + orgID)
-        }
-        this.props.history.push(window.location.pathname + "/" + "8")
+        this.props.history.push(window.location.pathname + "/" + orgID)
     }
 
     onWorkflowChange = (workflowUrlParam) => {
