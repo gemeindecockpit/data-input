@@ -157,8 +157,8 @@ export default function DenseAppBar(props) {
 
                     <Typography className={classes.dateText}>
                         {
-                            props.chosenDate.toLocaleString('de', {weekday: 'long'})
-                            + " " + ('0' + props.chosenDate.getDate()).slice(-2) + '.'
+                            (props.chosenDate.toLocaleString('de', {weekday: 'long'})).slice(0, 2)
+                            + ", " + ('0' + props.chosenDate.getDate()).slice(-2) + '.'
                             + ('0' + (props.chosenDate.getMonth() + 1)).slice(-2) + '.'
                             + props.chosenDate.getFullYear()
                         }
