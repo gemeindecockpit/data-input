@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import IdleTimer from "react-idle-timer";
 import UserLogin from '../../pages/login/UserLogin';
 import OrganisationViewer from '../../pages/organisations/OrganisationViewer';
 import OverviewScreen from '../../pages/datepicker/OverviewScreen';
@@ -12,9 +13,16 @@ export class ContentRouter extends Component {
         this.props.onDateChange(unixTimestamp)
     }
 
+    onIdle = () => {
+        window.location.href = '/logout';
+    }
+
     render() {
         return (
             <Router>
+                <IdleTimer
+                    onIdle={this.onIdle}
+                    timeout={600000}/>
                 <Switch>
                     <Route path="/login" component={UserLogin} />
                     <Route path="/:workflow/organisations/:orgId/:date" component={KpiEditor} />
