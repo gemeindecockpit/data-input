@@ -6,16 +6,13 @@ const baseUrl = "http://litwinow.xyz/";
 export default class ApiCalls extends React.Component {
 
     login = (username, password) => {
-        return axios.post(baseUrl + "login", {}, {
-            auth: {
-                username: username,
-                password: password
-            },
+        return axios.post(baseUrl + "login", {
+            name: "admin",
+            pass: "password"
+        }, {
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
             }
-        }).catch(error => {
-            console.log(error);
         });
     }
 

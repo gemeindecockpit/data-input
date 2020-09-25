@@ -34,9 +34,9 @@ export class UserLogin extends Component {
 
     onButtonClick = () => {
         this.props.history.push("/organisations");
-        /*
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
+                alert(response)
                 if(response && response.data === ("HTTP/1.0 200 Login Successfull")) {
                     console.log(response)
                     this.props.history.push("/organisations");
@@ -46,8 +46,7 @@ export class UserLogin extends Component {
                     this.setState({borderColor: "red"});
                 }
             }
-        );
-         */
+        ).catch((error) => {console.log(error)});
     }
 
     handleUsernameChange = (event) => {

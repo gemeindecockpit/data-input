@@ -18,9 +18,10 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.apiCalls.getConfig().then((res) => {
+        //console.log(this.apiCalls.getConfig())
+            /*.then((res) => {
             (this.setState({organisation: res.data.organisations, loading: false}))
-        })
+        })*/
     };
 
     /**
