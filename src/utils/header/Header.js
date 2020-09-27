@@ -1,18 +1,9 @@
 import React from 'react';
-import {
-    AppBar,
-    Grid,
-    IconButton,
-    makeStyles,
-    Menu,
-    MenuItem,
-    Toolbar,
-    Typography
-} from '@material-ui/core';
+import GC_logo from '../../resources/logo_gemeindecockpit.svg'
+import Workflows from '../../enums/Workflows';
+import { useHistory } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
-import GC_logo from '../resources/logo_gemeindecockpit.svg'
-import Workflows from './../enums/Workflows';
-import {useHistory} from 'react-router-dom';
+import { AppBar, Grid, IconButton, makeStyles, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -66,7 +57,7 @@ export default function DenseAppBar(props) {
 
     let history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES)
+    const [workflow, setWorkflow] = React.useState(props.workflow)
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -75,14 +66,17 @@ export default function DenseAppBar(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
-        history.push("/")
     };
 
     const handleWorkflowChange = () => {
-        props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
+        history.push("/" + oppositeWorkflow().URL_PARAM + "/organisations");
         setWorkflow(oppositeWorkflow());
         setAnchorEl(null);
     };
+
+    const handleProfileClick = () => {
+        history.push('/profile');
+    }
 
     const oppositeWorkflow = () => {
         if (workflow === Workflows.EDIT_KPI_VALUES) {
@@ -97,7 +91,6 @@ export default function DenseAppBar(props) {
         setAnchorEl(null);
         history.push('/organisations');
     }
-
 
     return (
         <div className={classes.root}>
@@ -123,7 +116,6 @@ export default function DenseAppBar(props) {
                             },
                         }}
                     >
-
                         <MenuItem className={classes.burgerText} key="Datenhistorie" onClick={handleClose}>
                             Datenhistorie
                         </MenuItem>
@@ -133,25 +125,23 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.burgerText} key="Workflow wechseln" onClick={handleWorkflowChange}>
                             {oppositeWorkflow().DESCRIPTION}
                         </MenuItem>
-                        <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleClose}>
+                        <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleProfileClick}>
                             Profil pflegen
                         </MenuItem>
                         <MenuItem className={classes.burgerText} key="Ausloggen" onClick={handleClose}>
                             Ausloggen
                         </MenuItem>
-
                     </Menu>
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
-
                     <Grid>
                         <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM ? "#00546F" : "#FF5B5B"}}>
+                                    style={{color: (workflow === undefined || workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? "#00546F" : "#FF5B5B"}}>
                             {(props.title ? props.title : "") + ": "}
                         </Typography>
                         <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM ? "#00546F" : "#FF5B5B"}}>
-                            {"" + workflow.DESCRIPTION}
+                                    style={{color: (workflow === undefined || workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? "#00546F" : "#FF5B5B"}}>
+                            {(workflow === undefined) ? "" : workflow.DESCRIPTION}
                         </Typography>
                     </Grid>
 

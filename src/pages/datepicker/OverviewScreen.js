@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Datepicker from "./Datepicker";
 import RecordViewer from "./RecordViewer";
 import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
-import Header from "../../utils/Header";
+import Header from "../../utils/header/Header";
 import {Paper, withStyles} from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
 import CustomButton from '../../utils/control/CustomButton';
@@ -43,10 +43,6 @@ class OverviewScreen extends Component {
         this.props.history.push("/" + this.props.match.params.workflow + "/organisations")
     }
 
-    onWorkflowChange = (workflowUrlParam) => {
-        this.props.history.push("/" + workflowUrlParam + "/organisations")
-    }
-
     kpis = () => {
         if(this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) {
             return getValuesByOrgIdAndDate(this.props.match.params.orgId, this.state.date)
@@ -61,7 +57,7 @@ class OverviewScreen extends Component {
         const maxDate = this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM ? new Date() : undefined;
         return (
             <div>
-                <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
+                <Header chosenDate={date} title={getOrganisationById(this.props.match.params.orgId).name} workflow={(this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES}/>
                 <div className={classes.centeredDiv}>
                     <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:" maxDate={maxDate} />
                 </div>

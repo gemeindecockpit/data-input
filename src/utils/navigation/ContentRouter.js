@@ -5,6 +5,8 @@ import OrganisationViewer from '../../pages/organisations/OrganisationViewer';
 import OverviewScreen from '../../pages/datepicker/OverviewScreen';
 import KpiEditor from '../../pages/kpi-editor/KpiEditor';
 import Workflows from './../../enums/Workflows';
+import Profile from '../../pages/profile/Profile';
+import Password from '../../pages/profile/Password';
 
 export class ContentRouter extends Component {
 
@@ -17,6 +19,8 @@ export class ContentRouter extends Component {
             <Router>
                 <Switch>
                     <Route path="/login" component={UserLogin} />
+                    <Route path="/profile" component={Profile} />
+                    <Route path="/password" component={Password} />
                     <Route path="/:workflow/organisations/:orgId/:date" component={KpiEditor} />
                     <Route path="/:workflow/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/:workflow/organisations" component={OrganisationViewer} />

@@ -1,7 +1,8 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
-import Header from "../../utils/Header";
+import Header from "../../utils/header/Header";
 import { getFullJSON } from "../../utils/communication/ProxyJSON";
+import Workflows from "../../enums/Workflows";
 
 const temporaryJson = getFullJSON();
 
@@ -25,14 +26,10 @@ export default class OrganisationViewer extends React.Component {
         this.props.history.push(window.location.pathname + "/" + orgID)
     }
 
-    onWorkflowChange = (workflowUrlParam) => {
-        this.props.history.push("/" + workflowUrlParam + "/organisations")
-    }
-
     render() {
         return (
             <div>
-                <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
+                <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={(this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES}/>
                 <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
             </div>
             

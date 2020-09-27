@@ -15,7 +15,7 @@ const Divider = ( text ) => {
             <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
         </div>
     );
-  };
+};
 
 class ReviewScreen extends Component {
 

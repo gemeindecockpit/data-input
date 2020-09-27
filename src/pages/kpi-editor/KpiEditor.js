@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import InputFields from './InputFields';
 import ReviewScreen from './ReviewScreen';
-import Header from '../../utils/Header';
+import Header from '../../utils/header/Header';
 import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON';
 import Workflows from './../../enums/Workflows';
 
@@ -28,10 +28,6 @@ export class KpiEditor extends Component {
         return (this.state.showReviewScreen ? "Daten bestätigen" : this.state.org.name)
     }
 
-    onWorkflowChange = (workflowUrlParam) => {
-        this.props.history.push("/" + workflowUrlParam + "/organisations")
-    }
-
     render() {
         const { kpis, showReviewScreen, org, isLoading } = this.state;
         
@@ -41,7 +37,7 @@ export class KpiEditor extends Component {
         
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} workflow={(this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES}/>
                 {(!showReviewScreen) ?
                     <InputFields 
                         kpis={kpis} 
