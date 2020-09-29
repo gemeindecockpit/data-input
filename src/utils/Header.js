@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import GC_logo from '../resources/logo_gemeindecockpit.svg'
 import Workflows from './../enums/Workflows';
 import {useHistory} from 'react-router-dom';
+import Divider from './Divider';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -35,7 +36,8 @@ const useStyles = makeStyles(() => ({
         display: "flex",
         alignItems: 'center',
         marginLeft: '10px',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        fontWeight: 'bold'
     },
     menuButton: {
         marginLeft: 'auto',
@@ -66,7 +68,11 @@ export default function DenseAppBar(props) {
 
     let history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES)
+    const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES);
+    const [showReviewScreen, setShowReviewScreen] = React.useState(props.showReviewScreen);
+    if (showReviewScreen != props.showReviewScreen) {
+        setShowReviewScreen(props.showReviewScreen);
+    }
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -98,7 +104,7 @@ export default function DenseAppBar(props) {
         history.push('/organisations');
     }
 
-
+    console.log(props.showReviewScreen);
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
@@ -146,12 +152,8 @@ export default function DenseAppBar(props) {
 
                     <Grid>
                         <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM ? "#00546F" : "#FF5B5B"}}>
+                                   >
                             {(props.title ? props.title : "") + ": "}
-                        </Typography>
-                        <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM ? "#00546F" : "#FF5B5B"}}>
-                            {"" + workflow.DESCRIPTION}
                         </Typography>
                     </Grid>
 
@@ -166,6 +168,7 @@ export default function DenseAppBar(props) {
 
                 </Toolbar>
             </AppBar>
+            {Divider(showReviewScreen ? workflow.REVIEWSCREEN_DESCRIPTION : workflow.DESCRIPTION)}
         </div>
     );
 }

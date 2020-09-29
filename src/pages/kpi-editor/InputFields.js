@@ -4,6 +4,7 @@ import InputField from '../../utils/input/InputField';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
 import { Pagination } from '@material-ui/lab';
+import Divider from '../../utils/Divider';
 
 class InputFields extends Component {
     constructor(props) {

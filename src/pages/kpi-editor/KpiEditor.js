@@ -4,6 +4,7 @@ import ReviewScreen from './ReviewScreen';
 import Header from '../../utils/Header';
 import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON';
 import Workflows from './../../enums/Workflows';
+import Divider from '../../utils/Divider';
 
 export class KpiEditor extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export class KpiEditor extends Component {
     }
 
     headerTitle = () => {
-        return (this.state.showReviewScreen ? "Daten bestätigen" : this.state.org.name)
+        return (this.state.org.name)
     }
 
     onWorkflowChange = (workflowUrlParam) => {
@@ -33,15 +34,15 @@ export class KpiEditor extends Component {
     }
 
     render() {
-        const { kpis, showReviewScreen, org, isLoading } = this.state;
         
+        const { kpis, showReviewScreen, org, isLoading } = this.state;
         if(isLoading) {
             return <div></div>
         }
         
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} showReviewScreen={showReviewScreen}/>
                 {(!showReviewScreen) ?
                     <InputFields 
                         kpis={kpis} 

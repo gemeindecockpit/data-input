@@ -7,6 +7,7 @@ import {Paper, withStyles} from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
+import Divider from '../../utils/Divider'
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record

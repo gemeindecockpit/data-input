@@ -2,6 +2,7 @@ import React from "react";
 import OrganisationList from "./OrganisationList";
 import Header from "../../utils/Header";
 import { getFullJSON } from "../../utils/communication/ProxyJSON";
+import Divider from '../../utils/Divider';
 
 const temporaryJson = getFullJSON();
 
