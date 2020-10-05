@@ -1,35 +1,54 @@
 import React from 'react';
 import axios from 'axios';
 
-const baseUrl = "http://litwinow.xyz/";
+const baseUrl = "http://localhost:8080/";
 
 export default class ApiCalls extends React.Component {
 
+
     login = (username, password) => {
-        return axios.post(baseUrl + "login", {
-            name: "admin",
-            pass: "password"
-        }, {
+        var formData = new FormData();
+        formData.append("name", username);
+        formData.append("pass", password);
+        return axios.post(baseUrl + "login", formData, {
             headers: {
-                'Accept': 'application/json',
-            }
+                "Content-Type": "multipart/form-data"
+            },
+            withCredentials: true
         });
     }
 
     logout = () => {
-        return axios.post(baseUrl + "logout", {}, {
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).catch(error => {
-            console.log(error);
+        return axios.post((baseUrl + "logout"), null, {
+            withCredentials: true
         });
     }
 
     getConfig = () => {
-        return axios.get(baseUrl + "config", {})
-            .catch(error => {
-                console.log(error);
+        return axios.get(baseUrl + "config", {
+            withCredentials: true
+        });
+    }
+
+    getOrganisations = () => {
+        return axios.get(baseUrl + "config/organisation", {
+            withCredentials: true
+        });
+    }
+
+    getOrganisationById = (id) => {
+        return axios.get(baseUrl + "config/organisation/" + id, {
+            withCredentials : true
+        });
+    }
+
+    getOrgValuesByIdAndDate = (id, year, month, day) => {
+        return axios.get(baseUrl + "data/organisation/"
+            + id + "/"
+            + year + "/"
+            + month + "/"
+            + day, {
+            withCredentials: true
         });
     }
 

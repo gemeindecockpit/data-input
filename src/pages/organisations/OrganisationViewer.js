@@ -18,10 +18,9 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        //console.log(this.apiCalls.getConfig())
-            /*.then((res) => {
-            (this.setState({organisation: res.data.organisations, loading: false}))
-        })*/
+        this.apiCalls.getOrganisations().then((res) => {
+            this.setState({organisation: res.data.organisations, loading: false})
+        })
     };
 
     /**
@@ -39,11 +38,11 @@ export default class OrganisationViewer extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
                 {this.state.loading
                     ? <LinearProgress/>
                     :
                     <div>
-                        <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
                         <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state}/>
                     </div>
                 }

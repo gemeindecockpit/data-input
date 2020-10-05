@@ -7,7 +7,7 @@ import {
     InputAdornment,
     ThemeProvider,
     Typography,
-    OutlinedInput
+    OutlinedInput, LinearProgress
 } from '@material-ui/core';
 import gcLogo from '../../resources/logo_gemeindecockpit_white.svg';
 import CustomButton from '../../utils/control/CustomButton';
@@ -23,6 +23,7 @@ export class UserLogin extends Component {
         super(props);
 
         this.state = {
+            loading: false,
             username: "",
             password: "",
             showPassword: false,
@@ -32,21 +33,34 @@ export class UserLogin extends Component {
 
     apiCalls = new ApiCalls("");
 
+    componentDidMount() {
+        this.apiCalls.logout().then(
+            (response) => {
+                console.log(response);
+            }
+        )
+    }
+
     onButtonClick = () => {
-        this.props.history.push("/organisations");
+        console.log("Start")
+        this.setState({loading: true});
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
-                alert(response)
-                if(response && response.data === ("HTTP/1.0 200 Login Successfull")) {
-                    console.log(response)
+                console.log(response)
+                if(response.status === 200) {
+                    console.log("Sie sind eingeloggt!")
                     this.props.history.push("/organisations");
-                }else{
+                }
+                else{
                     console.log("Error: Request failed with status code 500")
                     this.props.history.push("/login");
-                    this.setState({borderColor: "red"});
+                    this.setState({loading: false, borderColor: "red"});
                 }
+                console.log(response);
             }
-        ).catch((error) => {console.log(error)});
+        ).catch((error) => {
+            this.setState({loading: false});
+            console.log(error)});
     }
 
     handleUsernameChange = (event) => {
@@ -67,6 +81,17 @@ export class UserLogin extends Component {
 
     render() {
         const classes = this.props.classes
+        const {loading} = this.state
+        if(loading){
+            return(
+                <React.Fragment>
+                    <div className={classes.headerDiv}>
+                        <img alt="" src={WirVsViursImg} className={classes.headerImg}/>
+                    </div>
+                    <LinearProgress/>
+                </React.Fragment>
+            )
+        }
         return (
             <div>
                 <ThemeProvider theme={muiTheme}>

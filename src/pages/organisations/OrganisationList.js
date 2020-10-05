@@ -8,7 +8,7 @@ export default class OrganisationList extends React.Component {
         return (
             <div key={rec.organisation_id}>
                 <ListItem button component="a" onClick={(ev) => this.organizationSelected(ev, rec.organisation_id)}>
-                    <ListItemText style={{ color: "white", marginLeft: "10px" }}>{rec.name}</ListItemText>
+                    <ListItemText style={{ color: "white", marginLeft: "10px" }}>{rec.organisation_name}</ListItemText>
                 </ListItem>
                 <Divider variant="middle" style={{ backgroundColor: "white" }}/>
             </div>

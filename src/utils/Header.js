@@ -50,10 +50,10 @@ export default function DenseAppBar(props) {
     };
 
     const handleLogOut = () => {
-        /*(new ApiCalls("")).logout().then(res => {
+        (new ApiCalls("")).logout().then(res => {
             console.log(res.data)
         });
-        setAnchorEl(null);*/
+        setAnchorEl(null);
         history.push("/login")
     }
 
