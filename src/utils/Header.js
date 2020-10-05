@@ -63,9 +63,12 @@ export default function DenseAppBar(props) {
     };
 
     const handleWorkflowChange = () => {
-        props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
-        setWorkflow(oppositeWorkflow());
-        setAnchorEl(null);
+        alert("In progress... incomplete backend");
+        /*
+            props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
+            setWorkflow(oppositeWorkflow());
+            setAnchorEl(null);
+         */
     };
 
     const oppositeWorkflow = () => {

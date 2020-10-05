@@ -31,6 +31,9 @@ class OverviewScreen extends Component {
 
     componentDidMount() {
         this.fetchDefaultValues(this.props.match.params.orgId);
+        this.state.fields.forEach((f) => {
+            this.fetchMaxValue(this.props.match.params.orgId, f.name)
+        })
     }
 
     onDateChange = (unixTimestamp) => {
@@ -59,7 +62,7 @@ class OverviewScreen extends Component {
         this.props.history.push("/" + workflowUrlParam + "/organisations")
     }
 
-    fetchOrgValues(id, date){
+    fetchOrgValues = (id, date) => {
         const { fields } = this.state;
         this.apiCalls.getOrgValuesByIdAndDate(
             id,
@@ -80,11 +83,11 @@ class OverviewScreen extends Component {
         })
     }
 
-    fetchDefaultValues(id){
+    fetchDefaultValues = (id) => {
         this.apiCalls.getOrganisationById(id)
             .then((res) => {
-                console.log(res)
                 this.setState({fields: res.data.fields, loading: false, title: res.data.organisation_name});
+                this.fetchOrgValues(id, new Date())
             })
     }
 

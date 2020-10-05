@@ -8,11 +8,12 @@ class InputField extends Component {
 
     render() {
         const classes = this.props.classes;
+        const { field } = this.props;
         return (
-            <div key={this.props.name} className={classes.centeredDiv}>
+            <div key={field.field_name} className={classes.centeredDiv}>
                 <FormControl className={classes.formControl}>
                     <InputLabel shrink htmlFor="input-box">
-                        {this.props.name}
+                        {field.field_name}
                     </InputLabel>
                     <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                         <PopupState variant="popover" popupId="demo-popup-popover">
@@ -36,7 +37,7 @@ class InputField extends Component {
                                     >
                                         <Box p={2}>
                                             <Typography>
-                                                {this.props.name}
+                                                {"In progress... incomplete backend"}
                                             </Typography>
                                         </Box>
                                     </Popover>
@@ -45,9 +46,9 @@ class InputField extends Component {
                         </PopupState>
                     </div>
                         <CustomInputBase
-                            defaultValue={this.props.value}
+                            defaultValue={field.field_value}
                             className={classes.input}
-                            onChange={event => this.props.handleChange(event, this.props.name)}
+                            onChange={event => this.props.handleChange(event, field.field_id)}
                             id="input-box"
                         />
                 </FormControl>

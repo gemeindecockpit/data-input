@@ -8,18 +8,22 @@ class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
-            kpis: props.kpis
+            fields: props.fields
         };
     }
 
-    handleChange = (event, kpiName) => {
-        var newKpis = this.state.kpis;
-        newKpis[this.state.kpis.findIndex(v => v.name === kpiName)] = {name: kpiName, value: event.target.value}
-        this.setState({ kpis: newKpis })
+    handleChange = (event, field_id) => {
+        var newFields = this.state.fields.map(field => {
+            if(field.field_id === field_id) {
+                field.field_value = event.target.value;
+            }
+            return field;
+        });
+        this.setState({ fields: newFields })
     }
 
     onSubmit = () => {
-        this.props.onSubmit(this.state.kpis);
+        this.props.onSubmit(this.state.fields);
     }
 
     onAbort = () => {
@@ -30,17 +34,17 @@ class InputFields extends Component {
     }
 
     render() {
-        const { kpis } = this.state;
+        const { fields } = this.state;
+        console.log(fields)
         const classes = this.props.classes
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    {kpis.map(rec => {
+                    {fields.map(rec => {
                         return (
                             <InputField
-                                key={rec.name}
-                                name={ rec.name }
-                                value={ rec.value }
+                                key={rec.field_id}
+                                field={ rec }
                                 onIconClick={ this.onIconClick }
                                 handleChange={ this.handleChange }
                             />
