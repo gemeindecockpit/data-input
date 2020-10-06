@@ -46,24 +46,43 @@ export class KpiEditor extends Component {
 
     fetchOrgValues = (id, date) => {
         const { fields } = this.state;
-        this.apiCalls.getOrgValuesByIdAndDate(
-            id,
-            date.getFullYear(),
-            (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1),
-            date.getDate() < 10 ? "0" + date.getDate() : date.getDate())
-            .then((res) => {
-                var resFields = res.data.data;
-                var newFields = fields.map(field => {
-                    field.field_value = "";
-                    var resFieldIndex = resFields.findIndex(resField => field.field_id === resField.field_id);
-                    if(resFieldIndex !== -1) {
-                        field = resFields[resFieldIndex];
-                    }
-                    return field;
-                })
-                console.log(newFields)
-                this.setState({fields: newFields, isLoading: false, date: date});
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+        const day = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate();
+        this.apiCalls.getOrgValuesByIdAndDate(id, year, month, day).then((res) => {
+            var resFields = res.data.data;
+            var newFields = fields.map(field => {
+                field.field_value = "";
+                var resFieldIndex = resFields.findIndex(resField => field.field_id === resField.field_id);
+                if(resFieldIndex !== -1) {
+                    field = resFields[resFieldIndex];
+                }
+                field.date = year + "-" + month + "-" + day;
+                return field;
             })
+            this.setState({fields: newFields, isLoading: false, date: date});
+        })
+    }
+
+    onDataSubmit = () => {
+        var requestArray = [];
+
+        this.state.fields.forEach(field => {
+            var requestField = {
+                "field_id": field.field_id,
+                "field_value": field.field_value.toString(),
+                "date": field.date
+            }
+            if(requestField.field_value !== "") {
+                requestArray.push(requestField);
+            }
+        })
+
+        this.apiCalls.postKpisByOrgId(this.props.match.params.orgId, JSON.stringify(requestArray)).then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.error("PostDataError: ", err);
+        });
     }
 
     render() {
@@ -92,7 +111,7 @@ export class KpiEditor extends Component {
                     <ReviewScreen
                         fields={fields}
                         organisationName={org.name}
-                        onSubmit={() => alert(fields.map(kpi => { return JSON.stringify(kpi, null, 2) }))}
+                        onSubmit={ this.onDataSubmit }
                         onAbort={() => this.setState({ showReviewScreen: false })}
                     />
                 }

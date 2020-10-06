@@ -35,7 +35,6 @@ class InputFields extends Component {
 
     render() {
         const { fields } = this.state;
-        console.log(fields)
         const classes = this.props.classes
         return (
             <div>

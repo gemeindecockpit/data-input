@@ -25,6 +25,14 @@ export default class ApiCalls extends React.Component {
         });
     }
 
+    postKpisByOrgId = (orgId, jsonValues) => {
+        return axios.post(baseUrl + "organisation/" + orgId, jsonValues, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
     getConfig = () => {
         return axios.get(baseUrl + "config", {
             withCredentials: true
