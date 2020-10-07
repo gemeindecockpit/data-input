@@ -11,7 +11,7 @@ class ReviewScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recordToShow: props.kpis
+            recordToShow: props.fields
         }
     }
 

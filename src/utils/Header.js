@@ -12,8 +12,9 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import GC_logo from '../resources/logo_gemeindecockpit.svg'
 import Workflows from './../enums/Workflows';
-import {useHistory} from 'react-router-dom';
 import Divider from './Divider';
+import { useHistory} from 'react-router-dom';
+import ApiCalls from '../utils/communication/ApiCalls.js';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -47,8 +48,8 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#F3F3F3",
     },
     dateText: {
-        color: "#006484",
         font: "Roboto",
+        color: "#006484",
         fontSize: "17px",
         display: "flex",
         alignItems: 'center',
@@ -64,6 +65,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function DenseAppBar(props) {
+
     const classes = useStyles();
 
     let history = useHistory();
@@ -79,15 +81,26 @@ export default function DenseAppBar(props) {
         setAnchorEl(event.currentTarget);
     };
 
+    const handleLogOut = () => {
+        (new ApiCalls("")).logout().then(res => {
+            console.log(res.data)
+        });
+        setAnchorEl(null);
+        history.push("/login")
+    }
+
     const handleClose = () => {
         setAnchorEl(null);
         history.push("/")
     };
 
     const handleWorkflowChange = () => {
-        props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
-        setWorkflow(oppositeWorkflow());
-        setAnchorEl(null);
+        alert("In progress... incomplete backend");
+        /*
+            props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
+            setWorkflow(oppositeWorkflow());
+            setAnchorEl(null);
+         */
     };
 
     const oppositeWorkflow = () => {
@@ -104,7 +117,7 @@ export default function DenseAppBar(props) {
         history.push('/organisations');
     }
 
-    console.log(props.showReviewScreen);
+
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
@@ -114,7 +127,7 @@ export default function DenseAppBar(props) {
                         Gemeinde Cockpit
                     </Typography>
                     <IconButton edge="start" className={classes.menuButton} aria-label="menu" onClick={handleClick}>
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Menu
                         id="long-menu"
@@ -142,7 +155,7 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleClose}>
                             Profil pflegen
                         </MenuItem>
-                        <MenuItem className={classes.burgerText} key="Ausloggen" onClick={handleClose}>
+                        <MenuItem className={classes.text} key="Ausloggen" onClick={handleLogOut}>
                             Ausloggen
                         </MenuItem>
 
@@ -165,7 +178,7 @@ export default function DenseAppBar(props) {
                             + props.chosenDate.getFullYear()
                         }
                     </Typography>
-
+                    <!--<Typography className={classes.dateText}>{props.chosenDate.toDateString()}</Typography>-->
                 </Toolbar>
             </AppBar>
             {Divider(showReviewScreen ? workflow.REVIEWSCREEN_DESCRIPTION : workflow.DESCRIPTION)}
