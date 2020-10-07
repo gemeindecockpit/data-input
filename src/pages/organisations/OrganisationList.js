@@ -2,14 +2,14 @@ import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import { Divider, List, } from "@material-ui/core";
+import { Divider, List } from "@material-ui/core";
 
 export default class OrganisationList extends React.Component {
     newListItem = (rec) => {
         return (
-            <div key={rec.id}>
-                <ListItem button component="a" onClick={(ev) => this.organizationSelected(ev, rec.id)}>
-                    <ListItemText style={{ color: "white", marginLeft: "10px" }}>{rec.name}</ListItemText>
+            <div key={rec.organisation_id}>
+                <ListItem button component="a" onClick={(ev) => this.organizationSelected(ev, rec.organisation_id)}>
+                    <ListItemText style={{ color: "white", marginLeft: "10px" }}>{rec.organisation_name}</ListItemText>
                     <SvgIcon alt="" style={{color: "white", marginRight: "10px"}}>
                         <path d="M 21.00,19.00
                                C 21.00,19.00 21.00,5.00 21.00,5.00
@@ -39,7 +39,7 @@ export default class OrganisationList extends React.Component {
     }
 
     render() {
-        let listItems = this.props.data.map(rec => this.newListItem(rec));
+        let listItems = this.props.data.organisation.map(rec => this.newListItem(rec));
         return (
             <div>
                 <List>

@@ -1,21 +1,27 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
 import Header from "../../utils/Header";
-import { getFullJSON } from "../../utils/communication/ProxyJSON";
-
-const temporaryJson = getFullJSON();
+import ApiCalls from "../../utils/communication/ApiCalls";
+import {LinearProgress} from "@material-ui/core";
 
 export default class OrganisationViewer extends React.Component {
+    apiCalls = new ApiCalls("");
+
+    state = {
+        loading: true,
+        organisation: []
+    }
+
     /**
      * sets the state into a default configuration.
      * @param props
      */
     constructor(props) {
         super(props);
-        this.state={
-            organisations: temporaryJson.organisations
-        };
-    }
+        this.apiCalls.getOrganisations().then((res) => {
+            this.setState({organisation: res.data.organisations, loading: false})
+        })
+    };
 
     /**
      * callback method to hand the information of the chosen organisation as its ID to the parent classe
@@ -31,11 +37,16 @@ export default class OrganisationViewer extends React.Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
-                <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state.organisations}/>
-            </div>
-            
+                {this.state.loading
+                    ? <LinearProgress/>
+                    :
+                    <div>
+                        <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state}/>
+                    </div>
+                }
+            </React.Fragment>
         );
     }
 }
