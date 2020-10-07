@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Datepicker from "./Datepicker";
 import RecordViewer from "./RecordViewer";
-import {getOrganisationById, getValuesByOrgIdAndDate, getMaxValuesByOrgIdAndDate} from '../../utils/communication/ProxyJSON'
 import Header from "../../utils/Header";
 import {LinearProgress, Paper, withStyles} from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
