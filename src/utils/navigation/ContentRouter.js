@@ -20,7 +20,7 @@ export class ContentRouter extends Component {
                 <Switch>
                     <Route path="/login" component={UserLogin} />
                     <Route path="/profile" component={Profile} />
-                    <Route path="/password" component={Password} />
+                    <Route path="/password/:userid" component={Password} />
                     <Route path="/:workflow/organisations/:orgId/:date" component={KpiEditor} />
                     <Route path="/:workflow/organisations/:orgId" component={OverviewScreen} />
                     <Route path="/:workflow/organisations" component={OrganisationViewer} />

@@ -4,25 +4,14 @@ import {Paper} from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
 import ButtonThemes from '../../enums/ButtonThemes';
 import CustomButton from '../../utils/control/CustomButton';
-
-const Divider = ( text ) => {
-    return (
-        <div style={{ display: "flex", alignItems: "center", paddingLeft: "30px", paddingRight: "30px", paddingTop: "30px" }}>
-            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
-                <span style={{padding: "0 10px 0 10px", color: "white", whiteSpace: "pre"}}>
-                    {text}
-                </span>
-            <div style={{ borderBottom: "1px solid #FFFFFF80", width: "50%" }} />
-        </div>
-    );
-};
+import Divider from '../../utils/Divider';
 
 class ReviewScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            recordToShow: props.kpis
+            recordToShow: props.fields
         }
     }
 
@@ -38,7 +27,6 @@ class ReviewScreen extends Component {
         const classes = this.props.classes
         return (
             <div>
-                {Divider(this.props.organisationName)}
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
                         <RecordViewer recordToDisplay={ this.state.recordToShow }/>

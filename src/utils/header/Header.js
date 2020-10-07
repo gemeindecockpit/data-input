@@ -1,9 +1,20 @@
 import React from 'react';
-import GC_logo from '../../resources/logo_gemeindecockpit.svg'
-import Workflows from '../../enums/Workflows';
-import { useHistory } from 'react-router-dom';
+import {
+    AppBar,
+    Grid,
+    IconButton,
+    makeStyles,
+    Menu,
+    MenuItem,
+    Toolbar,
+    Typography
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AppBar, Grid, IconButton, makeStyles, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import GC_logo from '../../resources/logo_gemeindecockpit.svg'
+import Workflows from './../../enums/Workflows';
+import Divider from './../Divider';
+import { useHistory} from 'react-router-dom';
+import ApiCalls from '../communication/ApiCalls.js';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -26,7 +37,8 @@ const useStyles = makeStyles(() => ({
         display: "flex",
         alignItems: 'center',
         marginLeft: '10px',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        fontWeight: 'bold'
     },
     menuButton: {
         marginLeft: 'auto',
@@ -36,8 +48,8 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#F3F3F3",
     },
     dateText: {
-        color: "#006484",
         font: "Roboto",
+        color: "#006484",
         fontSize: "17px",
         display: "flex",
         alignItems: 'center',
@@ -53,30 +65,45 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function DenseAppBar(props) {
+
     const classes = useStyles();
 
     let history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [workflow, setWorkflow] = React.useState(props.workflow)
+    const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES);
+    const [showReviewScreen, setShowReviewScreen] = React.useState(props.showReviewScreen);
+    if (showReviewScreen != props.showReviewScreen) {
+        setShowReviewScreen(props.showReviewScreen);
+    }
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleLogOut = () => {
+        (new ApiCalls()).logout().then(res => {
+        });
         setAnchorEl(null);
-    };
+        history.push("/login")
+    }
 
-    const handleWorkflowChange = () => {
-        history.push("/" + oppositeWorkflow().URL_PARAM + "/organisations");
-        setWorkflow(oppositeWorkflow());
+    const handleClose = () => {
         setAnchorEl(null);
     };
 
     const handleProfileClick = () => {
         history.push('/profile');
     }
+
+    const handleWorkflowChange = () => {
+        alert("In progress... incomplete backend");
+        /*
+            props.onWorkflowChange(oppositeWorkflow().URL_PARAM)
+            setWorkflow(oppositeWorkflow());
+            setAnchorEl(null);
+         */
+    };
 
     const oppositeWorkflow = () => {
         if (workflow === Workflows.EDIT_KPI_VALUES) {
@@ -92,6 +119,7 @@ export default function DenseAppBar(props) {
         history.push('/organisations');
     }
 
+
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
@@ -101,7 +129,7 @@ export default function DenseAppBar(props) {
                         Gemeinde Cockpit
                     </Typography>
                     <IconButton edge="start" className={classes.menuButton} aria-label="menu" onClick={handleClick}>
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Menu
                         id="long-menu"
@@ -116,6 +144,7 @@ export default function DenseAppBar(props) {
                             },
                         }}
                     >
+
                         <MenuItem className={classes.burgerText} key="Datenhistorie" onClick={handleClose}>
                             Datenhistorie
                         </MenuItem>
@@ -128,20 +157,18 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleProfileClick}>
                             Profil pflegen
                         </MenuItem>
-                        <MenuItem className={classes.burgerText} key="Ausloggen" onClick={handleClose}>
+                        <MenuItem className={classes.text} key="Ausloggen" onClick={handleLogOut}>
                             Ausloggen
                         </MenuItem>
+
                     </Menu>
                 </Toolbar>
                 <Toolbar className={classes.secondToolbar}>
+
                     <Grid>
                         <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: (workflow === undefined || workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? "#00546F" : "#FF5B5B"}}>
-                            {(props.title ? props.title : "") + ": "}
-                        </Typography>
-                        <Typography display={"inline"} className={classes.secondHeaderText}
-                                    style={{color: (workflow === undefined || workflow.URL_PARAM === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? "#00546F" : "#FF5B5B"}}>
-                            {(workflow === undefined) ? "" : workflow.DESCRIPTION}
+                                   >
+                            {(props.title ? props.title : "")}
                         </Typography>
                     </Grid>
 
@@ -153,9 +180,9 @@ export default function DenseAppBar(props) {
                             + props.chosenDate.getFullYear()
                         }
                     </Typography>
-
                 </Toolbar>
             </AppBar>
+            {Divider(showReviewScreen ? workflow.REVIEWSCREEN_DESCRIPTION : workflow.DESCRIPTION)}
         </div>
     );
 }

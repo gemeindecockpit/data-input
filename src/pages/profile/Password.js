@@ -4,6 +4,8 @@ import { Paper, createMuiTheme, TextField } from '@material-ui/core';
 import { withStyles, ThemeProvider } from '@material-ui/styles';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
+import PasswordField from '../../utils/input/PasswordField';
+import ApiCalls from "../../utils/communication/ApiCalls";
 
 const Title = ( text ) => {
     return (
@@ -22,15 +24,12 @@ export class Password extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            oldPassword: "",
             newPassword: "",
             newPasswordSubmit: ""
         };
     }
 
-    onOldPasswordChange = (event) => {
-        this.setState({oldPassword: event.target.value});
-    }
+    apiCalls = new ApiCalls();
 
     onNewPasswordChange = (event) => {
         this.setState({newPassword: event.target.value});
@@ -41,7 +40,17 @@ export class Password extends Component {
     }
 
     onButtonClick = () => {
-        const { oldPassword, newPassword, newPasswordSubmit } = this.state;
+        const { newPassword, newPasswordSubmit } = this.state;
+        const userid = this.props.match.params.userid;
+        if(newPassword === newPasswordSubmit) {
+            this.apiCalls.updatePassword(userid, newPassword).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.error(err)
+            })
+        } else {
+            console.log("Different passwords")
+        }
         
     }
 
@@ -50,22 +59,19 @@ export class Password extends Component {
         
         return (
             <div>
-                <ProfileHeader chosenDate={new Date()} />
-                { Title("Password ändern") }
                 <ThemeProvider theme={muiTheme}>
-                    <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="altes-passwort" label="Altes Passwort" variant="outlined" onChange={this.onOldPasswordChange} />
-                    </div>
-                    <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="neues-passwort" label="Neues Passwort" variant="outlined" onChange={this.onNewPasswordChange} />
-                    </div>
-                    <div className={classes.centeredDiv}>
-                        <TextField className={classes.textField} id="neues-passwort-bastaetigen" label="Neues Passwort bestätigen" variant="outlined" onChange={this.onNewPasswordSubmitChange} />
-                    </div>
-                    <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
-                        <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Bestätigen" onClick={this.onButtonClick} />
-                    </div>
+                    <ProfileHeader chosenDate={new Date()} />
                 </ThemeProvider>
+                { Title("Password ändern") }
+                <div className={classes.centeredDiv}>
+                    <PasswordField placeholder="Neues Passwort" handleChange={this.onNewPasswordChange} />
+                </div>
+                <div className={classes.centeredDiv}>
+                    <PasswordField placeholder="Neues Passwort bestätigen" handleChange={this.onNewPasswordSubmitChange} />
+                </div>
+                <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
+                    <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Bestätigen" onClick={this.onButtonClick} />
+                </div>
             </div>
         )
     }
@@ -73,34 +79,6 @@ export class Password extends Component {
 
 const muiTheme = createMuiTheme({
     overrides: {
-        MuiTypography: {
-            root: {
-                color: "white"
-            }
-        },
-        MuiFormLabel: {
-            root: {
-                color: "white",
-                "&$focused": {
-                    color: "white",
-                },
-            }
-        },
-        MuiOutlinedInput: {
-            notchedOutline: {
-                borderColor: "white",
-            },
-            root: {
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black"
-                },
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black"
-                },
-                borderRadius: 12,
-                height: "55px"
-            }
-        },
         MuiButton: {
             outlined: {
                 border: 0

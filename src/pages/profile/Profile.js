@@ -6,11 +6,9 @@ import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import LockIcon from '@material-ui/icons/Lock';
 import { Paper, List, ListItem, ListItemText, ListItemIcon, Divider, createMuiTheme, ListItemAvatar, Avatar, CircularProgress } from '@material-ui/core';
 import { withStyles, ThemeProvider } from '@material-ui/styles';
-import axios from 'axios';
+import ApiCalls from "../../utils/communication/ApiCalls";
 
 const toggleSize = 600;
-
-const baseUrl = "http://litwinow.xyz/";
 
 const Title = ( text ) => {
     return (
@@ -40,15 +38,13 @@ export class Profile extends Component {
         };
     }
 
-    getUserInfo = () => {
-        return axios.get(baseUrl + "users/me");
-    }
+    apiCalls = new ApiCalls();
 
     simpleList = (classes) => {
         const { username, name, email, password } = this.state;
         
         return (
-            <List disablePadding>
+            <List disablePadding className={classes.root}>
                 <ListItem>
                     <ListItemText className={classes.listItemTextKey}>
                         Username
@@ -95,7 +91,7 @@ export class Profile extends Component {
         const { username, name, email, password } = this.state;
 
         return (
-            <List className={classes.root}>
+            <List disablePadding className={classes.root}>
                 <ListItem>
                     <ListItemAvatar>
                         <Avatar>
@@ -139,7 +135,7 @@ export class Profile extends Component {
     }
 
     handlePasswordClick = () => {
-        this.props.history.push("/password")
+        this.props.history.push("/password/" + this.state.userId)
     }
 
     updateSize = () => {
@@ -147,13 +143,13 @@ export class Profile extends Component {
     }
 
     componentDidMount = () => {
-        this.getUserInfo().then(response => {
+        this.apiCalls.getUserInfo().then(response => {
             this.setState({ 
-                userId: response.id_user, 
-                username: response.username, 
-                name: response.realname, 
-                email: response.email, 
-                reqPwReset: (response.req_pw_reset === 1) ? true : false,
+                userId: response.data.id_user, 
+                username: response.data.username, 
+                name: response.data.realname, 
+                email: response.data.email, 
+                reqPwReset: (response.data.req_pw_reset === 1) ? true : false,
                 isLoading: false 
             })
         }).catch(error => {
@@ -227,6 +223,7 @@ const styles = (theme) => ({
     },
     centeredDiv: {
         marginTop: "30px",
+        paddingBottom: "30px",
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center"

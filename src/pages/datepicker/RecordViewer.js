@@ -25,11 +25,7 @@ class RecordViewer extends Component {
      * @returns {JSX.Element[]}
      */
     extractRecord() {
-
-        return (
-            this.props.recordToDisplay.map(entry => this.createRow(entry.name, entry.value))
-        );
-
+        return this.props.recordToDisplay.map(entry => this.createRow(entry.field_name, entry.field_value))
     }
 
     /**
