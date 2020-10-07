@@ -6,8 +6,11 @@ import OrganisationViewer from '../../pages/organisations/OrganisationViewer';
 import OverviewScreen from '../../pages/datepicker/OverviewScreen';
 import KpiEditor from '../../pages/kpi-editor/KpiEditor';
 import Workflows from './../../enums/Workflows';
+import ApiCalls from "../communication/ApiCalls";
 
 export class ContentRouter extends Component {
+
+    apiCalls = new ApiCalls();
 
     onDateChange = (unixTimestamp) => {
         this.props.onDateChange(unixTimestamp)
@@ -15,6 +18,7 @@ export class ContentRouter extends Component {
 
     onIdle = () => {
         window.location.href = '/logout';
+        this.apiCalls.logout();
     }
 
     render() {
