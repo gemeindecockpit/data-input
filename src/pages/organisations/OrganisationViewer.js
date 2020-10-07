@@ -3,6 +3,7 @@ import OrganisationList from "./OrganisationList";
 import Header from "../../utils/Header";
 import ApiCalls from "../../utils/communication/ApiCalls";
 import {LinearProgress} from "@material-ui/core";
+import PasswordReminder from "../user-management/PasswordChangeRequiredPopUp";
 
 export default class OrganisationViewer extends React.Component {
     apiCalls = new ApiCalls("");
