@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Datepicker from "./Datepicker";
 import RecordViewer from "./RecordViewer";
 import Header from "../../utils/Header";
-import {LinearProgress, Paper, withStyles} from '@material-ui/core';
+import { LinearProgress, Paper, withStyles } from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
 import ApiCalls from "../../utils/communication/ApiCalls";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
  * Wrapper component for Datepicker that sets the date for chosen organization to show the correct record
@@ -28,6 +30,15 @@ class OverviewScreen extends Component {
         };
     }
 
+    useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }));
+
     componentDidMount() {
         this.fetchDefaultValues(this.props.match.params.orgId);
         this.state.fields.forEach((f) => {
@@ -37,7 +48,7 @@ class OverviewScreen extends Component {
 
     onDateChange = (unixTimestamp) => {
         var date = new Date(unixTimestamp * 1000)
-        this.setState({date: date})
+        this.setState({ date: date })
         this.fetchOrgValues(this.props.match.params.orgId, date)
     }
 
@@ -73,55 +84,57 @@ class OverviewScreen extends Component {
                 var newFields = fields.map(field => {
                     field.field_value = "";
                     var resFieldIndex = resFields.findIndex(resField => field.field_id === resField.field_id);
-                    if(resFieldIndex !== -1) {
+                    if (resFieldIndex !== -1) {
                         field = resFields[resFieldIndex];
                     }
                     return field;
                 })
-                this.setState({fields: newFields, loading: false, date: date});
-        }).catch((err) => {
-            console.error(err);
-        })
+                this.setState({ fields: newFields, loading: false, date: date });
+            }).catch((err) => {
+                console.error(err);
+            })
     }
 
     fetchDefaultValues = (id) => {
         this.apiCalls.getOrganisationById(id)
             .then((res) => {
-                this.setState({fields: res.data.fields, loading: false, title: res.data.organisation_name});
+                this.setState({ fields: res.data.fields, loading: false, title: res.data.organisation_name });
                 this.fetchOrgValues(id, new Date())
             }).catch((err) => {
-            console.error(err);
-        })
+                console.error(err);
+            })
     }
 
     render() {
+
         const classes = this.props.classes
+        let loadingspinner = <div className={classes.centeredDiv} style={{ marginTop: "30vh" }} ><CircularProgress color="#FFFFFF" /></div>
         const maxDate = this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM ? new Date() : undefined;
-        const {date, loading} = this.state
-        if(loading){
-            return(
+        const { date, loading } = this.state
+        if (loading) {
+            return (
                 <React.Fragment>
                     <Header chosenDate={date} title={this.state.title}
-                            workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
-                    <LinearProgress/>
+                        workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} />
+                    {loadingspinner}
                 </React.Fragment>
             )
         }
         return (
             <div>
-                <Header chosenDate={date} title={this.state.title} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
+                <Header chosenDate={date} title={this.state.title} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} />
                 <div className={classes.centeredDiv}>
                     <Datepicker onDateChange={this.onDateChange} label="Datum auswählen:" maxDate={maxDate} />
                 </div>
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
-                        <RecordViewer recordToDisplay={this.state.fields}/>
+                        <RecordViewer recordToDisplay={this.state.fields} />
                     </Paper>
                 </div>
                 <div className={classes.centeredDiv}>
                     <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Weiter" onClick={this.onSubmit} />
                 </div>
-                <div className={classes.centeredDiv} style={{marginTop: "10px", paddingBottom: "30px"}}>
+                <div className={classes.centeredDiv} style={{ marginTop: "10px", paddingBottom: "30px" }}>
                     <CustomButton color={ButtonThemes.RED.COLOR} colorOnHover={ButtonThemes.RED.COLOR_ON_HOVER} text="Zurück" onClick={this.onAbort} />
                 </div>
             </div>
@@ -141,8 +154,8 @@ const styles = (theme) => ({
     },
     centeredDiv: {
         marginTop: "40px",
-        display: "flex", 
-        justifyContent: "center", 
+        display: "flex",
+        justifyContent: "center",
         alignItems: "center"
     }
 })

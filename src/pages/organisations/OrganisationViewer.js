@@ -4,6 +4,8 @@ import Header from "../../utils/Header";
 import ApiCalls from "../../utils/communication/ApiCalls";
 import {LinearProgress} from "@material-ui/core";
 import PasswordReminder from "../user-management/PasswordChangeRequiredPopUp";
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class OrganisationViewer extends React.Component {
     apiCalls = new ApiCalls("");
@@ -30,6 +32,15 @@ export default class OrganisationViewer extends React.Component {
         })
     };
 
+    useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }));
+
     /**
      * callback method to hand the information of the chosen organisation as its ID to the parent classe
      * @param orgID
@@ -47,11 +58,14 @@ export default class OrganisationViewer extends React.Component {
     }
 /** user properties from API call should be used here */
     render() {
+        const classes = this.props.classes
+        let loadingspinner = <div className={this.classes.centeredDiv} style={{ marginTop: "30vh" }} ><CircularProgress color="#FFFFFF" /></div>
+
         return (
             <React.Fragment>
                 <Header chosenDate={new Date()} title="Organisationsauswahl" workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange}/>
                 {this.state.loading
-                    ? <LinearProgress/>
+                    ? {loadingspinner}
                     :
                     <div>
                         <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state}/>

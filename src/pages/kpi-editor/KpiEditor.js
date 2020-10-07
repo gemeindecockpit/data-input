@@ -7,6 +7,8 @@ import ApiCalls from "../../utils/communication/ApiCalls";
 import { LinearProgress } from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
 import { Snackbar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export class KpiEditor extends Component {
     constructor(props) {
@@ -23,6 +25,15 @@ export class KpiEditor extends Component {
     }
 
     apiCalls = new ApiCalls();
+
+    useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }));
 
     componentDidMount = () => {
         if (this.props.match.params.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) {
@@ -85,14 +96,14 @@ export class KpiEditor extends Component {
         })
 
         this.apiCalls.postKpisByOrgId(this.props.match.params.orgId, JSON.stringify(requestArray)).then(res => {
-            this.setState({snackbarOpen: true});
+            this.setState({ snackbarOpen: true });
         }).catch(err => {
-            this.setState({severity: "error", snackbarOpen: true});
+            this.setState({ severity: "error", snackbarOpen: true });
             console.error("PostDataError: ", err);
         });
     }
 
-    checkSeverity = () => {
+    checkSeverity = () => {
         if (this.state.severity === "success") {
             return this.successMessage;
         } else { return this.errorMessage; }
@@ -103,21 +114,23 @@ export class KpiEditor extends Component {
             return;
         }
 
-        this.setState({snackbarOpen: false});
+        this.setState({ snackbarOpen: false });
         if (this.state.severity === "success") {
             this.props.history.push("/" + this.props.match.params.workflow + "/organisations/" + this.props.match.params.orgId);
         }
     };
 
     render() {
+        const classes = this.props.classes
+        let loadingspinner = <div className={classes.centeredDiv} style={{ marginTop: "30vh" }} ><CircularProgress color="#FFFFFF" /></div>
         const { fields, showReviewScreen, title, isLoading } = this.state;
 
         if (isLoading) {
             return (
                 <React.Fragment>
-                    <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.state.title}
-                        workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} />
-                    <LinearProgress />
+                    <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.state.title}/>
+                        {loadingspinner}
+
                 </React.Fragment>
             )
         }

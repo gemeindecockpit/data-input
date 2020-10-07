@@ -19,6 +19,7 @@ class InputFields extends Component {
         this.getInputFields();
     }
 
+
     getInputFields = () => {
         const { fields } = this.props;
         var pagedFields = [];

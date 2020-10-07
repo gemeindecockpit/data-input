@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     withStyles,
     TextField,
@@ -18,6 +18,8 @@ import WirVsViursImg from '../../resources/WirVsVirus.png';
 import ApiCalls from '../../utils/communication/ApiCalls.js';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Snackbar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export class UserLogin extends Component {
 
@@ -41,6 +43,15 @@ export class UserLogin extends Component {
 
     apiCalls = new ApiCalls("");
 
+    useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }));
+
     componentDidMount() {
         this.apiCalls.logout().then(
             (response) => {
@@ -51,48 +62,48 @@ export class UserLogin extends Component {
     }
 
     onButtonClick = () => {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     //this.setState({severity: "success", snackbarOpen: true});
                     this.props.history.push("/organisations");
                 }
-                else{
+                else {
                     console.error("Error: Request failed with status code 500")
                     this.props.history.push("/login");
-                    this.setState({loading: false, borderColor: "red"});
+                    this.setState({ loading: false, borderColor: "red" });
                 }
             }
         ).catch((error) => {
-            this.setState({loading: false});
+            this.setState({ loading: false });
             if (error.response) {
                 if (error.response.status === 401) {
-                    this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessage401});
+                    this.setState({ severity: "error", snackbarOpen: true, errorMessage: this.errorMessage401 });
                 } else if (error.response.status === 500) {
-                    this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessage500});
+                    this.setState({ severity: "error", snackbarOpen: true, errorMessage: this.errorMessage500 });
                 }
             } else {
-                this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessageBackendDown});
+                this.setState({ severity: "error", snackbarOpen: true, errorMessage: this.errorMessageBackendDown });
             }
-            
+
             console.error(error)
-            
+
         });
-            
-            
+
+
     }
 
     handleUsernameChange = (event) => {
-        this.setState({username: event.target.value})
+        this.setState({ username: event.target.value })
     }
 
     handlePasswordChange = (event) => {
-        this.setState({password: event.target.value})
+        this.setState({ password: event.target.value })
     }
 
     handleClickShowPassword = () => {
-        this.setState({showPassword: !this.state.showPassword});
+        this.setState({ showPassword: !this.state.showPassword });
     };
 
     handleMouseDownPassword = (event) => {
@@ -104,10 +115,10 @@ export class UserLogin extends Component {
             return;
         }
 
-        this.setState({snackbarOpen: false});
+        this.setState({ snackbarOpen: false });
     };
 
-    checkSeverity = () => {
+    checkSeverity = () => {
         if (this.state.severity === "success") {
             return this.successMessage;
         } else { return this.errorMessage; }
@@ -115,14 +126,16 @@ export class UserLogin extends Component {
 
     render() {
         const classes = this.props.classes
-        const {loading} = this.state
-        if(loading){
-            return(
+        let loadingspinner = <div className={classes.centeredDiv} style={{ marginTop: "30vh" }} ><CircularProgress color="#FFFFFF" /></div>
+        const { loading } = this.state
+        if (loading) {
+            return (
                 <React.Fragment>
                     <div className={classes.headerDiv}>
-                        <img alt="" src={WirVsViursImg} className={classes.headerImg}/>
+                        <img alt="" src={WirVsViursImg} className={classes.headerImg} />
                     </div>
-                    <LinearProgress/>
+                    {loadingspinner}
+
                 </React.Fragment>
             )
         }
@@ -130,12 +143,12 @@ export class UserLogin extends Component {
             <div>
                 <ThemeProvider theme={muiTheme}>
                     <div className={classes.headerDiv}>
-                        <img alt="" src={WirVsViursImg} className={classes.headerImg}/>
+                        <img alt="" src={WirVsViursImg} className={classes.headerImg} />
                     </div>
                     <div className={classes.centeredDiv}>
-                        <img alt="" src={gcLogo} className={classes.gcLogo}/>
+                        <img alt="" src={gcLogo} className={classes.gcLogo} />
                     </div>
-                    <div className={classes.centeredDiv} style={{marginTop: "10px"}}>
+                    <div className={classes.centeredDiv} style={{ marginTop: "10px" }}>
                         <Typography variant="h4">
                             Gemeinde Cockpit
                         </Typography>
@@ -147,7 +160,7 @@ export class UserLogin extends Component {
                                 id="benutzer-name"
                                 placeholder="BENUTZER:INNENNAME"
                                 variant="outlined"
-                                onChange={this.handleUsernameChange}/>
+                                onChange={this.handleUsernameChange} />
                         </div>
                         <div className={classes.centeredDiv}>
                             <OutlinedInput
@@ -164,16 +177,16 @@ export class UserLogin extends Component {
                                             onMouseDown={this.handleMouseDownPassword}
                                             edge="end"
                                         >
-                                            {this.state.showPassword ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                                            {this.state.showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
                             />
                         </div>
                     </form>
-                    <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
+                    <div className={classes.centeredDiv} style={{ paddingBottom: "30px" }}>
                         <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER}
-                                      text="Anmelden" onClick={this.onButtonClick}/>
+                            text="Anmelden" onClick={this.onButtonClick} />
                     </div>
                 </ThemeProvider>
                 <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
