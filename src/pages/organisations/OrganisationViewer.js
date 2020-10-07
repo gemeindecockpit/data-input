@@ -43,7 +43,7 @@ export default class OrganisationViewer extends React.Component {
     }
 
     redirectProfilePage = () => {
-        this.props.history.push("login");
+        this.props.history.push("profile");
     }
 /** user properties from API call should be used here */
     render() {
