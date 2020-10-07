@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import RecordViewer from '../datepicker/RecordViewer';
-import {Paper} from '@material-ui/core';
-import {withStyles} from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles';
 import ButtonThemes from '../../enums/ButtonThemes';
 import CustomButton from '../../utils/control/CustomButton';
-import Divider from '../../utils/Divider';
+import { Paper } from '@material-ui/core';
 
 class ReviewScreen extends Component {
 
@@ -29,13 +28,13 @@ class ReviewScreen extends Component {
             <div>
                 <div className={classes.centeredDiv}>
                     <Paper className={classes.overviewPaper}>
-                        <RecordViewer recordToDisplay={ this.state.recordToShow }/>
+                        <RecordViewer recordToDisplay={this.state.recordToShow} />
                     </Paper>
                 </div>
                 <div className={classes.centeredDiv}>
                     <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Abschicken" onClick={this.onSubmit} />
                 </div>
-                <div className={classes.centeredDiv} style={{marginTop: "10px", paddingBottom: "30px"}}>
+                <div className={classes.centeredDiv} style={{ marginTop: "10px", paddingBottom: "30px" }}>
                     <CustomButton color={ButtonThemes.RED.COLOR} colorOnHover={ButtonThemes.RED.COLOR_ON_HOVER} text="Zurück" onClick={this.onAbort} />
                 </div>
             </div>
@@ -54,8 +53,8 @@ const styles = (theme) => ({
     },
     centeredDiv: {
         marginTop: "30px",
-        display: "flex", 
-        justifyContent: "center", 
+        display: "flex",
+        justifyContent: "center",
         alignItems: "center"
     },
     title: {

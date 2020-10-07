@@ -6,6 +6,8 @@ import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
 import PasswordField from '../../utils/input/PasswordField';
 import ApiCalls from "../../utils/communication/ApiCalls";
+import { Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const Title = ( text ) => {
     return (
@@ -25,8 +27,12 @@ export class Password extends Component {
         super(props);
         this.state = {
             newPassword: "",
-            newPasswordSubmit: ""
+            newPasswordSubmit: "",
+            snackbarOpen: false,
+            errorMessage: "",
+            severity: "error"
         };
+        this.errorMessage403 = "Backendanbindung noch nicht erfolgreich implementiert.";
     }
 
     apiCalls = new ApiCalls();
@@ -46,12 +52,26 @@ export class Password extends Component {
             this.apiCalls.updatePassword(userid, newPassword).then(res => {
                 console.log(res)
             }).catch(err => {
-                console.error(err)
+                this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessage403});
             })
         } else {
             console.log("Different passwords")
+        }   
+    }
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
         }
-        
+        this.setState({snackbarOpen: false});
+    };
+
+    checkSeverity = () => {
+        if (this.state.severity === "success") {
+            return this.successMessage;
+        } else { 
+            return this.errorMessage; 
+        }
     }
 
     render() {
@@ -72,6 +92,11 @@ export class Password extends Component {
                 <div className={classes.centeredDiv} style={{paddingBottom: "30px"}}>
                     <CustomButton color={ButtonThemes.BLUE.COLOR} colorOnHover={ButtonThemes.BLUE.COLOR_ON_HOVER} text="Bestätigen" onClick={this.onButtonClick} />
                 </div>
+                <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+                    <MuiAlert onClose={this.handleClose} severity={this.state.severity}>
+                        {this.state.errorMessage}
+                    </MuiAlert>
+                </Snackbar>
             </div>
         )
     }

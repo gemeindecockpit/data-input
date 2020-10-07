@@ -72,7 +72,7 @@ export default function DenseAppBar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [workflow, setWorkflow] = React.useState((props.workflow === Workflows.EDIT_KPI_VALUES.URL_PARAM) ? Workflows.EDIT_KPI_VALUES : Workflows.EDIT_COMPARE_VALUES);
     const [showReviewScreen, setShowReviewScreen] = React.useState(props.showReviewScreen);
-    if (showReviewScreen != props.showReviewScreen) {
+    if (showReviewScreen !== props.showReviewScreen) {
         setShowReviewScreen(props.showReviewScreen);
     }
     const open = Boolean(anchorEl);

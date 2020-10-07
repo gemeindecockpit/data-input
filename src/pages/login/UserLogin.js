@@ -16,6 +16,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WirVsViursImg from '../../resources/WirVsVirus.png';
 import ApiCalls from '../../utils/communication/ApiCalls.js';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Snackbar } from '@material-ui/core';
 
 export class UserLogin extends Component {
 
@@ -27,8 +29,14 @@ export class UserLogin extends Component {
             username: "",
             password: "",
             showPassword: false,
-            borderColor: "white"
+            borderColor: "white",
+            severity: "error",
+            snackbarOpen: false,
+            errorMessage: ""
         };
+        this.errorMessage401 = "Der Nutzername oder das Kennwort ist falsch.";
+        this.errorMessage500 = "Das Backend konnte nicht erreicht werden.";
+        this.errorMessageBackendDown = "Das Backend konnte nicht erreicht werden.";
     }
 
     apiCalls = new ApiCalls();
@@ -47,6 +55,7 @@ export class UserLogin extends Component {
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
                 if(response.status === 200) {
+                    //this.setState({severity: "success", snackbarOpen: true});
                     this.props.history.push("/organisations");
                 }
                 else{
@@ -57,7 +66,21 @@ export class UserLogin extends Component {
             }
         ).catch((error) => {
             this.setState({loading: false});
-            console.error(error)});
+            if (error.response) {
+                if (error.response.status === 401) {
+                    this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessage401});
+                } else if (error.response.status === 500) {
+                    this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessage500});
+                }
+            } else {
+                this.setState({severity: "error", snackbarOpen: true, errorMessage: this.errorMessageBackendDown});
+            }
+            
+            console.error(error)
+            
+        });
+            
+            
     }
 
     handleUsernameChange = (event) => {
@@ -75,6 +98,20 @@ export class UserLogin extends Component {
     handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({snackbarOpen: false});
+    };
+
+    checkSeverity = () => {
+        if (this.state.severity === "success") {
+            return this.successMessage;
+        } else { return this.errorMessage; }
+    }
 
     render() {
         const classes = this.props.classes
@@ -139,6 +176,11 @@ export class UserLogin extends Component {
                                       text="Anmelden" onClick={this.onButtonClick}/>
                     </div>
                 </ThemeProvider>
+                <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+                    <MuiAlert onClose={this.handleClose} severity={this.state.severity}>
+                        {this.state.errorMessage}
+                    </MuiAlert>
+                </Snackbar>
             </div>
         )
     }
