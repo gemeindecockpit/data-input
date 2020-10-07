@@ -4,12 +4,13 @@ import InputField from '../../utils/input/InputField';
 import CustomButton from '../../utils/control/CustomButton';
 import ButtonThemes from '../../enums/ButtonThemes';
 import { Pagination } from '@material-ui/lab';
+import Divider from '../../utils/Divider';
 
 class InputFields extends Component {
     constructor(props) {
         super(props);
         this.state={
-            kpis: [[]],
+            pagedFields: [[]],
             page: 1,
             inputFieldsLimit: 1
         };
@@ -20,40 +21,38 @@ class InputFields extends Component {
     }
 
     getInputFields = () => {
-        const { kpis } = this.props;
-        var newKpis = [];
-        
+        const { fields } = this.props;
+        var pagedFields = [];
         var inputFieldsLimit = parseInt(((window.innerHeight-421)/98).toString().split('.')[0]) + 1;
 
-        if(kpis.length > inputFieldsLimit) {
-            var temp = [], counter = 1;
-            kpis.forEach((el) => {
-                temp.push(el);
+        if(fields.length > inputFieldsLimit) {
+            var fieldPage = [], counter = 1;
+            fields.forEach((field) => {
+                fieldPage.push(field);
                 if(counter === inputFieldsLimit){
                     counter = 1;
-                    newKpis.push(temp);
-                    temp = [];
+                    pagedFields.push(fieldPage);
+                    fieldPage = [];
                 } else {
                     counter++; 
                 }
             });
-            if(temp.length > 0) {
-                newKpis.push(temp);
+            if(fieldPage.length > 0) {
+                pagedFields.push(fieldPage);
             }
         } else {
-            newKpis.push(kpis)
+            pagedFields.push(fields)
         }
-        this.setState({ kpis: newKpis, inputFieldsLimit: inputFieldsLimit });
+        this.setState({ pagedFields: pagedFields, inputFieldsLimit: inputFieldsLimit });
     }
 
     showInputFields = () => {
-        const { page, kpis } = this.state;
-        return kpis[page-1].map(kpi => {
+        const { page, pagedFields } = this.state;
+        return pagedFields[page-1].map(field => {
             return (
                 <InputField
-                    key={ kpi.name }
-                    name={ kpi.name }
-                    value={ kpi.value }
+                    key={ field.field_id }
+                    field={ field }
                     onIconClick={ this.onIconClick }
                     handleChange={ this.handleChange }
                 />
@@ -65,20 +64,25 @@ class InputFields extends Component {
         this.setState({page: value});
     }
 
-    handleChange = (event, kpiName) => {
-        var newKpis = this.state.kpis;        
-        newKpis[this.state.page-1][newKpis[this.state.page-1].findIndex(v => v.name === kpiName)] = {name: kpiName, value: event.target.value}
-        this.setState({ kpis: newKpis })
+    handleChange = (event, field_id) => {
+        var pagedFields = this.state.pagedFields;
+        pagedFields[this.state.page-1].forEach(field => {
+            if(field.field_id === field_id) {
+                field.field_value = event.target.value;
+            }
+        });
+
+        this.setState({ pagedFields: pagedFields })
     }
 
     onSubmit = () => {
-        var submitKpis = [];
-        this.state.kpis.forEach(kpis => {
-            kpis.forEach(kpi => {
-                submitKpis.push(kpi);
+        var fields = [];
+        this.state.pagedFields.forEach(pagedField => {
+            pagedField.forEach(field => {
+                fields.push(field);
             })
         })
-        this.props.onSubmit(submitKpis);
+        this.props.onSubmit(fields);
     }
 
     onAbort = () => {
@@ -89,20 +93,20 @@ class InputFields extends Component {
     }
 
     render() {
-        const { kpis, page, inputFieldsLimit } = this.state;
+        const { pagedFields, page, inputFieldsLimit } = this.state;
         const classes = this.props.classes
         
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    <div style={{ height: ((inputFieldsLimit>this.props.kpis.length) ? (this.props.kpis.length*98) + "px" : (inputFieldsLimit*98) + "px") }}>
+                    <div style={{ height: ((inputFieldsLimit>this.props.fields.length) ? (this.props.fields.length*98) + "px" : (inputFieldsLimit*98) + "px") }}>
                         {this.showInputFields()}
                     </div>
-                    {kpis.length > 1 ? 
+                    {pagedFields.length > 1 ?
                         <div className={classes.centeredDiv}>
                             <Pagination
                                 variant="outlined"
-                                count={kpis.length}
+                                count={pagedFields.length}
                                 page={page}
                                 onChange={this.handlePageChange}
                             />
