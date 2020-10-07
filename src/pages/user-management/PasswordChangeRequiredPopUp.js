@@ -8,9 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function CustomizedSnackbars(props) {
+export default function PasswordReminder(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState({
         open:true,
@@ -35,43 +33,28 @@ function CustomizedSnackbars(props) {
             return;
         }
 
-        setOpen(false);
+        setOpen(false)
     };
 
     function onClick() {
         props.redirectProfilePage()
     }
 
-    return (
-        <div className={classes.root}>
 
+
+    return props.pwResetRequired ? (
+        <div className={classes.root}>
             <Snackbar
-                open={open}
+                open={open.open}
                 onClose={handleClose}
                 anchorOrigin={{ vertical:'top', horizontal:'center' }}
             >
-                <Alert severity="warning" onClose={handleClose}>Bitte wechseln Sie ihr Passwort.
+                <MuiAlert onClose={handleClose} severity="warning">
+                    Bitte wechseln Sie ihr Passwort.
                     <Button onClick={onClick}>Passwort wechseln</Button>
-                </Alert>
+
+                </MuiAlert>
             </Snackbar>
-
         </div>
-    );
-}
-
-export default class PasswordReminder extends Component
-{
-    redirectProfilePage = () =>
-    {
-        this.props.redirectProfilePage();
-    }
-
-    render()
-    {
-        return(
-            this.props.pwResetRequired ?
-                <CustomizedSnackbars redirectProfilePage={this.redirectProfilePage}/>
-                : null
-        );
-    }
+    ): null;
 }
