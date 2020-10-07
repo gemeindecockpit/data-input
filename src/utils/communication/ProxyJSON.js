@@ -708,7 +708,7 @@ function getFullJSON() {
     return proxyJSON;
 }
 
-function getOrganisationById(id) {
+function getOrganisationById(id) { 
     var organisation = {};
     proxyJSON.organisations.forEach(org => {
         organisation = (org.id === id) ? org : organisation;
