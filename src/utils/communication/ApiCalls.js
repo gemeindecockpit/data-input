@@ -40,6 +40,15 @@ export default class ApiCalls extends React.Component {
         });
     }
 
+    getLoggedInUser = () => {
+        return axios.get(baseUrl + "users/me", {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+            withCredentials: true
+        });
+}
+
     getOrganisations = () => {
         return axios.get(baseUrl + "config/organisation", {
             withCredentials: true

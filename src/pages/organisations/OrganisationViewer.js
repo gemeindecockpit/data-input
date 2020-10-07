@@ -8,6 +8,8 @@ import PasswordReminder from "../user-management/PasswordChangeRequiredPopUp";
 export default class OrganisationViewer extends React.Component {
     apiCalls = new ApiCalls("");
 
+    apiCalls = new ApiCalls("");
+
     state = {
         loading: true,
         organisation: []
@@ -19,10 +21,14 @@ export default class OrganisationViewer extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.state={
-            organisations: temporaryJson.organisations
-        };
-    }
+        this.apiCalls.getLoggedInUser().then((res)=>{
+            this.setState({passwordReset: res.data.req_pw_reset})
+        });
+
+        this.apiCalls.getOrganisations().then((res) => {
+            this.setState({organisation: res.data.organisations, loading: false})
+        })
+    };
 
     /**
      * callback method to hand the information of the chosen organisation as its ID to the parent classe
@@ -49,7 +55,7 @@ export default class OrganisationViewer extends React.Component {
                     :
                     <div>
                         <OrganisationList chosenOrganisation={this.chooseOrganisation} data={this.state}/>
-                        <PasswordReminder pwResetRequired = {true} redirectProfilePage={this.redirectProfilePage}/>
+                        <PasswordReminder pwResetRequired = {this.state.passwordReset} redirectProfilePage={this.redirectProfilePage}/>
 
                     </div>
                 }
