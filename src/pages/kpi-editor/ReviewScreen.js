@@ -3,7 +3,6 @@ import RecordViewer from '../datepicker/RecordViewer';
 import { withStyles } from '@material-ui/styles';
 import ButtonThemes from '../../enums/ButtonThemes';
 import CustomButton from '../../utils/control/CustomButton';
-import Divider from '../../utils/Divider';
 import { Paper } from '@material-ui/core';
 
 class ReviewScreen extends Component {
