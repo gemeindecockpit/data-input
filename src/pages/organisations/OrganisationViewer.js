@@ -1,6 +1,6 @@
 import React from "react";
 import OrganisationList from "./OrganisationList";
-import Header from "../../utils/Header";
+import Header from "../../utils/header/Header";
 import ApiCalls from "../../utils/communication/ApiCalls";
 import {LinearProgress} from "@material-ui/core";
 import PasswordReminder from "../user-management/PasswordChangeRequiredPopUp";

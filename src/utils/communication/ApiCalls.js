@@ -70,6 +70,30 @@ export default class ApiCalls extends React.Component {
             withCredentials: true
         });
     }
+
+    getUserInfo = () => {
+        return axios.get(baseUrl + "users/me", {
+            withCredentials: true
+        });
+    }
+
+    updatePassword = (userid, newPassword) => {
+        var formData = new FormData();
+        formData.append("id_user", userid);
+        formData.append("userpassword", newPassword);
+
+        var requestJson = {
+            "id_user": userid,
+            "userpassword": newPassword
+        }
+
+        return axios.put(baseUrl + "users/me", requestJson, {
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            withCredentials: true
+        });
+    }
 }
 
 

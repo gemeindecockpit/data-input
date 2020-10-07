@@ -39,7 +39,7 @@ export class UserLogin extends Component {
         this.errorMessageBackendDown = "Das Backend konnte nicht erreicht werden.";
     }
 
-    apiCalls = new ApiCalls("");
+    apiCalls = new ApiCalls();
 
     componentDidMount() {
         this.apiCalls.logout().then(

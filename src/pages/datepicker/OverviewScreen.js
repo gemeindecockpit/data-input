@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Datepicker from "./Datepicker";
 import RecordViewer from "./RecordViewer";
-import Header from "../../utils/Header";
+import Header from "../../utils/header/Header";
 import {LinearProgress, Paper, withStyles} from '@material-ui/core';
 import Workflows from './../../enums/Workflows';
 import CustomButton from '../../utils/control/CustomButton';

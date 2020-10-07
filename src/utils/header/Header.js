@@ -10,11 +10,11 @@ import {
     Typography
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import GC_logo from '../resources/logo_gemeindecockpit.svg'
-import Workflows from './../enums/Workflows';
-import Divider from './Divider';
+import GC_logo from '../../resources/logo_gemeindecockpit.svg'
+import Workflows from './../../enums/Workflows';
+import Divider from './../Divider';
 import { useHistory} from 'react-router-dom';
-import ApiCalls from '../utils/communication/ApiCalls.js';
+import ApiCalls from '../communication/ApiCalls.js';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -82,7 +82,7 @@ export default function DenseAppBar(props) {
     };
 
     const handleLogOut = () => {
-        (new ApiCalls("")).logout().then(res => {
+        (new ApiCalls()).logout().then(res => {
         });
         setAnchorEl(null);
         history.push("/login")
@@ -90,8 +90,11 @@ export default function DenseAppBar(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
-        history.push("/")
     };
+
+    const handleProfileClick = () => {
+        history.push('/profile');
+    }
 
     const handleWorkflowChange = () => {
         alert("In progress... incomplete backend");
@@ -151,7 +154,7 @@ export default function DenseAppBar(props) {
                         <MenuItem className={classes.burgerText} key="Workflow wechseln" onClick={handleWorkflowChange}>
                             {oppositeWorkflow().DESCRIPTION}
                         </MenuItem>
-                        <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleClose}>
+                        <MenuItem className={classes.burgerText} key="Profil pflegen" onClick={handleProfileClick}>
                             Profil pflegen
                         </MenuItem>
                         <MenuItem className={classes.text} key="Ausloggen" onClick={handleLogOut}>
@@ -165,7 +168,7 @@ export default function DenseAppBar(props) {
                     <Grid>
                         <Typography display={"inline"} className={classes.secondHeaderText}
                                    >
-                            {(props.title ? props.title : "") + ": "}
+                            {(props.title ? props.title : "")}
                         </Typography>
                     </Grid>
 

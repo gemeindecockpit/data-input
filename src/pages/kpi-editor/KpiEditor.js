@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import InputFields from './InputFields';
 import ReviewScreen from './ReviewScreen';
-import Header from '../../utils/Header';
+import Header from '../../utils/header/Header';
 import Workflows from './../../enums/Workflows';
 import ApiCalls from "../../utils/communication/ApiCalls";
 import { LinearProgress } from "@material-ui/core";
