@@ -80,6 +80,8 @@ class OverviewScreen extends Component {
                     return field;
                 })
                 this.setState({fields: newFields, loading: false, date: date});
+        }).catch((err) => {
+            console.error(err);
         })
     }
 
@@ -88,7 +90,9 @@ class OverviewScreen extends Component {
             .then((res) => {
                 this.setState({fields: res.data.fields, loading: false, title: res.data.organisation_name});
                 this.fetchOrgValues(id, new Date())
-            })
+            }).catch((err) => {
+            console.error(err);
+        })
     }
 
     render() {

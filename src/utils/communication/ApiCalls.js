@@ -61,13 +61,6 @@ export default class ApiCalls extends React.Component {
             withCredentials: true
         });
     }
-
-    getData = () => {
-        return axios.get(baseUrl + "data", {})
-            .catch(error => {
-                console.log(error);
-        });
-    }
 }
 
 

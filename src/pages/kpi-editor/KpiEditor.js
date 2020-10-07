@@ -59,6 +59,8 @@ export class KpiEditor extends Component {
                 return field;
             })
             this.setState({fields: newFields, isLoading: false, date: date});
+        }).catch((err) => {
+            console.error(err);
         })
     }
 
@@ -77,7 +79,6 @@ export class KpiEditor extends Component {
         })
 
         this.apiCalls.postKpisByOrgId(this.props.match.params.orgId, JSON.stringify(requestArray)).then(res => {
-            console.log(res);
         }).catch(err => {
             console.error("PostDataError: ", err);
         });

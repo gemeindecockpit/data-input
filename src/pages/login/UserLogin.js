@@ -36,31 +36,28 @@ export class UserLogin extends Component {
     componentDidMount() {
         this.apiCalls.logout().then(
             (response) => {
-                console.log(response);
             }
-        )
+        ).catch((err) => {
+            console.error(err);
+        })
     }
 
     onButtonClick = () => {
-        console.log("Start")
         this.setState({loading: true});
         this.apiCalls.login(this.state.username, this.state.password).then(
             (response) => {
-                console.log(response)
                 if(response.status === 200) {
-                    console.log("Sie sind eingeloggt!")
                     this.props.history.push("/organisations");
                 }
                 else{
-                    console.log("Error: Request failed with status code 500")
+                    console.error("Error: Request failed with status code 500")
                     this.props.history.push("/login");
                     this.setState({loading: false, borderColor: "red"});
                 }
-                console.log(response);
             }
         ).catch((error) => {
             this.setState({loading: false});
-            console.log(error)});
+            console.error(error)});
     }
 
     handleUsernameChange = (event) => {

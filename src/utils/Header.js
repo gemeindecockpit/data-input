@@ -83,7 +83,6 @@ export default function DenseAppBar(props) {
 
     const handleLogOut = () => {
         (new ApiCalls("")).logout().then(res => {
-            console.log(res.data)
         });
         setAnchorEl(null);
         history.push("/login")
@@ -178,7 +177,6 @@ export default function DenseAppBar(props) {
                             + props.chosenDate.getFullYear()
                         }
                     </Typography>
-                    <!--<Typography className={classes.dateText}>{props.chosenDate.toDateString()}</Typography>-->
                 </Toolbar>
             </AppBar>
             {Divider(showReviewScreen ? workflow.REVIEWSCREEN_DESCRIPTION : workflow.DESCRIPTION)}
