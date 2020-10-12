@@ -32,10 +32,6 @@ export class KpiEditor extends Component {
         }
     }
 
-    headerTitle = () => {
-        return (this.state.title)
-    }
-
     onWorkflowChange = (workflowUrlParam) => {
         this.props.history.push("/" + workflowUrlParam + "/organisations")
     }
@@ -43,7 +39,7 @@ export class KpiEditor extends Component {
     fetchDefaultValues = (id) => {
         this.apiCalls.getOrganisationById(id)
             .then((res) => {
-                this.setState({ fields: res.data.fields, loading: false, title: res.data.organisation_name });
+                this.setState({ fields: res.data.fields, title: res.data.organisation_name });
                 this.fetchOrgValues(id, new Date(this.props.match.params.date * 1000))
             })
     }
@@ -124,7 +120,7 @@ export class KpiEditor extends Component {
 
         return (
             <div>
-                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={this.headerTitle()} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} showReviewScreen={showReviewScreen} />
+                <Header chosenDate={new Date(this.props.match.params.date * 1000)} title={title} workflow={this.props.match.params.workflow} onWorkflowChange={this.onWorkflowChange} showReviewScreen={showReviewScreen} />
                 {(!showReviewScreen) ?
                     <InputFields
                         fields={fields}

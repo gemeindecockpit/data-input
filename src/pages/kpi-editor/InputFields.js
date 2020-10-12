@@ -16,10 +16,10 @@ class InputFields extends Component {
     }
 
     componentDidMount = () => {
-        this.getInputFields();
+        this.paginateInputFields();
     }
 
-    getInputFields = () => {
+    paginateInputFields = () => {
         const { fields } = this.props;
         var pagedFields = [];
         var inputFieldsLimit = parseInt(((window.innerHeight-421)/98).toString().split('.')[0]) + 1;
@@ -53,7 +53,7 @@ class InputFields extends Component {
                     key={ field.field_id }
                     field={ field }
                     onIconClick={ this.onIconClick }
-                    handleChange={ this.handleChange }
+                    handleChange={ this.handleInputChange }
                 />
             )                    
         });
@@ -63,7 +63,7 @@ class InputFields extends Component {
         this.setState({page: value});
     }
 
-    handleChange = (event, field_id) => {
+    handleInputChange = (event, field_id) => {
         var pagedFields = this.state.pagedFields;
         pagedFields[this.state.page-1].forEach(field => {
             if(field.field_id === field_id) {

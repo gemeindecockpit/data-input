@@ -14,11 +14,11 @@ class ReviewScreen extends Component {
         }
     }
 
-    onAbort = (ev) => {
+    onAbort = () => {
         this.props.onAbort();
     }
 
-    onSubmit = (ev) => {
+    onSubmit = () => {
         this.props.onSubmit();
     }
 
